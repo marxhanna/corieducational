@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/header.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="app-container">
+      <div class="top-bar">
+        <img id="menu" src="/assets/menu.png" alt="Menu" />
+      </div>
+      <div id="sidebar" class="sidebar">
+        <div class="personal-info">
+          <img src="/assets/foto2.jpg" alt="" />
+          <div class="text-info">
+            <p id="title">ESTUDANTE</p>
+            <p id="name"><%= user.name %></p>
+          </div>
+        </div>
+        <div class="email">
+          <p><%= user.email %></p>
+        </div>
+
+        <div class="redirects">
+          <div class="hover" onclick="location.href='/index';">
+            <i class="fa fa-house"></i> Home
+          </div>
+          <div
+            class="hover"
+            onclick="location.href='https://app.corihealth.com.br/exames';"
+          >
+            <i class="fa fa-clipboard"></i> Exames
+          </div>
+
+          <div class="hover" onclick="location.href='/turmas';">
+            <i class="fa fa-user-graduate"></i> Turmas
+          </div>
+          <div class="hover" onclick="location.href='/dashboard';">
+            <i class="fa-solid fa-chart-column"></i> Dashboard
+          </div>
+          <div class="hover"><i class="fa fa-user"></i> Meu Perfil</div>
+        </div>
+      </div>
+      <div id="overlay"></div>
+    </div>
+    <div class="adicional"></div>
+    <div class="adicional"></div>
+
+    <script src="/scripts/script.js"></script>
+  </body>
+</html>

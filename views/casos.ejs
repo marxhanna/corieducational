@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/casos.css" />
+    <title>Casos Clínicos</title>
+    <style>
+      body {
+        display: none;
+      }
+      .tag-exame {
+        background-color: #9acb3f;
+      }
+      .tag-prescricao {
+        background-color: #ff0f68;
+      }
+      .tag-diagnostico {
+        background-color: #6b67f9;
+      }
+    </style>
+  </head>
+  <body>
+    <%- include('header') %>
+    <div class="welcome-message">
+      <h1>Casos Clínicos</h1>
+    </div>
+    <div class="filter">
+      <img src="/assets/graduation(2).png" alt="" />
+      <select name="filter" id="filter" class="option" onchange="filterCases()">
+        <option value="all">Todas as Turmas</option>
+        <% if (classes && classes.length > 0) { %> <%
+        classes.forEach(function(turma) { %>
+        <option value="<%= turma.classId %>"><%= turma.class.name %></option>
+        <% }); %> <% } %>
+      </select>
+    </div>
+    <div class="grid-container">
+      <% if (cases && cases.length > 0) { %> <% cases.forEach(function(caso) {
+      %>
+      <div
+        class="case-card"
+        data-turma="<%= caso.classId %>"
+        onclick="location.href='/casoResposta/<%= caso.uuid %>';"
+      >
+        <div class="case-info">
+          <div class="image-container">
+            <img src="/assets/<%= caso.image %>.png" alt="<%= caso.title %>" />
+          </div>
+          <div class="case-description">
+            <p><%= caso.title %></p>
+            <div class="tags">
+              <% if (caso.tags && caso.tags.length > 0) { %> <% var uniqueTags =
+              []; %> <% caso.tags.forEach(function(tag) { %> <% var displayTag =
+              tag.trim() === "Prescrição Médica" ? "Prescrição" : tag.trim(); %>
+              <% if (uniqueTags.indexOf(displayTag) === -1) { %> <%
+              uniqueTags.push(displayTag); %> <% } %> <% }); %> <%
+              uniqueTags.forEach(function(tag) { %>
+              <span class="tag <%= tag.toLowerCase() %>"><%= tag %></span>
+              <% }); %> <% } %>
+            </div>
+            <div class="case-actions">
+              <% if (caso.actions && caso.actions.length > 0) { %> <%
+              caso.actions.forEach(function(action) { %>
+              <button><%= action %></button>
+              <% }); %> <% } %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% }); %> <% } %>
+    </div>
+    <script>
+      function filterCases() {
+        var filter = document.getElementById("filter").value;
+        var cases = document.querySelectorAll(".case-card");
+        cases.forEach(function (caso) {
+          if (filter === "all" || caso.getAttribute("data-turma") === filter) {
+            caso.style.display = "block";
+          } else {
+            caso.style.display = "none";
+          }
+        });
+      }
+
+      function getParameterByName(name) {
+        var url = new URL(window.location.href);
+        var paramValue = url.searchParams.get(name);
+        console.log(name, paramValue); // Verificação do valor do parâmetro
+        return paramValue;
+      }
+
+      // Aplicar filtro automaticamente na carga inicial com base no className da URL
+      document.addEventListener("DOMContentLoaded", function () {
+        var className = getParameterByName("className");
+        console.log("Class Name from URL:", className); // Verificação do className
+        if (className) {
+          var filterElement = Array.from(
+            document.querySelectorAll("#filter option")
+          ).find((option) => option.textContent === className);
+          if (filterElement) {
+            filterElement.selected = true;
+            filterCases();
+          }
+        }
+        document.body.style.display = "block";
+      });
+
+      document.addEventListener("DOMContentLoaded", function () {
+        var tags = document.querySelectorAll(".tag");
+        tags.forEach(function (tag) {
+          var tagText = tag.textContent.trim().toLowerCase();
+          if (tagText === "exame") {
+            tag.classList.add("tag-exame");
+          } else if (tagText === "prescrição" || tagText === "prescricao") {
+            tag.classList.add("tag-prescricao");
+          } else if (tagText === "diagnóstico" || tagText === "diagnostico") {
+            tag.classList.add("tag-diagnostico");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

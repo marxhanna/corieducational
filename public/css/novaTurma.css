@@ -1,0 +1,100 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
+body {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f2f2fe;
+}
+.welcome-message {
+  padding-left: 20px;
+}
+.welcome-message h1 {
+  color: #262a41;
+  font-size: 30px;
+  font-weight: 500;
+}
+.welcome-message p {
+  color: #979797;
+}
+
+.inscricao {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 20px;
+  padding-right: 28px;
+  margin-bottom: 30px;
+}
+
+.inscricao input {
+  border-radius: 15px;
+  border: grey;
+}
+/* Estilo do campo de entrada quando focado */
+.inscricao input[type="text"]:focus {
+  border: 1px solid #7f7bff; /* Define a cor da borda quando o input está focado */
+}
+
+/* Estilo do campo de entrada */
+.inscricao input[type="text"] {
+  height: 69px; /* Altura específica para o input */
+  font-size: 25px; /* Tamanho de fonte para o texto dentro do input */
+  margin-bottom: 30px; /* Espaço abaixo do input */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adiciona sombra ao redor do input */
+  padding-left: 20px; /* Distância do texto ao bordo esquerdo */
+}
+
+/* Estilo do placeholder */
+.inscricao input[type="text"]::placeholder {
+  color: rgb(214, 204, 204); /* Cor cinza para o texto do placeholder */
+  font-size: 20px; /* Tamanho da fonte para o placeholder */
+  vertical-align: middle; /* Alinha verticalmente ao meio */
+}
+/* Aumentando a especificidade e garantindo que a regra de foco seja aplicada */
+.inscricao input[type="text"]:focus {
+  border: none; /* Adiciona '!important' para garantir a prioridade */
+  outline: none; /* Remove qualquer contorno padrão que possa estar sendo aplicado */
+}
+
+/* Estilo do botão de confirmação */
+.inscricao button {
+  display: flex;
+  height: 46px; /* Altura específica para o botão */
+  font-size: 18px; /* Tamanho da fonte */
+  text-align: center; /* Ali    nha o texto horizontalmente ao centro */
+  border: none;
+  color: white;
+  background-color: #7f7bff;
+  justify-content: center;
+  align-items: center; /* Alinha o texto verticalmente ao centro */
+  border-radius: 15px;
+  padding-left: 20px;
+  padding-right: 28px;
+
+  width: 338px;
+  font-size: 22px;
+}
+.confirmar {
+  transition: box-shadow 0.1s ease, transform 0.1s ease; /* Transições suaves para sombra e transformação */
+  cursor: pointer; /* Indica que o botão é clicável */
+  /* outros estilos existentes, como cor de fundo, tamanho de fonte, etc. */
+}
+
+.confirmar:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Sombra reforçada ao passar o mouse */
+  /* outros estilos de hover se houver */
+}
+
+.confirmar:active {
+  transform: translateY(4px); /* Move o botão para baixo visualmente */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2); /* Sombra menos proeminente para simular profundidade */
+}
+.confirmar:focus {
+  outline: none; /* Remove o contorno azul que aparece ao clicar */
+}
+.error-message {
+  font-size: 17px;
+  color: #ff0f68;
+  font-weight: 600;
+  margin-bottom: 20px;
+}

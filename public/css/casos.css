@@ -1,0 +1,195 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
+
+body {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f2f2fe;
+}
+
+.welcome-message {
+  padding-left: 20px;
+}
+
+.welcome-message h1 {
+  color: #262a41;
+  font-size: 30px;
+  font-weight: 500;
+}
+
+.welcome-message p {
+  color: #979797;
+}
+
+#filter {
+  background-color: #f2f2fe;
+  border: none;
+  appearance: none;
+  outline: none;
+}
+
+#filter:focus {
+  outline: none;
+}
+
+.filter {
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+}
+
+.filter img {
+  width: 45px;
+  height: 45px;
+  margin-right: 5px;
+}
+
+.filter select {
+  border: none;
+  width: 400px;
+  height: 30px;
+  background-color: #fff;
+  padding: 5px;
+  font-size: 16px;
+  color: #999;
+}
+
+.filter select option:hover {
+  color: white;
+  background-color: #7f7bff;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.case-card {
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  border-radius: 15px;
+  transition: transform 0.1s ease;
+}
+
+.case-card:active {
+  transform: translateY(6px);
+}
+
+.case-info {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+.image-container {
+  min-width: 70px;
+  min-height: 70px;
+  border-radius: 50%;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.image-container img {
+  width: 50px;
+  height: 50px;
+}
+
+.case-description {
+  flex: 1;
+}
+
+.case-description p {
+  margin: 0;
+  color: #333;
+  font-size: 14px;
+  padding-right: 10px;
+  margin-left: 18px;
+  font-weight: bold;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap; /* Permite que as tags quebrem para a próxima linha */
+  gap: 10px;
+  margin-top: 10px;
+  margin-left: 18px; /* Alinha com o título */
+}
+
+.tag {
+  background-color: #e0e0e0;
+  border-radius: 15px;
+  padding: 2px 10px; /* Menor padding */
+  font-size: 12px; /* Menor fonte */
+  color: #333;
+  word-break: break-word; /* Quebra a palavra se for muito longa */
+}
+
+.tag {
+  background-color: #ff0f68;
+  color: white;
+}
+.tag-exame {
+  background-color: #a6dc00;
+}
+
+.tag-prescricao {
+  background-color: #ff0f68;
+}
+
+.tag-diagnostico {
+  background-color: #6b67f9;
+}
+
+.tag-conduta {
+  background-color: #f4d737;
+}
+.case-actions {
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 18px;
+  padding-top: 5px;
+  gap: 5px;
+}
+
+.case-actions button {
+  color: white;
+  border: none;
+  padding: 0 20px;
+  border-radius: 15px;
+  font-size: 12px;
+  max-width: 90px;
+  width: fit-content;
+  font-weight: bold;
+  background-color: #7f7bff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  height: 22px;
+  line-height: 22px;
+}
+
+.case-actions button:hover {
+  background-color: #0056b3;
+}
+.case-description .case-tags .tag:nth-child(1) {
+  background-color: #ff7f7f; /* Red */
+}
+.case-description .case-tags .tag:nth-child(2) {
+  background-color: #7fff7f; /* Green */
+}
+.case-description .case-tags .tag:nth-child(3) {
+  background-color: #7f7fff; /* Blue */
+}
+.case-description .case-tags .tag:nth-child(4) {
+  background-color: #ffff7f; /* Yellow */
+}

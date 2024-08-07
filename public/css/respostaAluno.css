@@ -1,0 +1,667 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
+
+body {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f2f2fe;
+}
+.p-text {
+  text-align: center;
+  font-weight: bold;
+}
+.p-text-correta {
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: -2px;
+}
+
+.popup-overlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-content {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 80%;
+  max-width: 400px;
+  text-align: center;
+  position: relative;
+  display: flex; /* Habilitando flexbox */
+  flex-direction: column; /* Alinhamento em coluna */
+  align-items: center;
+}
+
+.popup-content h3 {
+  margin-top: 30px;
+  margin-bottom: 20px; /* Espaço entre o título e a linha divisória */
+}
+
+.popup-content hr {
+  border: none;
+  height: 1px;
+  background-color: black; /* Cor cinza para a linha divisória */
+  margin-top: 0;
+  margin-bottom: 15px; /* Espaço entre a linha e o primeiro botão */
+}
+
+.alternative-button {
+  background-color: #7f7bff; /* Cor roxa para o botão */
+  color: white; /* Texto branco */
+  width: 85%; /* Largura fixa de 220px */
+  height: 60px; /* Altura fixa de 55px */
+  font-size: 16px; /* Tamanho da fonte de 12px */
+  margin-bottom: 15px; /* Distância de 15px entre os botões */
+  border: none; /* Sem borda */
+  border-radius: 5px; /* Borda arredondada */
+  display: flex; /* Flexbox para alinhar o texto */
+  justify-content: center; /* Centraliza horizontalmente o texto */
+  align-items: center; /* Centraliza verticalmente o texto */
+  cursor: pointer;
+  /* Cursor de mão ao passar o mouse sobre o botão */
+}
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 30px; /* Tamanho maior para o X */
+  cursor: pointer;
+}
+.hidden {
+  display: none;
+}
+.alternative-button:last-child {
+  margin-bottom: 0; /* Remove a margem do último botão */
+}
+
+.content-section {
+  display: none; /* Hide all sections initially */
+}
+
+.content-section.active {
+  display: block; /* Show the active section */
+}
+.main-container {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0; /* Ensure no padding constraints */
+}
+
+.grid-container {
+  align-items: center;
+  position: relative;
+
+  padding: 15px;
+}
+.grid-container-correct {
+  display: grid;
+  position: relative;
+  gap: 20px;
+  padding: 20px;
+  width: 90%;
+}
+.case-card {
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  margin-left: auto;
+  margin-right: auto;
+  transition: transform 0.1s ease;
+}
+#case-card-resposta {
+  font-size: 20px;
+  overflow: hidden;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  height: 65px;
+  display: flex;
+  justify-content: center; /* Alinha o conteúdo horizontalmente ao centro */
+  align-items: center;
+  background-color: #a6dc00;
+}
+#case-card-resposta p {
+  font-size: 20px;
+  color: white;
+}
+#case-card-certa {
+  overflow: hidden;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  height: 43px;
+  display: flex;
+  justify-content: center; /* Alinha o conteúdo horizontalmente ao centro */
+  align-items: center;
+  background-color: #a6dc00;
+}
+#case-card-certa p {
+  font-size: 16px;
+  color: white;
+  font-weight: 500;
+}
+#case-card-errada {
+  overflow: hidden;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  height: 43px;
+  display: flex;
+  justify-content: center; /* Alinha o conteúdo horizontalmente ao centro */
+  align-items: center;
+  background-color: #ff0f68;
+  margin-top: -25px;
+}
+#case-card-errada p {
+  font-size: 16px;
+  color: white;
+  font-weight: 500;
+}
+.tags {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+  margin-left: 18px; /* Alinha com o título */
+  padding-bottom: 10px;
+}
+
+.tag {
+  background-color: #e0e0e0;
+  border-radius: 15px;
+  padding: 2px 10px; /* Menor padding */
+  font-size: 12px; /* Menor fonte */
+  color: #333;
+}
+
+.tag.professor {
+  background-color: #ff0f68;
+  color: white;
+}
+
+.tag.university {
+  background-color: #ff0f68;
+  color: white;
+}
+
+.correct-answer .case-description,
+.correct-answer p,
+.wrong-answer .case-description,
+.wrong-answer p {
+  color: white !important; /* Ensure text is white */
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.correct-answer {
+  background-color: #a6dc00;
+  color: white;
+  height: 50px;
+  width: 100%;
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  text-align: center; /* Center text */
+}
+
+.wrong-answer {
+  background-color: #ff0f68;
+  color: white;
+  height: 50px;
+  width: 100%;
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  text-align: center; /* Center text */
+}
+#suas-repostas p {
+  display: flex;
+  justify-content: center; /* Alinha o conteúdo horizontalmente ao centro */
+  align-items: center;
+}
+
+.case-card:active {
+  transform: translateY(6px);
+}
+
+.case-info {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px 10px 20px;
+}
+.case-info-correct {
+  width: 90%; /* Use 90% of the screen width */
+  max-width: 414px; /* Ensure it doesn't exceed the maximum width for mobile */
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  padding: 10px 20px;
+  background-color: #a6dc00; /* Example background color */
+  margin: 0 auto; /* Center the element */
+  color: white;
+}
+
+.imagemExame {
+  border-radius: 15px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+.image-container {
+  min-width: 70px;
+  min-height: 70px;
+  border-radius: 50%;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.image-container img {
+  width: 50px;
+  height: 50px;
+}
+
+.case-description p {
+  margin: 0;
+  color: #333;
+  font-size: 14px;
+  padding-right: 30px;
+  margin-left: 20px;
+
+  align-items: center;
+}
+.case-alternative {
+  border: 3px dotted #d9d9d9;
+  display: flex;
+  justify-content: center; /* Center the content horizontally */
+  align-items: center; /* Center the content vertically */
+  height: 40px;
+}
+
+.case-alternative p {
+  text-align: center; /* Center the text inside the paragraph */
+}
+
+#rightAlternativeDiagnostico,
+#rightAlternativePrescricao,
+#rightAlternativeExame {
+  font-size: 20px;
+
+  color: white;
+  display: flex; /* Enable flexbox */
+
+  align-items: center; /* Center vertically */
+
+  background-color: #a6dc00; /* Added background color for visibility */
+}
+
+#rightAlternativeDiagnostico p,
+#rightAlternativePrescricao p,
+#rightAlternativeExame p {
+  margin: 0;
+  text-align: center; /* Center text */
+}
+.case-actions {
+  margin-top: -15px;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 15px 0;
+  justify-content: center;
+  gap: 5px;
+  outline: none;
+}
+
+.case-actions button {
+  color: black;
+  border: none;
+  padding: 10px 20px 10px 20px;
+  border-radius: 15px;
+  margin-top: 5px;
+  margin-right: 2px;
+  font-size: 12px;
+  max-width: 100%;
+  width: fit-content;
+  font-weight: bold;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.case-actions button.selected {
+  background-color: #7f7bff;
+  color: white;
+}
+
+.response-actions button.selected {
+  background-color: #7f7bff;
+  color: white;
+}
+
+.card {
+  cursor: pointer;
+}
+
+.card.clicked {
+  transition: 0.2s ease;
+}
+
+.dica {
+  padding-top: 5px;
+  padding-left: 15px;
+}
+
+.dica button {
+  pointer-events: none;
+  color: white;
+  border: none;
+  padding: 7px 20px;
+  border-radius: 15px;
+  font-size: 14px;
+  max-width: 250px;
+  width: fit-content;
+  font-weight: bold;
+  background-color: #ff0f68;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.case-description2 p {
+  margin: 0;
+  font-size: 12px;
+  padding-right: 30px;
+  margin-left: 15px;
+  padding-bottom: 15px;
+}
+
+.case-description2 img {
+  border-radius: 15px;
+  width: 100%;
+  padding-top: 10px;
+}
+
+.question-container {
+  border-radius: 15px 15px 0 0;
+  color: black;
+  padding: 20px;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 1;
+}
+
+.question-container p {
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.question {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+}
+
+.question .add-button {
+  margin-right: 10px;
+}
+
+.question .add-button:last-child {
+  margin-right: 0;
+}
+
+.question input[type="text"] {
+  border: none;
+  color: black;
+  flex-grow: 1;
+  padding: 10px;
+  margin-right: 10px;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
+  font-size: 14px;
+  outline: none;
+}
+
+.question .add-button {
+  padding: 10px 20px;
+  background-color: #7f7bff;
+  color: white;
+  border: none;
+  height: 42px;
+  border-radius: 15px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.question .add-button i {
+  padding-right: 7px;
+}
+
+.btnExame i {
+  padding-right: 10px;
+}
+
+.next-button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #7f7bff;
+  color: white;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+#responsePopup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  padding-top: -50px;
+}
+
+.popup-container {
+  margin-top: -300px;
+  position: relative;
+  width: 75%;
+  max-width: 500px;
+  border-radius: 15px;
+  background-color: white;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.popup-header {
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.popup-title {
+  font-size: 12px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.close-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: none;
+  background: none;
+  font-size: 12px;
+  cursor: pointer;
+  transform: scale(3);
+  transform-origin: top right;
+}
+
+.response-list-container {
+  overflow-y: auto;
+  max-height: 300px;
+  font-size: 12px;
+}
+
+.response-list {
+  list-style: none;
+  padding: 0;
+}
+
+.response-list li {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f5f5f5;
+}
+
+.response-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 5px;
+  outline: none;
+}
+
+.response-actions button {
+  margin-right: 5px;
+  color: white;
+  border: none;
+  padding: 10px 10px;
+  border-radius: 15px;
+  font-size: 12px;
+  max-width: 250px;
+  width: fit-content;
+  font-weight: bold;
+  background-color: #ff0f68;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Ajusta o tamanho dos botões em telas um pouco maiores */
+@media screen and (min-width: 600px) {
+  .case-actions button,
+  #case-card-resposta p,
+  #case-card-certa p,
+  #case-card-errada p {
+    font-size: 14px;
+    padding: 4px 20px;
+  }
+
+  #case-card-resposta,
+  #case-card-certa,
+  #case-card-errada {
+    height: 65px; /* Mantendo a altura padrão conforme necessário */
+  }
+
+  #case-card-alternativas {
+    height: 39px;
+    /* Assegurar que a borda pontilhada não seja muito densa em telas largas */
+    background-size: 12px 2px, 12px 2px, 2px 12px, 2px 12px;
+  }
+}
+
+/* Ajustes para telas muito pequenas */
+@media screen and (max-width: 400px) {
+  .question .add-button {
+    font-size: 12px;
+  }
+  .question .add-button i {
+    padding-right: 5px;
+  }
+}
+
+@media screen and (max-width: 376px) {
+  .question .add-button {
+    font-size: 10px;
+  }
+  .question .add-button i {
+    padding-right: 5px;
+  }
+}
+
+/* Não precisa dessas media queries para body padding, mas mantenha se necessário para outros ajustes */
+@media screen and (max-width: 768px) {
+  body {
+    padding: clamp(12px, 3vw + 10px, 25px);
+  }
+}
+
+@media screen and (max-width: 500px) {
+  body {
+    padding: clamp(10px, 4vw + 5px, 20px);
+  }
+}
+@media screen and (orientation: landscape) and (min-width: 667px) and (max-width: 950px) {
+  #responsePopup {
+    display: flex; /* Garante que o popup seja exibido */
+    position: fixed; /* Posicionamento fixo para cobrir toda a tela */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Overlay escuro */
+    justify-content: center; /* Centraliza o .popup-container horizontalmente */
+    align-items: center; /* Centraliza o .popup-container verticalmente */
+    z-index: 1999; /* Z-index alto para estar na frente da maioria dos elementos */
+    padding-top: 25px; /* Ajuste no padding superior, se necessário */
+  }
+
+  .popup-container {
+    margin-top: 25px; /* Ajuste na margem superior para posicionar o popup */
+    position: relative; /* Posicionamento relativo dentro do #responsePopup */
+    z-index: 2000; /* Garante que o popup fique acima do overlay */
+    width: 90%; /* Largura como porcentagem para responsividade */
+    max-width: 500px; /* Largura máxima para evitar que o popup seja muito largo */
+    border-radius: 15px; /* Bordas arredondadas para o design */
+    background-color: white; /* Cor de fundo do popup */
+    padding: 20px; /* Padding interno */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* Sombra para efeito de profundidade */
+  }
+  .question-container {
+    height: 180px;
+  }
+  .question-container P {
+    margin-top: -10px;
+    padding-top: 2px;
+  }
+  .case-actions button {
+    padding: 4px 10px;
+    margin-top: -10px;
+  }
+}

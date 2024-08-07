@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/dashboard.css" />
+    <title>Dashboard</title>
+  </head>
+  <body>
+    <%- include('header') %>
+    <div class="welcome-message">
+      <h1>Estatísticas</h1>
+    </div>
+    <div class="filter">
+      <img src="/assets/graduation(2).png" alt="" />
+
+      <select name="filter" id="filter" class="option">
+        <option value="Gastroenterologia">Todas as Turmas</option>
+        <option value="Anatomia">Anatomia - 2 - Turma A</option>
+        <option value="Fisiologia">Fisiologia - 1 - Turma B</option>
+        <option value="Patologia Clinica">Patologia Clinica</option>
+        <option value="Cardiologia">Cardiologia</option>
+        <option value="Ortopedia">Ortopedia</option>
+        <option value="Gastroenterologia">Gastroenterologia</option>
+      </select>
+    </div>
+    <div class="grid-container">
+      <div class="grid-item">
+        <button class="nova-turma">Prescrição</button>
+        <p>60%</p>
+        <span>Taxa de acerto</span>
+      </div>
+      <div class="grid-item">
+        <button class="nova-turma">Exames</button>
+        <p>40%</p>
+        <span>Taxa de acerto</span>
+      </div>
+      <div class="grid-item">
+        <button class="nova-turma">Diagnósticos</button>
+        <p>30%</p>
+        <span>Taxa de acerto</span>
+      </div>
+      <div class="grid-item">
+        <button class="nova-turma">Casos Clínicos</button>
+        <p>6</p>
+        <span>Resolvidos</span>
+      </div>
+      <div class="grid-item">
+        <button class="puzzle">Puzzles</button>
+        <p>74%</p>
+        <span>Taxa de acerto</span>
+      </div>
+      <div class="grid-item">
+        <button class="puzzle">Puzzles</button>
+        <p>8</p>
+        <span>Resolvidos</span>
+      </div>
+    </div>
+  </body>
+</html>

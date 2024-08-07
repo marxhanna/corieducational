@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/casoResposta.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>Resposta Caso</title>
+  </head>
+  <body>
+    <%- include('header') %>
+    <div class="main-container">
+      <div class="grid-container">
+        <div class="case-card">
+          <div class="case-info">
+            <div class="image-container">
+              <img
+                src="/assets/<%= caseData.image %>.png"
+                alt="<%= caseData.title %>"
+              />
+            </div>
+            <div class="case-description">
+              <p><%= caseData.title %></p>
+              <div class="tags">
+                <span class="tag professor"
+                  >Dr. <%= caseData.class.professor %></span
+                >
+                <span class="tag university">PUCPR</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="action-buttons">
+      <button id="showTips" class="action-button selected">Dicas</button>
+      <button id="showResponse" class="action-button">Respostas</button>
+    </div>
+
+    <div id="tipsSection">
+      <div class="grid-container" id="tipsContainer">
+        <% caseData.tips.forEach(function(tip, index) { %>
+        <div
+          class="case-card tip-card"
+          style="<%= index > 0 ? 'display: none;' : '' %>"
+        >
+          <div class="case-info">
+            <div class="case-description2">
+              <div class="dica">
+                <button><%= index + 1 %>° dica</button>
+              </div>
+              <p><%= tip.content %></p>
+              <% if (tip.image) { %>
+              <div class="tip-image-container" style="padding: 10px">
+                <img
+                  src="https://back-end-cori-cases.opatj4.easypanel.host/uploads/<%= tip.image %>"
+                  alt="Tip Image"
+                />
+              </div>
+              <% } %>
+            </div>
+          </div>
+        </div>
+        <% }); %>
+      </div>
+      <div class="button-container">
+        <button class="next-button" id="nextTipButton">
+          Próxima Dica&nbsp;<span id="tipCounter">1</span>/<%=
+          caseData.tips.length %> <i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </div>
+    </div>
+
+    <div id="responseSection" style="display: none">
+      <form
+        id="responseForm"
+        action="/api/submitResponses/<%= caseData.uuid %>"
+        method="POST"
+      >
+        <input
+          type="hidden"
+          id="sessionDataKey"
+          name="sessionDataKey"
+          value="response_<%= caseData.uuid %>"
+        />
+        <input type="hidden" id="responses" name="responses" />
+        <div class="question-container">
+          <% if (tags.includes("Diagnóstico")) { %>
+          <div class="diagnosis-container" name="Diagnóstico">
+            <label for="diagnosis-input"
+              ><i class="fa-solid fa-stethoscope"></i> Diagnóstico:</label
+            >
+            <div class="input-container">
+              <input
+                type="text"
+                id="diagnosis-input"
+                class="answer-input"
+                name="diagnostico"
+                placeholder="Diagnóstico"
+              />
+              <button
+                class="add-button"
+                type="button"
+                onclick="addResponse('diagnosis-input', 'diagnosis-list', 'diagnostico')"
+              >
+                +
+              </button>
+            </div>
+            <ul class="response-list" id="diagnosis-list"></ul>
+          </div>
+          <% } %> <% if (tags.includes("Prescrição Médica")) { %>
+          <div class="prescription-container" name="Prescrição Médica">
+            <label for="prescription-input"
+              ><i class="fa-solid fa-pills"></i> Prescrição:</label
+            >
+            <div class="input-container">
+              <input
+                type="text"
+                id="prescription-input"
+                class="answer-input"
+                name="prescricao"
+                placeholder="Prescrição"
+              />
+              <button
+                class="add-button"
+                type="button"
+                onclick="addResponse('prescription-input', 'prescription-list', 'prescricao')"
+              >
+                +
+              </button>
+            </div>
+            <ul class="response-list" id="prescription-list"></ul>
+          </div>
+          <% } %> <% if (tags.includes("Exame")) { %>
+          <div class="exam-container" name="Exame">
+            <label for="exam-input"
+              ><i class="fa fa-clipboard"></i> Exame:</label
+            >
+            <div class="input-container">
+              <input
+                type="text"
+                id="exam-input"
+                class="answer-input"
+                name="exame"
+                placeholder="Exame"
+              />
+              <button
+                class="add-button"
+                type="button"
+                onclick="addResponse('exam-input', 'exam-list', 'exame')"
+              >
+                +
+              </button>
+            </div>
+            <ul class="response-list" id="exam-list"></ul>
+          </div>
+          <% } %> <% if (tags.includes("Conduta")) { %>
+          <div class="conduct-container" name="Conduta">
+            <label for="conduct-input"
+              ><i class="fa fa-notes-medical"></i> Conduta:</label
+            >
+            <div class="input-container">
+              <input
+                type="text"
+                id="conduct-input"
+                class="answer-input"
+                name="conduta"
+                placeholder="Conduta"
+              />
+              <button
+                class="add-button"
+                type="button"
+                onclick="addResponse('conduct-input', 'conduct-list', 'conduta')"
+              >
+                +
+              </button>
+            </div>
+            <ul class="response-list" id="conduct-list"></ul>
+          </div>
+          <% } %>
+        </div>
+        <div class="button-container">
+          <button class="next-button" id="submitResponses" type="submit">
+            Enviar
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <script>
+      function clearSessionData() {
+        const sessionDataKey = `response_<%= caseData.uuid %>`;
+        sessionStorage.removeItem(sessionDataKey);
+      }
+
+      function addResponse(inputId, listId, tag) {
+        const inputElement = document.getElementById(inputId);
+        const listElement = document.getElementById(listId);
+        const inputValue = inputElement.value.trim();
+        if (inputValue) {
+          const listItem = document.createElement("li");
+          listItem.textContent = inputValue;
+          const deleteButton = document.createElement("button");
+          deleteButton.innerHTML = "&times;";
+          deleteButton.classList.add("delete-button");
+          deleteButton.onclick = function () {
+            listElement.removeChild(listItem);
+          };
+          listItem.appendChild(deleteButton);
+          listElement.appendChild(listItem);
+          inputElement.value = "";
+
+          // Store in sessionStorage
+          const sessionDataKey = `response_<%= caseData.uuid %>`;
+          let storedResponses =
+            JSON.parse(sessionStorage.getItem(sessionDataKey)) || {};
+          if (!storedResponses[tag]) {
+            storedResponses[tag] = [];
+          }
+          storedResponses[tag].push(inputValue);
+          sessionStorage.setItem(
+            sessionDataKey,
+            JSON.stringify(storedResponses)
+          );
+        }
+      }
+
+      document
+        .getElementById("showTips")
+        .addEventListener("click", function () {
+          document.getElementById("tipsSection").style.display = "block";
+          document.getElementById("responseSection").style.display = "none";
+          this.classList.add("selected");
+          document.getElementById("showResponse").classList.remove("selected");
+        });
+
+      document
+        .getElementById("showResponse")
+        .addEventListener("click", function () {
+          document.getElementById("tipsSection").style.display = "none";
+          document.getElementById("responseSection").style.display = "block";
+          this.classList.add("selected");
+          document.getElementById("showTips").classList.remove("selected");
+        });
+
+      const nextTipButton = document.getElementById("nextTipButton");
+      let currentTipIndex = 0;
+      const tips = document.querySelectorAll(".tip-card");
+      const tipCounter = document.getElementById("tipCounter");
+
+      nextTipButton.addEventListener("click", function () {
+        if (currentTipIndex < tips.length - 1) {
+          currentTipIndex++;
+          tips[currentTipIndex].style.display = "block";
+          tipCounter.textContent = currentTipIndex + 1;
+        }
+      });
+
+      document
+        .getElementById("responseForm")
+        .addEventListener("submit", function () {
+          const sessionDataKey = `response_<%= caseData.uuid %>`;
+          const storedResponses = sessionStorage.getItem(sessionDataKey);
+          document.getElementById("responses").value = storedResponses;
+
+          // Clear session storage after submission
+          clearSessionData();
+        });
+
+      async function clearResponsesOnUnload() {
+        const sessionDataKey = `response_<%= caseData.uuid %>`;
+        const storedResponses = JSON.parse(
+          sessionStorage.getItem(sessionDataKey)
+        );
+        if (storedResponses) {
+          for (const tag in storedResponses) {
+            const responseList = document.getElementById(`${tag}-list`);
+            if (responseList) {
+              while (responseList.firstChild) {
+                responseList.removeChild(responseList.firstChild);
+              }
+            }
+          }
+          sessionStorage.removeItem(sessionDataKey);
+        }
+      }
+
+      // Clear responses asynchronously when leaving the page
+      window.addEventListener("beforeunload", async function (event) {
+        await clearResponsesOnUnload();
+      });
+    </script>
+
+    <script>
+      const caseData = <%- JSON.stringify(caseData) %>;
+      const tags = caseData.tags.map(tag => tag.tags); // Extract tag names
+    </script>
+  </body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/index.css" />
+    <title>Inicio</title>
+  </head>
+  <body>
+    <div class="preloader">
+      <div class="circle"></div>
+    </div>
+    <%- include('header', { user: user }) %>
+    <div class="welcome-message">
+      <h1>Olá, <%= user.name.split(' ')[0] %>!</h1>
+      <p>Desenvolva seu Raciocínio Clínico</p>
+    </div>
+    <div class="content">
+      <div class="menu">
+        <div
+          id="exames"
+          class="menu-item exams"
+          onclick="location.href='https://app.corihealth.com.br/exames';"
+        >
+          <p>Exames</p>
+          <div class="circle">
+            <img src="assets/exame-de-saude.png" alt="" />
+          </div>
+        </div>
+        <div class="menu-item pharmacology" id="pharmacology-item">
+          <p>Farmacologia</p>
+          <div class="circle">
+            <img src="assets/prescricao-medica.png" alt="" />
+          </div>
+        </div>
+
+        <div id="popup-modal" class="popup" style="display: none">
+          <div class="popup-content">
+            <div class="consequencia">
+              <button>Novidade</button>
+            </div>
+            <p>
+              Você tem <span id="farmacologia_text">Interesse</span> nesta nova
+              funcionalidade de
+              <span id="farmacologia_text">Farmacologia</span> ?
+            </p>
+            <button id="yes-button">Sim</button>
+            <button id="no-button">Não</button>
+
+            <img id="doctor-image" src="assets/doctor_obr.png" alt="" />
+            <style>
+              #doctor-image {
+                display: none;
+                width: 100%;
+              }
+            </style>
+          </div>
+        </div>
+
+        <div class="menu-item puzzles" onclick="location.href='/turmas';">
+          <p>Puzzles</p>
+          <div class="circle">
+            <img src="assets/quebra-cabeca.png" alt="" />
+          </div>
+        </div>
+        <div
+          class="menu-item clinical-cases"
+          onclick="location.href='/turmas';"
+        >
+          <p>Casos <br />Clínicos</p>
+          <div class="circle"><img src="assets/discussao.png" alt="" /></div>
+        </div>
+      </div>
+    </div>
+    <script src="/scripts/index.js"></script>
+  </body>
+</html>

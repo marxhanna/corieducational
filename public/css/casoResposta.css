@@ -1,0 +1,685 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
+
+body {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f2f2fe;
+}
+
+.action-buttons {
+  text-align: center;
+  margin: 20px 0;
+  margin-top: -10px;
+}
+
+.action-button {
+  font-size: 16px;
+  font-weight: bold;
+  padding: 10px 20px;
+  background-color: white;
+  color: black;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  margin: 0 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.action-button.selected {
+  background-color: #7f7bff;
+  color: white;
+}
+
+.main-container,
+.grid-container {
+  margin-bottom: 15px;
+}
+
+.case-card {
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  margin: 10px 0;
+}
+
+#responsePopup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-container {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.popup-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.close-btn {
+  cursor: pointer;
+}
+
+.next-button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.next-button {
+  margin-top: 40px;
+}
+
+.main-container {
+  max-width: 414px; /* Largura de um celular grande */
+  margin: 0 auto; /* Centraliza o contêiner na página */
+  width: 100%; /* Garante que o contêiner ocupe até 100% da viewport, sem ultrapassar 414px */
+}
+
+.grid-container {
+  display: grid;
+  position: relative;
+  gap: 20px;
+  background-color: #f2f2fe;
+  border: none;
+  padding: 20px;
+}
+
+.case-card {
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 15px;
+  overflow: hidden;
+  margin-left: auto;
+  margin-right: auto;
+  transition: transform 0.1s ease;
+}
+
+.case-card:active {
+  transform: translateY(6px);
+}
+
+.case-info {
+  display: flex;
+  align-items: center;
+  padding: 10px 0px 10px 0px;
+}
+
+.imagemExame {
+  border-radius: 15px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+.image-container {
+  min-width: 70px;
+  min-height: 70px;
+  border-radius: 50%;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.image-container img {
+  width: 50px;
+  height: 50px;
+}
+
+.case-description {
+  flex: 1;
+}
+
+.case-description p {
+  margin: 0;
+  color: #333;
+  font-size: 14px;
+  padding-right: 10px;
+  margin-left: 18px;
+  font-weight: bold;
+}
+
+.tags {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+  margin-left: 18px; /* Alinha com o título */
+}
+
+.tag {
+  background-color: #e0e0e0;
+  border-radius: 15px;
+  padding: 2px 10px; /* Menor padding */
+  font-size: 12px; /* Menor fonte */
+  color: #333;
+}
+
+.tag.professor {
+  background-color: #ff0f68;
+  color: white;
+}
+
+.tag.university {
+  background-color: #ff0f68;
+  color: white;
+}
+
+.case-actions {
+  margin-top: -15px;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 15px 0;
+  justify-content: center;
+  gap: 5px;
+  outline: none;
+}
+
+.case-actions button {
+  color: white;
+  border: none;
+  padding: 10px 10px;
+  border-radius: 15px;
+  margin-top: 5px;
+  margin-right: 10px;
+  font-size: 12px;
+  max-width: 250px;
+  width: fit-content;
+  font-weight: bold;
+  background-color: #ff0f68;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.case-actions button.selected {
+  background-color: #a6dc00;
+  color: white;
+}
+
+.response-actions button.selected {
+  background-color: #a6dc00;
+  color: white;
+}
+
+.card {
+  cursor: pointer;
+}
+
+.card.clicked {
+  transition: 0.2s ease;
+}
+
+.dica {
+  padding-top: 5px;
+  padding-left: 15px;
+}
+
+.dica button {
+  pointer-events: none;
+  color: white;
+  border: none;
+  padding: 7px 20px;
+  border-radius: 15px;
+  font-size: 14px;
+  max-width: 250px;
+  width: fit-content;
+  font-weight: bold;
+  background-color: #ff0f68;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.case-description2 p {
+  margin: 0;
+  font-size: 14px;
+  margin-left: 15px;
+  padding-bottom: 15px;
+}
+
+.case-description2 img {
+  border-radius: 15px;
+  width: 100%;
+  padding-top: 10px;
+}
+
+.question-container {
+  border-radius: 15px;
+  color: black;
+  padding: 20px;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  position: relative;
+  bottom: 0;
+  left: 0;
+  width: calc(100% - 40px); /* Subtrai 20px de padding de cada lado */
+  margin: 0 auto; /* Centraliza no meio da tela */
+  height: 100%;
+  box-sizing: border-box;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button-container i {
+  padding-left: 10px;
+}
+
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-12px);
+  }
+  60% {
+    transform: translateY(-10px);
+  }
+}
+
+.icon-bounce {
+  animation: bounce 0.8s;
+  animation-iteration-count: 2;
+}
+
+.question-container p {
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.question {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+}
+
+.question .add-button {
+  margin-right: 10px;
+}
+
+.question .add-button:last-child {
+  margin-right: 0;
+}
+
+.exam-container input[type="text"] {
+  border: none;
+  color: black;
+  flex-grow: 1;
+  padding: 10px;
+  margin-right: 10px;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
+  font-size: 14px;
+  outline: none;
+}
+
+.diagnosis-container input[type="text"],
+.prescription-container input[type="text"],
+.exam-container input[type="text"] {
+  margin-top: 0; /* Ajuste esta linha */
+  border: none;
+  color: black;
+  flex-grow: 1;
+  padding: 10px;
+  margin-right: 10px;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
+  font-size: 14px;
+  outline: none;
+  width: 90%;
+}
+
+.diagnosis-container,
+.prescription-container,
+.exam-container {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.diagnosis-container label,
+.prescription-container label,
+.exam-container label {
+  display: block;
+  padding: 10px 0; /* Ajusta o padding para centralizar verticalmente */
+  background-color: #ff0f68;
+  color: white;
+  width: 145px;
+  height: 15px;
+  border-radius: 15px;
+  text-align: center;
+  font-size: 14px;
+  line-height: 15px;
+}
+
+.diagnosis-container label i,
+.prescription-container label i,
+.exam-container label i {
+  padding-right: 10px;
+}
+
+.question input[type="text"] {
+  border: none;
+  color: black;
+  flex-grow: 1;
+  padding: 10px;
+  margin-right: 10px;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
+  font-size: 14px;
+  outline: none;
+}
+
+.question .add-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  background-color: #7f7bff;
+  color: white;
+  border: none;
+  height: 42px;
+  border-radius: 15px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.question .add-button i {
+  padding-right: 7px;
+}
+
+.btnExame i {
+  padding-right: 10px;
+}
+
+.action-button.selected {
+  background-color: #7f7bff; /* Cor de fundo para o botão selecionado */
+  color: white; /* Cor do texto para o botão selecionado */
+}
+
+.button-container .next-button {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 50px;
+  align-items: center;
+  width: calc(100% - 40px); /* Subtrai 20px de padding de cada lado */
+  padding: 20px;
+  background-color: #7f7bff;
+  color: white;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  font-size: 18px;
+  text-align: center;
+  box-sizing: border-box; /* Inclui padding e bordas na largura total */
+}
+
+#responsePopup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  padding-top: -50px;
+}
+
+.popup-container {
+  margin-top: -300px;
+  position: relative;
+  width: 75%;
+  max-width: 500px;
+  border-radius: 15px;
+  background-color: white;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.popup-header {
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.popup-title {
+  font-size: 12px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.close-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: none;
+  background: none;
+  font-size: 12px;
+  cursor: pointer;
+  transform: scale(3);
+  transform-origin: top right;
+}
+
+.response-list-container {
+  overflow-y: auto;
+  max-height: 300px;
+  font-size: 12px;
+}
+
+.response-list {
+  list-style: none;
+  padding: 0;
+}
+
+.response-list li {
+  font-size: 12px;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f5f5f5;
+}
+
+.response-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 5px;
+  outline: none;
+}
+
+.response-actions button {
+  margin-right: 5px;
+  color: white;
+  border: none;
+  padding: 10px 10px;
+  border-radius: 15px;
+  font-size: 12px;
+  max-width: 250px;
+  width: fit-content;
+  font-weight: bold;
+  background-color: #ff0f68;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.input-container {
+  padding-top: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.input-container .answer-input {
+  flex-grow: 1;
+  padding: 10px;
+  border: none;
+  color: black;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
+  font-size: 14px;
+  outline: none;
+  height: 100%; /* Certifique-se de que o input ocupa toda a altura do contêiner */
+  margin: 0; /* Remove quaisquer margens que possam afetar o alinhamento */
+}
+
+.input-container .add-button {
+  padding: 10px 20px;
+  background-color: #7f7bff;
+  color: white;
+  border: none;
+  height: 42px; /* Altura do botão */
+  border-radius: 15px;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.response-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 10px;
+}
+
+.response-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 15px;
+
+  margin-top: 10px;
+}
+
+.response-list li .delete-button {
+  background-color: #ff0f68;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+/* Ajusta o tamanho dos botões em telas um pouco maiores */
+@media screen and (min-width: 600px) {
+  .case-actions button {
+    font-size: 14px;
+    padding: 4px 20px;
+  }
+}
+
+/* Ajustes para telas muito pequenas */
+@media screen and (max-width: 400px) {
+  .question .add-button {
+    font-size: 12px;
+  }
+  .question .add-button i {
+    padding-right: 5px;
+  }
+}
+
+@media screen and (max-width: 376px) {
+  .question .add-button {
+    font-size: 10px;
+  }
+  .question .add-button i {
+    padding-right: 5px;
+  }
+}
+
+/* Não precisa dessas media queries para body padding, mas mantenha se necessário para outros ajustes */
+@media screen and (max-width: 768px) {
+  body {
+    padding: clamp(12px, 3vw + 10px, 25px);
+  }
+}
+
+@media screen and (max-width: 500px) {
+  body {
+    padding: clamp(10px, 4vw + 5px, 20px);
+  }
+}
+
+@media screen and (orientation: landscape) and (min-width: 667px) and (max-width: 950px) {
+  #responsePopup {
+    display: flex; /* Garante que o popup seja exibido */
+    position: fixed; /* Posicionamento fixo para cobrir toda a tela */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Overlay escuro */
+    justify-content: center; /* Centraliza o .popup-container horizontalmente */
+    align-items: center; /* Centraliza o .popup-container verticalmente */
+    z-index: 1999; /* Z-index alto para estar na frente da maioria dos elementos */
+    padding-top: 25px; /* Ajuste no padding superior, se necessário */
+  }
+
+  .popup-container {
+    margin-top: 25px; /* Ajuste na margem superior para posicionar o popup */
+    position: relative; /* Posicionamento relativo dentro do #responsePopup */
+    z-index: 2000; /* Garante que o popup fique acima do overlay */
+    width: 90%; /* Largura como porcentagem para responsividade */
+    max-width: 500px; /* Largura máxima para evitar que o popup seja muito largo */
+    border-radius: 15px; /* Bordas arredondadas para o design */
+    background-color: white; /* Cor de fundo do popup */
+    padding: 20px; /* Padding interno */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* Sombra para efeito de profundidade */
+  }
+
+  .question-container {
+    height: 180px;
+  }
+
+  .question-container p {
+    margin-top: -10px;
+    padding-top: 2px;
+  }
+
+  .case-actions button {
+    padding: 4px 10px;
+    margin-top: -10px;
+  }
+}

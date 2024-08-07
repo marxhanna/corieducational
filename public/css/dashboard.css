@@ -1,0 +1,140 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
+body {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f2f2fe;
+}
+.welcome-message {
+  padding-left: 20px;
+}
+.welcome-message h1 {
+  color: #262a41;
+  font-size: 30px;
+  font-weight: 500;
+}
+.welcome-message p {
+  color: #979797;
+}
+#filter {
+  background-color: #f2f2fe;
+  border: none;
+  appearance: none;
+  outline: none;
+}
+
+/* Estilo focado para o seletor */
+#filter:focus {
+  outline: none; /* Remove a borda de foco */
+}
+.grid-container {
+  width: calc(100% - 40px); /* Adjust width to account for body padding */
+  margin: 20px; /* Adds margin to the container to respect body's 0 padding */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; /* Space between items */
+  justify-content: space-around; /* Ensures spacing is handled gracefully */
+}
+
+.grid-item {
+  flex: 1 1 auto; /* Flex grow, shrink and basis set to auto */
+  min-width: 125px; /* Minimum width to ensure content visibility */
+  max-width: calc(100% - 20px); /* Maximum width minus the gap */
+  background-color: #fff;
+  border-radius: 15px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.grid-item.full-width {
+  width: calc(
+    100% - 40px
+  ); /* Adjust based on actual body padding if different */
+  max-width: none;
+}
+.grid-item img {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 10px; /* Space between icon and text */
+}
+
+.grid-item p {
+  margin: 0;
+  font-size: 50px;
+  color: black;
+}
+
+.grid-item {
+  transition: box-shadow 0.1s ease, transform 0.1s ease; /* Ensure transitions for shadow and transform */
+  cursor: pointer; /* Indicates the item is clickable */
+  /* existing styles */
+}
+
+.grid-item:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+  /* other hover styles if any */
+}
+
+.grid-item:active {
+  transform: translateY(4px); /* Moves the item down visually */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2); /* Less prominent shadow to simulate depth */
+}
+.filter {
+  display: flex; /* Enable flexbox layout for side-by-side arrangement */
+  align-items: center; /* Vertically align image and select */
+  padding-left: 20px; /* Respect the left padding */
+}
+
+.filter img {
+  width: 45px;
+  height: 45px; /* Consistent image dimensions */
+  margin-right: 14px; /* Add spacing between image and select */
+}
+
+.filter select {
+  border: none; /* Remove default select border */
+  width: 200px;
+  height: 30px;
+  background-color: #fff; /* Light background for text readability */
+  padding: 5px; /* Add internal padding for text */
+  font-size: 16px;
+  color: #999; /* Gray text color */
+  border: none;
+}
+.filter select option:hover {
+  color: white; /* White text color on hover */
+  background-color: #7f7bff; /* Blue background color on hover */
+}
+
+.nova-turma {
+  background-color: #7f7bff;
+  color: white;
+  border: none;
+  border-radius: 15px;
+  font-size: 14px;
+  width: fit-content;
+  min-width: 105px;
+  height: 23px;
+
+  align-items: center;
+  cursor: pointer;
+}
+
+.puzzle {
+  background-color: #fed700;
+  align-items: center;
+  color: white;
+  min-width: 100px;
+  border: none;
+  border-radius: 15px;
+  font-size: 14px;
+  width: fit-content;
+  height: 23px;
+
+  cursor: pointer;
+}
+.grid-item span {
+  font-size: 16px;
+}

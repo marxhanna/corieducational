@@ -1,0 +1,232 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
+
+body {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f2f2fe;
+}
+.app-container {
+  display: flex;
+  flex-direction: column;
+}
+.top-bar {
+  background-color: #7f7bff;
+  padding: 20px 20px;
+  min-height: 89px;
+  overflow: hidden;
+}
+.menu-button {
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  outline: none;
+}
+.top-bar img {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  top: 40px;
+  cursor: pointer;
+}
+
+.sidebar {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 6;
+  top: 0;
+  left: 0;
+  background-color: white;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 40px;
+  border-top-right-radius: 35px;
+  transition: width 0.2s ease-in-out;
+}
+.sidebar.open {
+  width: 250px;
+}
+.redirects {
+  padding-top: 10px;
+  padding-bottom: 50px;
+}
+
+.redirects i {
+  padding-right: 18px; /* Espaçamento entre o ícone e o texto */
+}
+
+.redirects div {
+  position: relative;
+  display: inline-block;
+  width: 190px;
+  padding: 10px 10px;
+  padding-left: 24px;
+  margin-bottom: 24px;
+  font-size: 18px;
+  color: #818181;
+  text-decoration: none;
+  border-radius: 15px;
+  transition: transform 0.6s, background-color 0.6s; /* Removido box-shadow da transição */
+  line-height: 40px;
+  cursor: pointer;
+  box-shadow: none; /* Sombra removida */
+  outline: none;
+}
+
+.redirects div:hover,
+.redirects div:active,
+.redirects div:focus {
+  background-color: #7f7bff;
+  color: white;
+  transform: translateY(-10px);
+  left: 12px;
+  transition: background-color 0.1s ease-in-out, transform 0.1s ease-in-out,
+    left 0.1s ease-in-out;
+}
+
+.redirects div {
+  transition: background-color 0.1s ease-in-out, transform 0.1s ease-in-out,
+    left 0.1s ease-in-out;
+}
+
+#overlay {
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 5;
+}
+.personal-info img {
+  border-radius: 15px;
+  width: 70px;
+  height: 70px;
+  margin-right: 16px; /* Distância entre a imagem e o texto */
+  object-fit: cover; /* Faz com que a imagem cubra totalmente o espaço disponível sem distorção */
+}
+
+.personal-info {
+  display: flex;
+  align-items: center; /* Centraliza verticalmente o texto em relação à imagem */
+  margin-left: 24px; /* Distância de 24px do começo da tela */
+}
+
+.text-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centraliza o conteúdo verticalmente */
+  font-size: 14px;
+  padding-left: 12px; /* Espaço entre a imagem e o texto */
+}
+
+#title {
+  margin-top: 20px; /* Reduz o espaço abaixo do título */
+  line-height: 1; /* Reduz a altura da linha para o título */
+  font-size: 16px;
+  color: #8a827b;
+}
+
+#name {
+  margin-top: -5px;
+  font-weight: 600;
+}
+.email {
+  margin-left: 24px; /* Distância consistente para o email, similar ao bloco acima */
+  color: #8a827b;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.logo {
+  position: fixed; /* Fixa a <div> em relação à janela de visualização */
+  bottom: 25px; /* Distância de 25px do fim da tela */
+  left: 0; /* Alinha à esquerda da tela */
+  padding-left: 20px; /* Espaçamento interno à esquerda de 20px */
+  width: 100%; /* Opcional: estende a <div> por toda a largura da tela */
+}
+.logo img {
+  max-width: 145px;
+  max-height: 31px;
+  height: auto;
+  width: auto;
+}
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Tela semi-transparente */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999; /* Garante que o popup fique acima de outros elementos */
+}
+
+.popup-content {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center; /* Centraliza o conteúdo textual */
+  width: 90%;
+  max-width: 300px;
+}
+
+#farmacologia_text {
+  color: #ff0f68;
+}
+.popup-content p {
+  margin: 15px 0;
+  color: #333;
+  font-weight: bold;
+}
+
+#yes-button,
+#no-button {
+  background-color: white;
+  border: 2px solid #ff0f68;
+  color: #ff0f68;
+  font-weight: bold;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  width: 40%;
+  margin-left: 10px;
+}
+#yes-button select,
+#no-button select {
+  background-color: #ff0f68;
+  color: white;
+}
+
+.consequencia button {
+  pointer-events: none;
+  color: white;
+  border: none;
+  padding: 7px 20px;
+  border-radius: 15px;
+  font-size: 16px;
+  max-width: 250px;
+  width: fit-content;
+  font-weight: bold;
+  background-color: #ff0f68;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 10px auto; /* Ajusta as margens para centralizar */
+}
+
+/* Certifique-se de que o contêiner do botão permite a centralização */
+.consequencia {
+  text-align: center; /* Centraliza o conteúdo textual do contêiner */
+}

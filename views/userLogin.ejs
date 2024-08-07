@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/userLogin.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <title>Cori Health Login</title>
+    <style>
+      /* Estilo para ocultar o conteúdo inicialmente */
+      .hidden {
+        display: none;
+      }
+    </style>
+    <script>
+      // Função para selecionar a imagem aleatória antes de carregar o resto do conteúdo
+      function getRandomImage() {
+        const images = ["/assets/doctor.png", "/assets/female_doc.png"];
+        const randomImage = images[Math.floor(Math.random() * images.length)];
+        return randomImage;
+      }
+      // Seleciona a imagem aleatória
+      const randomImage = getRandomImage();
+    </script>
+  </head>
+  <body class="hidden">
+    <div class="login-container">
+      <div id="random-image-container">
+        <img src="" id="random-image" alt="" />
+      </div>
+
+      <img src="/assets/cori.png" alt="Cori Health Logo" class="logo" />
+
+      <form
+        class="login-form"
+        action="/login"
+        method="POST"
+        onsubmit="showLoading()"
+      >
+        <div class="input-container">
+          <input
+            type="text"
+            id="username"
+            name="email"
+            placeholder="E-mail"
+            required
+          />
+        </div>
+        <div class="input-container">
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Password"
+            required
+          />
+          <span class="toggle-password" onclick="togglePasswordVisibility()">
+            <i id="togglePasswordIcon" class="fas fa-eye"></i>
+          </span>
+        </div>
+        <div class="remember-forgot-container">
+          <a href="#" class="forgot-password">Esqueceu a senha?</a>
+        </div>
+        <button type="submit" class="login-button">Login</button>
+      </form>
+    </div>
+
+    <%- include('loading') %>
+
+    <script>
+      // Define o src da imagem aleatória e exibe o conteúdo após o carregamento da imagem
+      document.addEventListener("DOMContentLoaded", function () {
+        const imgElement = document.getElementById("random-image");
+        imgElement.src = randomImage;
+        imgElement.alt = "";
+
+        imgElement.onload = function () {
+          document.body.classList.remove("hidden");
+        };
+      });
+    </script>
+    <script src="scripts.js"></script>
+  </body>
+</html>

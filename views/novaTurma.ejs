@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/novaTurma.css" />
+    <title>Nova Turma</title>
+  </head>
+  <body>
+    <%- include('header', { user: user }) %>
+    <div class="welcome-message">
+      <h1>Nova Turma</h1>
+    </div>
+    <div class="inscricao">
+      <form action="/novaTurma" method="POST" onsubmit="showLoading()">
+        <input
+          type="text"
+          name="pin"
+          placeholder="Inserir o PIN"
+          required
+          maxlength="10"
+        />
+        <button type="submit" class="confirmar">Confirmar</button>
+      </form>
+    </div>
+    <%- include('loading') %>
+  </body>
+</html>

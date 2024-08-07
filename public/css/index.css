@@ -1,0 +1,285 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
+
+body {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f2f2fe;
+}
+.welcome-message {
+  padding-left: 20px;
+}
+.welcome-message h1 {
+  color: #262a41;
+  font-size: 30px;
+  font-weight: 500;
+}
+.welcome-message p {
+  color: #979797;
+}
+.menu {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  position: relative; /* Necessário para que o z-index funcione corretamente */
+}
+
+.menu-item {
+  position: absolute; /* Faz com que cada item do menu se sobreponha */
+  border-radius: 15px;
+  padding: 30px;
+  width: 80%; /* Ajuste a largura conforme necessário */
+  height: 118px; /* Altura fixa conforme especificado */
+  color: white;
+  font-size: 1.2em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: box-shadow 0.1s ease, transform 0.1s ease; /* Garante transições para sombra e transformação */
+  cursor: pointer;
+}
+.menu-item:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.menu-item:active {
+  transform: translateY(-20px); /* Aumenta a distância de movimento para cima */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2); /* Sombra menos proeminente para simular profundidade */
+}
+
+.menu-item:focus {
+  outline: none !important; /* Remove o contorno azul que aparece ao focar, garantindo prioridade */
+}
+.circle {
+  width: 85px; /* ou qualquer tamanho que você queira */
+  height: 85px; /* deve ser igual à largura para formar um círculo */
+  background-color: white; /* cor de fundo branca */
+  border-radius: 50%; /* isso cria a forma circular */
+  margin-right: 15px;
+  margin-top: -65px;
+  overflow: hidden; /* Impede que o conteúdo ultrapasse os limites do círculo */
+  display: flex; /* Centraliza a imagem dentro do círculo */
+  justify-content: center;
+  align-items: center;
+}
+
+.circle img {
+  max-width: 80%; /* Faz com que a imagem se ajuste à largura do círculo */
+  max-height: 80%; /* Faz com que a imagem se ajuste à altura do círculo */
+  display: block; /* Remove qualquer espaço extra abaixo da imagem */
+}
+.menu-item p {
+  margin-top: -55px;
+  font-size: 20px;
+  font-weight: normal;
+}
+
+.content {
+  flex-grow: 1;
+  padding: 20px;
+  /* Adicionei uma cor de fundo branca para completar */
+}
+
+/* Different colors for each menu item e ajuste na sobreposição */
+.exams {
+  z-index: 1; /* O maior z-index, aparece no topo */
+  top: 0;
+  left: 0;
+  background-color: #a6dc00;
+}
+
+.pharmacology {
+  z-index: 2;
+  top: 109px; /* 118px de altura - 50px */
+  left: 0;
+  background-color: #ff0f68;
+}
+
+.puzzles {
+  z-index: 3;
+  top: 220px; /* 118px + 68px - 50px */
+  left: 0;
+  background-color: #f4d737;
+}
+
+.clinical-cases {
+  z-index: 4; /* O menor z-index, aparece na base */
+  top: 330px; /* 118px + 136px - 50px */
+  left: 0;
+  background-color: #7f7bff;
+}
+.menu-item.clinical-cases {
+  display: flex;
+  align-items: center; /* Alinha verticalmente no centro */
+  justify-content: space-between; /* Espaça os itens horizontalmente */
+}
+.menu-item.clinical-cases .circle {
+  margin-top: -15px;
+}
+
+.menu-item.clinical-cases p {
+  margin: 0; /* Remove as margens padrão do parágrafo */
+}
+/* Responsive design */
+@media (max-width: 600px) {
+  .menu {
+    grid-template-columns: 1fr;
+  }
+}
+/* Preloader style */
+.preloader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: #f2f2fe;
+  z-index: 9999;
+}
+
+.preloader .circle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #a6dc00; /* Cor de fundo da primeira opção de menu */
+  animation: preloader-animation 1.5s infinite ease-in-out;
+}
+
+@keyframes preloader-animation {
+  0%,
+  100% {
+    transform: scale(0.8);
+  }
+  50% {
+    transform: scale(1);
+  }
+}
+
+/* Adicione este CSS ao seu arquivo */
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Tela semi-transparente */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999; /* Garante que o popup fique acima de outros elementos */
+}
+
+.popup-content {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center; /* Centraliza o conteúdo textual */
+  width: 90%;
+  max-width: 300px;
+}
+
+#farmacologia_text {
+  color: #ff0f68;
+}
+.popup-content p {
+  margin: 15px 0;
+  color: #333;
+  font-weight: bold;
+}
+
+#yes-button,
+#no-button {
+  background-color: white;
+  border: 2px solid #ff0f68;
+  color: #ff0f68;
+  font-weight: bold;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  width: 40%;
+  margin-left: 10px;
+}
+#yes-button select,
+#no-button select {
+  background-color: #ff0f68;
+  color: white;
+}
+
+.consequencia button {
+  pointer-events: none;
+  color: white;
+  border: none;
+  padding: 7px 20px;
+  border-radius: 15px;
+  font-size: 16px;
+  max-width: 250px;
+  width: fit-content;
+  font-weight: bold;
+  background-color: #ff0f68;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 10px auto; /* Ajusta as margens para centralizar */
+}
+
+/* Certifique-se de que o contêiner do botão permite a centralização */
+.consequencia {
+  text-align: center; /* Centraliza o conteúdo textual do contêiner */
+}
+
+@media (min-width: 767px) {
+  .menu {
+    width: 745px;
+    grid-template-columns: repeat(2, 1fr); /* Definindo duas colunas */
+    gap: 20px; /* Espaço entre os cards */
+    position: relative; /* Para garantir que os cards se posicionem corretamente */
+  }
+
+  .menu-item {
+    position: relative; /* Removendo a sobreposição */
+    margin: 0; /* Removendo margens */
+    transform: none; /* Removendo qualquer transformação */
+    box-shadow: none; /* Removendo sombra */
+    display: flex;
+    align-items: center; /* Alinhando verticalmente ao centro */
+    justify-content: space-between; /* Alinhando o conteúdo */
+    font-size: 1.5em; /* Ajusta o tamanho do texto conforme necessário */
+  }
+
+  .menu-item.exams,
+  .menu-item.pharmacology,
+  .menu-item.puzzles,
+  .menu-item.clinical-cases {
+    top: auto; /* Reseta a posição */
+    left: auto; /* Reseta a posição */
+    z-index: auto; /* Reseta o z-index */
+  }
+
+  .circle {
+    width: 100px; /* Ajusta a largura do círculo */
+    height: 100px; /* Ajusta a altura do círculo */
+    display: flex;
+    margin-top: 0px;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0; /* Impede que o círculo encolha */
+  }
+
+  .circle img {
+    max-width: 80%; /* Ajusta a largura da imagem dentro do círculo */
+    max-height: 80%; /* Ajusta a altura da imagem dentro do círculo */
+  }
+
+  .menu-item.exams p,
+  .menu-item.pharmacology p,
+  .menu-item.puzzles p,
+  .menu-item.clinical-cases p {
+    margin: 0;
+    font-size: 20px; /* Ajusta o tamanho da fonte conforme necessário */
+  }
+}

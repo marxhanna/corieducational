@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/turmas.css" />
+    <script src="/scripts/turmas.js"></script>
+    <title>Turmas</title>
+  </head>
+  <body>
+    <%- include('header') %>
+    <div class="welcome-message">
+      <h1>Minhas Turmas</h1>
+      <button
+        id="button"
+        class="nova-turma"
+        onclick="location.href='novaTurma';"
+      >
+        Nova Turma
+      </button>
+    </div>
+    <div class="filter">
+      <img id="data" src="/assets/data.png" alt="" />
+      <select name="filter" id="filter" class="option" onchange="filterCases()">
+        <option value="all">Período Letivo</option>
+        <option value="Teste">1° Período</option>
+        <option value="Teste">2° Período</option>
+        <option value="Teste">3° Período</option>
+        <option value="Teste">4° Período</option>
+      </select>
+      <img src="/assets/estetoscopios.png" alt="" />
+      <select name="filter" id="filter" class="option" onchange="filterCases()">
+        <option value="all">Ciclo Clínico</option>
+        <option value="Teste">Pré-Clínico</option>
+        <option value="Teste">Clínico</option>
+        <option value="Teste">Internato</option>
+      </select>
+    </div>
+
+    <div class="container">
+      <div class="item" onclick="loadSection('casos'); changeBackground(this)">
+        <div class="icon-wrapper active">
+          <img src="/assets/pracheta.png" alt="Casos Clínicos" />
+        </div>
+        <div class="text-wrapper">
+          <span>Casos</span>
+          <span>Clínicos</span>
+        </div>
+      </div>
+      <div
+        class="item"
+        onclick="loadSection('puzzles'); changeBackground(this)"
+      >
+        <div class="icon-wrapper">
+          <img src="/assets/quebra.png" alt="Puzzles" />
+        </div>
+        <span class="puzzles-text">Puzzles</span>
+      </div>
+    </div>
+
+    <div id="casos-section" class="grid-container">
+      <% turmas.forEach((turma, index) => { %>
+      <div
+        class="grid-item"
+        data-class-code="<%= turma.id %>"
+        onclick="location.href='/casos?className=<%= encodeURIComponent(turma.name) %>';"
+      >
+        <div class="corner-image">
+          <img src="/assets/pracheta.png" alt="Casos Icon" />
+        </div>
+        <div
+          class="circle-button"
+          onclick="event.stopPropagation(); showPopup('<%= turma.id %>', '<%= turma.name %>');"
+        >
+          <img src="/assets/sair.png" alt="Sair" />
+        </div>
+        <img
+          src="/assets/<%= turma.imageUrl.split('/').pop() %>.png"
+          alt="<%= turma.name %>"
+        />
+        <p><%= turma.name %></p>
+      </div>
+      <% }); %>
+    </div>
+
+    <!-- Seção de Puzzles -->
+    <div id="puzzles-section" class="grid-container" style="display: none">
+      <% turmas.forEach((turma, index) => { %>
+      <div
+        class="grid-item"
+        data-class-code="<%= turma.id %>"
+        onclick="location.href='/puzzles?className=<%= encodeURIComponent(turma.name) %>';"
+      >
+        <div class="corner-image">
+          <img src="/assets/quebra.png" alt="Puzzles Icon" />
+        </div>
+        <div
+          class="circle-button"
+          onclick="event.stopPropagation(); showPopup('<%= turma.id %>', '<%= turma.name %>');"
+        >
+          <img src="/assets/sair.png" alt="Sair" />
+        </div>
+        <img
+          src="/assets/<%= turma.imageUrl.split('/').pop() %>.png"
+          alt="<%= turma.name %>"
+        />
+        <p><%= turma.name %></p>
+      </div>
+      <% }); %>
+    </div>
+
+    <!-- Popup de Confirmação -->
+    <div id="popup" class="popup" onclick="hidePopup(event)">
+      <style>
+        .popup {
+          display: none;
+        }
+        #turmaName {
+          color: white;
+        }
+      </style>
+      <div class="popup-content" onclick="event.stopPropagation()">
+        <p><strong>Você realmente deseja sair da turma?</strong></p>
+        <p class="turma-name" id="turmaName"></p>
+        <form
+          id="removeClassForm"
+          action="/classes/students/remove"
+          method="POST"
+        >
+          <input type="hidden" id="classCodeInput" name="classCode" value="" />
+          <div class="popup-buttons">
+            <button type="submit" class="popup-button">Confirmar</button>
+            <button
+              type="button"
+              onclick="hidePopup(event)"
+              class="popup-button"
+            >
+              Cancelar
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      function showPopup(classCode, turmaName) {
+        console.log("Received classCode:", classCode);
+        document.getElementById("classCodeInput").value = classCode;
+        document.getElementById("popup").style.display = "flex";
+        document.getElementById("turmaName").textContent = turmaName;
+      }
+
+      function hidePopup(event) {
+        if (
+          event.target === document.getElementById("popup") ||
+          event.target.tagName === "BUTTON"
+        ) {
+          document.getElementById("popup").style.display = "none";
+        }
+      }
+    </script>
+  </body>
+</html>

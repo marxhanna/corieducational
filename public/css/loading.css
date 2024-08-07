@@ -1,0 +1,23 @@
+body {
+  font-family: Arial, sans-serif;
+}
+
+.loading-popup {
+  display: none; /* Hidden by default */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.1); /* Darker overlay for better contrast */
+  z-index: 1000; /* Ensure it is above other content */
+  justify-content: center;
+  align-items: center;
+}
+
+.loading-popup img {
+  width: 100px;
+  height: 100px;
+}
+
+/* Other existing styles */

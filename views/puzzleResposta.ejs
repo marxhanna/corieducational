@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/puzzleResposta.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>Resposta Caso</title>
+  </head>
+  <body>
+    <%- include('header') %>
+    <!-- Assegure-se de que este EJS está sendo processado corretamente. -->
+
+    <div class="main-container">
+      <div class="grid-container">
+        <div class="case-card">
+          <div class="case-info">
+            <div class="image-container">
+              <img
+                src="/assets/<%= puzzle.image %>.png"
+                alt="<%= puzzle.title %>"
+              />
+            </div>
+            <div class="case-description-title">
+              <p><strong><%= puzzle.title %></strong></p>
+              <div class="tags">
+                <span class="tag professor"> Dr. Augusto Luzzi</span>
+                <span class="tag university">Cori</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="case-card question-card" id="question-1">
+          <div class="case-info">
+            <div class="case-description2">
+              <div class="dica">
+                <button>Questão 1</button>
+              </div>
+              <p><%= puzzle.questions[0].content %></p>
+              <br />
+              <img src="/assets/eletro.png" alt="" />
+            </div>
+          </div>
+        </div>
+
+        <div class="action-container question-card" id="actions-1">
+          <ul class="action-list">
+            <% puzzle.questions[0].alternatives.forEach(function(alternative,
+            altIndex) { %>
+            <li>
+              <input
+                type="radio"
+                id="option<%= alternative.uuid %>"
+                name="action0"
+                value="<%= alternative.consequence %>"
+                data-correct="<%= alternative.isCorrect %>"
+              />
+              <label for="option<%= alternative.uuid %>"
+                ><%= alternative.content %></label
+              >
+            </li>
+            <% }); %>
+          </ul>
+        </div>
+
+        <div
+          class="case-card question-card"
+          id="question-2"
+          style="display: none"
+        >
+          <div class="case-info">
+            <div class="case-description2">
+              <div class="dica">
+                <button>Questão 2</button>
+              </div>
+              <p><%= puzzle.questions[1].content %></p>
+              <br />
+              <img src="/assets/eletro.png" alt="" />
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="action-container question-card"
+          id="actions-2"
+          style="display: none"
+        >
+          <ul class="action-list">
+            <% puzzle.questions[1].alternatives.forEach(function(alternative,
+            altIndex) { %>
+            <li>
+              <input
+                type="radio"
+                id="option<%= alternative.uuid %>"
+                name="action1"
+                value="<%= alternative.consequence %>"
+                data-correct="<%= alternative.isCorrect %>"
+              />
+              <label for="option<%= alternative.uuid %>"
+                ><%= alternative.content %></label
+              >
+            </li>
+            <% }); %>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <button id="apply-action" class="apply-action">Aplicar Conduta</button>
+
+    <!-- Popup que aparece após clicar em "Aplicar Conduta" -->
+    <div id="popup" class="popup" style="display: none">
+      <div class="popup-content">
+        <div class="consequencia">
+          <button>Consequência</button>
+        </div>
+        <p id="popup-text">Texto do popup será substituído aqui.</p>
+        <button id="continue-button" style="display: none">Continuar</button>
+      </div>
+    </div>
+
+    <script src="/scripts/puzzleResposta.js"></script>
+  </body>
+</html>

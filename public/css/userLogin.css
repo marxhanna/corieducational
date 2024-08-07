@@ -1,0 +1,202 @@
+/* Estilo geral */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  margin: 0;
+}
+
+/* Contêiner de login */
+
+/* Estilos para a div de login */
+.login-container {
+  margin-top: 15%;
+  border-radius: 10px;
+  text-align: center;
+  width: 90%;
+  max-width: 400px;
+  padding-bottom: 20px;
+  background-color: #fff;
+}
+.login-container img {
+  width: 75%;
+  height: auto;
+  padding-bottom: 20px;
+}
+
+.logo {
+  width: 50px;
+  height: 50px;
+}
+
+/* Título */
+h1 {
+  color: #7f7bff;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.input-container input::placeholder {
+  color: rgb(187, 186, 186);
+  font-size: 12px;
+}
+/* Contêiner de entrada */
+.input-container {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+input {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  box-sizing: border-box;
+}
+.input-container input:not(:placeholder-shown) {
+  font-size: 12px; /* Ajusta a fonte quando o input é preenchido */
+}
+/* Estilo para o input dentro do .input-container */
+.input-container input {
+  background-color: #e8f0fe;
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: 15px;
+  font-size: 14px;
+  box-sizing: border-box;
+  transition: border 0.2s ease, background-color 0.2s ease;
+}
+
+/* Estilo quando o input está focado */
+.input-container input:focus {
+  border: 1.5px solid #6b4cf2;
+  outline: none; /* Remove o outline padrão do navegador */
+  background-color: #e8f0fe; /* Garante que a cor de fundo permaneça */
+}
+
+.toggle-password {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 18px;
+}
+
+/* Contêiner de lembrar/senha esquecida */
+.remember-forgot-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.remember-forgot-container a {
+  color: #7f7bff;
+  text-decoration: none;
+}
+
+.forgot-password {
+  color: #6c63ff;
+  text-decoration: none;
+}
+
+/* Botão de login */
+.login-button {
+  background-color: #7f7bff;
+  color: white;
+  border: none;
+  border-radius: 15px;
+  padding: 15px;
+  font-size: 16px;
+  cursor: pointer;
+  width: 100%;
+  transition: transform 0.1s ease, background-color 0.1s ease,
+    box-shadow 0.1s ease;
+}
+
+.login-button:active {
+  transform: translateY(6px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 2px rgba(0, 0, 0, 0.06);
+}
+
+/* Contêiner de imagem */
+.img-container {
+  width: 100%;
+  text-align: center;
+  margin-top: auto;
+}
+
+.img-container img {
+  width: 100%; /* Tamanho da imagem */
+  height: auto;
+  max-width: 600px; /* Defina um tamanho máximo, se necessário */
+}
+@media screen and (min-width: 450px) {
+  .login-container {
+    margin-top: 25vh;
+  }
+}
+@media screen and (min-width: 665px) {
+  .login-container {
+    margin-top: 15vh;
+    width: 60%;
+    max-width: 600px;
+    padding-bottom: 30px;
+  }
+
+  .login-container img {
+    width: 85%;
+    padding-bottom: 30px;
+  }
+  .input-container input::placeholder {
+    font-size: 20px;
+  }
+
+  .input-container input:not(:placeholder-shown) {
+    font-size: 20px; /* Ajusta a fonte quando o input é preenchido em telas maiores */
+  }
+  .logo {
+    width: 75px;
+    height: 75px;
+  }
+
+  h1 {
+    font-size: 37px;
+    margin-bottom: 30px;
+  }
+
+  .input-container {
+    margin-bottom: 30px;
+  }
+
+  .input-container input {
+    padding: 23px;
+    font-size: 22px;
+  }
+
+  .toggle-password {
+    font-size: 28px;
+    right: 20px;
+  }
+
+  .remember-forgot-container {
+    font-size: 22px;
+    margin-bottom: 30px;
+  }
+
+  .login-button {
+    padding: 23px;
+    font-size: 25px;
+  }
+
+  .img-container img {
+    max-width: 800px;
+  }
+}

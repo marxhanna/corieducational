@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/casos.css" />
+    <title>Puzzles</title>
+  </head>
+  <body>
+    <%- include('header') %>
+    <div class="welcome-message">
+      <h1>Puzzles</h1>
+    </div>
+    <div class="filter">
+      <img src="/assets/graduation(2).png" alt="" />
+      <select
+        name="filter"
+        id="filter"
+        class="option"
+        onchange="filterPuzzles()"
+      >
+        <option value="all">Todas as Turmas</option>
+        <% if (classes && classes.length > 0) { %> <%
+        classes.forEach(function(turma) { %>
+        <option value="<%= turma.classId %>"><%= turma.class.name %></option>
+        <% }); %> <% } %>
+      </select>
+    </div>
+    <div class="grid-container">
+      <% if (puzzles && puzzles.length > 0) { %> <%
+      puzzles.forEach(function(puzzle) { %>
+      <div
+        class="case-card"
+        data-turma="<%= puzzle.classId %>"
+        onclick="location.href='/puzzleResposta/<%= puzzle.uuid %>';"
+      >
+        <div class="case-info">
+          <div class="image-container">
+            <img
+              src="/assets/<%= puzzle.image %>.png"
+              alt="<%= puzzle.title %>"
+            />
+          </div>
+          <div class="case-description">
+            <p><%= puzzle.title %></p>
+            <div class="tags">
+              <span class="tag professor">Dr. Augusto Luzzi</span>
+              <span class="tag university">PUCPR</span>
+            </div>
+            <div class="case-actions">
+              <% if (puzzle.actions && puzzle.actions.length > 0) { %> <%
+              puzzle.actions.forEach(function(action) { %>
+              <button><%= action %></button>
+              <% }); %> <% } %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% }); %> <% } %>
+    </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const urlParams = new URLSearchParams(window.location.search);
+        const className = urlParams.get("className");
+        if (className) {
+          const filterElement = document.getElementById("filter");
+          for (let i = 0; i < filterElement.options.length; i++) {
+            if (filterElement.options[i].text === className) {
+              filterElement.selectedIndex = i;
+              filterPuzzles();
+              break;
+            }
+          }
+        }
+      });
+
+      function filterPuzzles() {
+        var filter = document.getElementById("filter").value;
+        var puzzles = document.querySelectorAll(".case-card");
+        puzzles.forEach(function (puzzle) {
+          if (
+            filter === "all" ||
+            puzzle.getAttribute("data-turma") === filter
+          ) {
+            puzzle.style.display = "block";
+          } else {
+            puzzle.style.display = "none";
+          }
+        });
+      }
+    </script>
+  </body>
+</html>

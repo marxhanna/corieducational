@@ -1,0 +1,292 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
+
+body {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f2f2fe;
+}
+
+.main-container,
+.grid-container {
+  margin-bottom: 15px;
+}
+
+.main-container {
+  max-width: 414px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.grid-container {
+  display: grid;
+  position: relative;
+  gap: 20px;
+  background-color: #f2f2fe;
+  border: none;
+  padding: 20px;
+}
+
+.case-card {
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  margin: 10px 0;
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 15px;
+  overflow: hidden;
+  margin-left: auto;
+  margin-right: auto;
+  transition: transform 0.1s ease;
+}
+
+.case-card:active {
+  transform: translateY(6px);
+}
+
+.case-info {
+  display: flex;
+  align-items: center;
+  padding: 10px 0px 10px 0px;
+}
+
+.image-container {
+  min-width: 70px;
+  min-height: 70px;
+  border-radius: 50%;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.image-container img {
+  width: 50px;
+  height: 50px;
+}
+
+.case-description p,
+.case-description2 p {
+  margin: 0;
+  color: #333;
+  font-size: 14px;
+  margin-left: 20px;
+}
+.case-description-title p {
+  margin: 0;
+  color: #333;
+  font-size: 14px;
+  width: 95%;
+  margin-left: 20px;
+}
+.tags {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+  margin-left: 18px; /* Alinha com o título */
+}
+.question-card {
+  margin-bottom: 20px;
+}
+
+.action-container {
+  margin-bottom: 20px;
+}
+
+.tag {
+  background-color: #e0e0e0;
+  border-radius: 15px;
+  padding: 2px 10px; /* Menor padding */
+  font-size: 12px; /* Menor fonte */
+  color: #333;
+}
+.tag.professor {
+  background-color: #ff0f68;
+  color: white;
+}
+
+.tag.university {
+  background-color: #ff0f68;
+  color: white;
+}
+
+.case-description2 img {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 0;
+}
+
+.dica {
+  padding-top: 5px;
+  padding-left: 15px;
+}
+
+.dica button {
+  pointer-events: none;
+  color: white;
+  border: none;
+  padding: 7px 20px;
+  border-radius: 15px;
+  font-size: 16px;
+  max-width: 250px;
+  width: fit-content;
+  font-weight: bold;
+  background-color: #ff0f68;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.action-container {
+  font-family: "Poppins", sans-serif;
+  background-color: #f2f2fe; /* Cor de fundo similar ao exemplo */
+  padding: 10px;
+  border: 2px dashed #7f7bff;
+  border-radius: 15px; /* Borda arredondada */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+  width: 350px; /* Largura do container */
+  margin: 20px auto; /* Centraliza na página */
+}
+
+.action-list {
+  list-style: none; /* Remove estilos de lista */
+  padding: 0;
+  margin-bottom: 20px; /* Espaço antes do botão */
+}
+
+.action-list li {
+  display: flex;
+  align-items: center; /* Alinha o radio e o label verticalmente */
+  margin-bottom: 10px; /* Espaço entre os itens */
+}
+
+.action-list input[type="radio"] {
+  margin-right: 10px; /* Espaço entre o radio e o label */
+}
+
+.action-list label {
+  color: #666666; /* Cor do texto */
+  font-size: 14px; /* Tamanho do texto */
+}
+
+.apply-action {
+  background-color: #7f7bff; /* Cor de fundo do botão */
+  color: white; /* Cor do texto do botão */
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px; /* Bordas arredondadas do botão */
+  width: 380px; /* Largura do botão igual ao container */
+  height: 46px;
+  font-size: 18px;
+  cursor: pointer; /* Cursor de clique */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra do botão */
+  font-weight: bold; /* Texto em negrito */
+  margin: 20px auto; /* Centraliza na página */
+  display: block; /* Garante que o botão ocupe a linha inteira para centralização */
+}
+
+.action-list label {
+  color: #333; /* Cor padrão do texto */
+  font-size: 14px; /* Tamanho do texto */
+}
+
+/* Estilo para o label quando seu radio button está selecionado */
+.action-list input[type="radio"]:checked + label {
+  color: black; /* Cor do texto para item selecionado */
+  font-weight: bold; /* Texto em negrito para item selecionado */
+}
+
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Tela semi-transparente */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999; /* Garante que o popup fique acima de outros elementos */
+}
+
+.popup-content {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  width: 90%;
+  max-width: 340px;
+}
+
+.popup-content p {
+  margin: 15px 0;
+  color: #333;
+}
+
+#continue-button {
+  background-color: #7f7bff;
+  color: white;
+  border: none;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.consequencia button {
+  pointer-events: none;
+  color: white;
+  border: none;
+  padding: 7px 20px;
+  border-radius: 15px;
+  font-size: 16px;
+  max-width: 250px;
+  width: fit-content;
+  font-weight: bold;
+  background-color: #ff0f68;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 10px auto; /* Ajusta as margens para centralizar */
+}
+
+/* Certifique-se de que o contêiner do botão permite a centralização */
+.consequencia {
+  text-align: center; /* Centraliza o conteúdo textual do contêiner */
+}
+
+@media screen and (max-width: 400px) {
+  .action-container,
+  .apply-action {
+    width: calc(
+      100% - 80px
+    ); /* Ajusta a largura para ser 20px de padding de cada lado */
+    padding: 10px;
+    margin: 10px auto; /* Reduz a margem lateral para manter tudo mais compacto e auto para centralização */
+    font-size: 16px; /* Ajusta o tamanho da fonte para melhor leitura em telas pequenas */
+  }
+
+  .apply-action {
+    padding-top: 10px;
+    width: calc(
+      100% - 80px
+    ); /* Ajusta a largura do botão para ser 20px de padding de cada lado */
+    padding: 8px 16px; /* Ajusta o padding do botão para manter proporção */
+    font-size: 16px; /* Torna o texto um pouco menor para adequação à tela */
+    margin: 10px auto; /* Garante que o botão também esteja centralizado */
+  }
+}

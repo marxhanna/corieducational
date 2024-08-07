@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/respostaAluno.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>Resposta Aluno</title>
+  </head>
+  <body>
+    <%- include('header') %>
+    <div class="main-container">
+      <div class="grid-container">
+        <div class="case-card">
+          <div class="case-info">
+            <div class="image-container">
+              <img
+                id="caseImage"
+                src="/assets/<%= caseData.image %>.png"
+                alt="<%= caseData.title %>"
+              />
+            </div>
+            <div class="case-description">
+              <p id="caseTitle"><%= caseData.title %></p>
+              <div class="tags">
+                <span class="tag professor"
+                  >Dr. <%= caseData.class.professor %></span
+                >
+                <span class="tag university">PUCPR</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="case-actions">
+        <button
+          class="btnExame selected"
+          id="btnDiagnostico"
+          data-tag="diagnostico"
+        >
+          <i class="fa-solid fa-stethoscope"></i>Diagnóstico
+        </button>
+        <% if (caseData.tags.some(tag => tag.tags.name === 'Prescrição Médica'))
+        { %>
+        <button class="btnExame" id="btnPrescricao" data-tag="prescricao">
+          <i class="fa-solid fa-pills"></i>Prescrição
+        </button>
+        <% } %> <% if (caseData.tags.some(tag => tag.tags.name === 'Exame')) {
+        %>
+        <button class="btnExame" id="btnExame" data-tag="exame">
+          <i class="fa fa-clipboard"></i>Exame
+        </button>
+        <% } %>
+      </div>
+
+      <div style="display: none">
+        <% if (caseData.videoUrl) { %>
+        <div class="case-actions">
+          <button class="btnExame" id="btnVideo">
+            <i class="fa fa-play"></i>Video Explicação
+          </button>
+        </div>
+        <div id="videoSection">
+          <div class="video-container">
+            <iframe
+              id="videoIframe"
+              width="100%"
+              height="315"
+              src="<%= caseData.videoUrl %>"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+          </div>
+        </div>
+        <% } %>
+      </div>
+
+      <p class="p-text">Resposta Correta:</p>
+
+      <!-- Sections -->
+      <div
+        class="diagnostico-section main-container section-content"
+        id="section-diagnostico"
+      >
+        <div class="grid-container">
+          <div class="case-card" id="case-card-resposta-diagnostico">
+            <div class="case-info-correct">
+              <div class="case-description">
+                <p class="respostaCerta" id="rightAlternativeDiagnostico">
+                  <%= responseData.rightAlternative.content %>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="grid-container">
+          <div class="case-card" id="case-card-alternativas-diagnostico">
+            <div class="case-alternative">
+              <div id="btnDiagnosticoAlternatives" class="case-description">
+                <p>Alternativas</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="main-container">
+          <div class="grid-container" id="suas-respostas-diagnostico">
+            <p class="p-text">Suas Respostas:</p>
+            <% if (responses.diagnostico) { %> <%
+            responses.diagnostico.forEach(function (answer, index) { %>
+            <div class="case-card" id="user-response-diagnostico-<%= index %>">
+              <div class="case-info">
+                <div class="case-description">
+                  <p><%= answer %></p>
+                </div>
+              </div>
+            </div>
+            <% }) %> <% } %>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="prescricao-section main-container section-content"
+        id="section-prescricao"
+        style="display: none"
+      >
+        <div class="grid-container">
+          <div class="case-card" id="case-card-resposta-prescricao">
+            <div class="case-info-correct">
+              <div class="case-description">
+                <p class="respostaCerta" id="rightAlternativePrescricao">
+                  <%= responseData.rightAlternative.content %>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="grid-container">
+          <div class="case-card" id="case-card-alternativas-prescricao">
+            <div class="case-info">
+              <div id="btnPrescricaoAlternatives" class="case-description">
+                <p>Alternativas</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="main-container">
+          <div class="grid-container" id="suas-respostas-prescricao">
+            <p class="p-text">Suas Respostas:</p>
+            <% if (responses.prescricao) { %> <%
+            responses.prescricao.forEach(function (answer, index) { %>
+            <div class="case-card" id="user-response-prescricao-<%= index %>">
+              <div class="case-info">
+                <div class="case-description">
+                  <p><%= answer %></p>
+                </div>
+              </div>
+            </div>
+            <% }) %> <% } %>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="exame-section main-container section-content"
+        id="section-exame"
+        style="display: none"
+      >
+        <div class="grid-container">
+          <div class="case-card" id="case-card-resposta-exame">
+            <div class="case-info-correct">
+              <div class="case-description">
+                <p class="respostaCerta" id="rightAlternativeExame">
+                  <%= responseData.rightAlternative.content %>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="grid-container">
+          <div class="case-card" id="case-card-alternativas-exame">
+            <div class="case-info">
+              <div id="btnExameAlternatives" class="case-description">
+                <p>Alternativas</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="main-container">
+          <div class="grid-container" id="suas-respostas-exame">
+            <p class="p-text">Suas Respostas:</p>
+            <% if (responses.exame) { %> <% responses.exame.forEach(function
+            (answer, index) { %>
+            <div class="case-card" id="user-response-exame-<%= index %>">
+              <div class="case-info">
+                <div class="case-description">
+                  <p><%= answer %></p>
+                </div>
+              </div>
+            </div>
+            <% }) %> <% } %>
+          </div>
+        </div>
+      </div>
+
+      <!-- Popup Sections -->
+      <div id="popup-diagnostico" class="popup-overlay" style="display: none">
+        <div class="popup-content">
+          <span class="close-button">&times;</span>
+          <h3>Alternativas para Diagnóstico</h3>
+          <% responseData.alternatives.filter(alt => alt.tag.name ===
+          'Diagnóstico').forEach(function (alternative) { %>
+          <button class="alternative-button"><%= alternative.content %></button>
+          <% }) %>
+        </div>
+      </div>
+
+      <div id="popup-prescricao" class="popup-overlay" style="display: none">
+        <div class="popup-content">
+          <span class="close-button">&times;</span>
+          <h3>Alternativas para Prescrição</h3>
+          <% responseData.alternatives.filter(alt => alt.tag.name ===
+          'Prescrição Médica').forEach(function (alternative) { %>
+          <button class="alternative-button"><%= alternative.content %></button>
+          <% }) %>
+        </div>
+      </div>
+
+      <div id="popup-exame" class="popup-overlay" style="display: none">
+        <div class="popup-content">
+          <span class="close-button">&times;</span>
+          <h3>Alternativas para Exame</h3>
+          <% responseData.alternatives.filter(alt => alt.tag.name ===
+          'Exame').forEach(function (alternative) { %>
+          <button class="alternative-button"><%= alternative.content %></button>
+          <% }) %>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const actionButtons = document.querySelectorAll(".btnExame");
+        const sections = document.querySelectorAll(".section-content");
+
+        function applyResponseStyles(tag) {
+          const responseStatus = <%- JSON.stringify(responseData.comparisonResult) %>[tag] || [];
+          responseStatus.forEach((result, index) => {
+            const responseCard = document.getElementById(`user-response-${tag}-${index}`);
+            if (responseCard) {
+              if (result.status === "correct" || result.status === "alternative") {
+                responseCard.classList.add("correct-answer");
+              } else {
+                responseCard.classList.add("wrong-answer");
+              }
+            }
+          });
+        }
+
+        actionButtons.forEach((button) => {
+          button.addEventListener("click", () => {
+            const tag = button.getAttribute("data-tag");
+            actionButtons.forEach((btn) => btn.classList.remove("selected"));
+            button.classList.add("selected");
+
+            sections.forEach((section) => {
+              if (section.id === `section-${tag}`) {
+                section.style.display = "block";
+              } else {
+                section.style.display = "none";
+              }
+            });
+
+            applyResponseStyles(tag);
+          });
+        });
+
+        const popupDiagnostico = document.getElementById("popup-diagnostico");
+        const closeBtnDiagnostico = document.querySelector("#popup-diagnostico .close-button");
+
+        document.getElementById("btnDiagnosticoAlternatives").addEventListener("click", () => {
+          popupDiagnostico.style.display = "flex";
+        });
+
+        closeBtnDiagnostico.addEventListener("click", () => {
+          popupDiagnostico.style.display = "none";
+        });
+
+        window.addEventListener("click", (event) => {
+          if (event.target === popupDiagnostico) {
+            popupDiagnostico.style.display = "none";
+          }
+        });
+
+        // Repeat the above for Prescricao and Exame
+        const popupPrescricao = document.getElementById("popup-prescricao");
+        const closeBtnPrescricao = document.querySelector("#popup-prescricao .close-button");
+
+        document.getElementById("btnPrescricaoAlternatives").addEventListener("click", () => {
+          popupPrescricao.style.display = "flex";
+        });
+
+        closeBtnPrescricao.addEventListener("click", () => {
+          popupPrescricao.style.display = "none";
+        });
+
+        window.addEventListener("click", (event) => {
+          if (event.target === popupPrescricao) {
+            popupPrescricao.style.display = "none";
+          }
+        });
+
+        const popupExame = document.getElementById("popup-exame");
+        const closeBtnExame = document.querySelector("#popup-exame .close-button");
+
+        document.getElementById("btnExameAlternatives").addEventListener("click", () => {
+          popupExame.style.display = "flex";
+        });
+
+        closeBtnExame.addEventListener("click", () => {
+          popupExame.style.display = "none";
+        });
+
+        window.addEventListener("click", (event) => {
+          if (event.target === popupExame) {
+            popupExame.style.display = "none";
+          }
+        });
+
+        // Apply initial response styles for the selected section
+        applyResponseStyles('diagnostico');
+      });
+    </script>
+  </body>
+</html>

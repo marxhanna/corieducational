@@ -1,0 +1,378 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
+
+body {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f2f2fe;
+}
+
+.icon-wrapper.active {
+  background-color: #a6dc00; /* Cor verde quando ativo */
+}
+.item .icon-wrapper.clicked {
+  transform: translateY(4px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2); /* Menor sombra para simular o efeito de clique */
+}
+.welcome-message {
+  padding-left: 20px;
+  padding-bottom: 30px;
+}
+
+.welcome-message h1 {
+  color: #262a41;
+  font-size: 30px;
+  font-weight: 500;
+}
+
+.welcome-message p {
+  color: #979797;
+}
+
+.menu-button {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.nova-turma {
+  background-color: #ff0f68;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 15px;
+  font-size: 18px;
+  width: 163px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.2s ease, transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.nova-turma:hover {
+  background-color: #e00e5e; /* Ajuste a cor conforme necessário */
+}
+
+.nova-turma:active {
+  transform: translateY(4px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Menor sombra para simular o efeito de clique */
+}
+
+.grid-container {
+  width: calc(100% - 40px); /* Adjust width to account for body padding */
+  margin: 20px; /* Adds margin to the container to respect body's 0 padding */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; /* Space between items */
+  justify-content: space-around; /* Ensures spacing is handled gracefully */
+}
+
+.grid-item {
+  flex: 1 1 auto; /* Flex grow, shrink and basis set to auto */
+  min-width: 125px; /* Minimum width to ensure content visibility */
+  max-width: calc(100% - 20px); /* Maximum width minus the gap */
+  background-color: #fff;
+  border-radius: 15px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out; /* Adiciona animação */
+  position: relative;
+  cursor: pointer; /* Indicates the item is clickable */
+}
+
+.grid-item.full-width {
+  width: calc(
+    100% - 40px
+  ); /* Adjust based on actual body padding if different */
+  max-width: none;
+}
+
+.grid-item img {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 10px; /* Space between icon and text */
+}
+
+.grid-item p {
+  margin: 0;
+  font-size: 18px;
+  color: black;
+}
+
+.grid-item:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+}
+
+.grid-item:active {
+  transform: translateY(4px); /* Moves the item down visually */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2); /* Less prominent shadow to simulate depth */
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding-left: 10px;
+  margin-right: 15px; /* Espaço entre os itens */
+}
+
+/* Último item não deve ter margem à direita para manter o alinhamento */
+.item:last-child {
+  margin-right: 0;
+}
+
+.icon-wrapper {
+  width: 60px;
+  height: 60px;
+  border-radius: 100%;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff; /* Cor inicial */
+  margin-right: 5px; /* Espaço entre o círculo e o texto */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.icon-wrapper img {
+  width: 70%; /* Ajuste conforme necessário */
+}
+
+.corner-image {
+  position: absolute;
+  top: 10px; /* Ajuste conforme necessário */
+  left: 10px; /* Ajuste conforme necessário */
+  width: 35px; /* Ajuste conforme necessário */
+  height: 35px; /* Ajuste conforme necessário */
+}
+
+.corner-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.hidden {
+  opacity: 0;
+  transform: scale(0.8); /* Efeito de escala para a transição */
+}
+
+.new-image {
+  opacity: 0;
+  transform: scale(1.2); /* Efeito inicial para a nova imagem */
+}
+
+.corner-image img:not(.hidden) {
+  opacity: 1;
+  transform: scale(1); /* Efeito final para a nova imagem */
+}
+.hidden {
+  opacity: 0;
+  transform: scale(0.8); /* Efeito de escala para a transição */
+}
+
+.item span {
+  font-size: 16px; /* Ajuste conforme necessário */
+}
+
+.puzzles-text {
+  padding-right: 20px;
+  color: #979797;
+}
+
+.text-wrapper {
+  color: #979797;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centraliza horizontalmente */
+}
+
+.text-wrapper span {
+  display: block; /* Garante que cada span ocupe uma linha inteira */
+}
+/* Preloader style */
+/* Preloader style */
+.preloader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(242, 242, 254, 0.9);
+  z-index: 9999;
+  top: 0;
+  left: 0;
+}
+
+.preloader .circle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: linear-gradient(90deg, #e0e0e0 25%, #f0f0f0 50%, #e0e0e0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+.grid-item {
+  position: relative; /* Para permitir posicionamento absoluto dos filhos */
+}
+
+.circle-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  border-radius: 10px;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
+
+.circle-button img {
+  width: 50%; /* Ajuste conforme necessário */
+  height: 50%; /* Ajuste conforme necessário */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.popup {
+  display: none; /* Escondido por padrão */
+  position: fixed; /* Fixo na tela */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Fundo escuro semi-transparente */
+  align-items: center;
+  justify-content: center;
+  z-index: 1000; /* Acima de outros elementos */
+}
+
+.popup-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  margin: 20px; /* Garante espaço nas bordas da tela */
+}
+.popup-button {
+  font-family: "Poppins", sans-serif;
+  font-weight: bold;
+  color: #ff0f68;
+  background-color: #fff;
+  border: 2px solid #ff0f68;
+  padding: 10px 20px;
+  margin: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.popup-button:hover {
+  background-color: #ff0f68;
+  color: #fff;
+}
+.turma-name {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #7f7bff;
+  color: #ffffff;
+  font-weight: bold;
+  border-radius: 15px;
+  margin-top: 10px;
+  margin-bottom: 20px; /* Espaço abaixo do nome da turma */
+}
+#filter {
+  background-color: #f2f2fe;
+  border: none;
+  appearance: none;
+  outline: none;
+}
+
+#filter:focus {
+  outline: none;
+}
+
+.filter {
+  display: flex;
+  justify-content: center; /* Alinha os itens no centro */
+  align-items: center;
+  padding-top: 20px;
+  padding-bottom: 30px;
+  gap: 10px; /* Ajuste a distância entre os filtros */
+}
+.container {
+  display: flex;
+  padding-left: 40px;
+  justify-content: left; /* Alinha os itens no centro */
+  align-items: center;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  gap: 10px; /* Ajuste a distância entre os filtros */
+}
+
+.filter img {
+  width: 35px;
+  height: 35px;
+}
+#img-filter {
+  padding-left: 12px;
+}
+
+.filter select {
+  border: none;
+
+  height: 30px;
+  background-color: #fff;
+  padding: 5px;
+  font-size: 16px;
+  color: #999;
+}
+
+.filter select option:hover {
+  color: white;
+  background-color: #7f7bff;
+}
+.item.clicked .icon-wrapper {
+  transform: translateY(4px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2); /* Menor sombra para simular o efeito de clique */
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+#data {
+  margin-left: -20px;
+}
+@media (min-width: 800px) {
+  .grid-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .grid-item {
+    width: 100%;
+    max-width: 500px; /* Ajuste conforme necessário */
+    margin-bottom: 20px; /* Espaço entre os itens */
+  }
+}
