@@ -1,6 +1,14 @@
 (function () {
   document.addEventListener("DOMContentLoaded", function () {
     hideLoading(); // Esconde o loading ao carregar a página
+
+    // Adiciona evento de submit para todos os formulários
+    const forms = document.querySelectorAll("form");
+    forms.forEach(function (form) {
+      form.addEventListener("submit", function (event) {
+        showLoading();
+      });
+    });
   });
 
   window.addEventListener("pageshow", function (event) {

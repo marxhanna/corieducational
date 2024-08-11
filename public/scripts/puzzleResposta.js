@@ -1,62 +1,58 @@
 document.getElementById("apply-action").addEventListener("click", function () {
-  var selectedOption1 = document.querySelector('input[name="action0"]:checked');
-  var selectedOption2 = document.querySelector('input[name="action1"]:checked');
+  var selectedOptions = [];
+  for (var i = 0; i < 6; i++) {
+    var selectedOption = document.querySelector(
+      `input[name="action${i}"]:checked`
+    );
+    if (selectedOption) {
+      selectedOptions.push({
+        value: selectedOption.value,
+        text: selectedOption.value,
+        isCorrect: selectedOption.getAttribute("data-correct") === "false",
+        index: i,
+      });
+    }
+  }
 
-  if (selectedOption1) {
-    var value = selectedOption1.value;
-    var text = selectedOption1.value;
-    var isCorrect = selectedOption1.getAttribute("data-correct") === "true";
-
-    // Define o texto no popup
-    document.getElementById("popup-text").textContent = text;
-
-    // Exibe o popup
+  if (selectedOptions.length > 0) {
+    var lastSelected = selectedOptions[selectedOptions.length - 1];
+    document.getElementById("popup-text").textContent = lastSelected.text;
     document.getElementById("popup").style.display = "flex";
 
-    // Se a resposta estiver correta, mostra a questão 2 e o botão "Continuar"
-    if (isCorrect && !selectedOption2) {
+    if (lastSelected.isCorrect && selectedOptions.length < 6) {
       document.getElementById("continue-button").style.display = "block";
       document.getElementById("continue-button").onclick = function () {
         document.getElementById("popup").style.display = "none";
-        document.getElementById("question-2").style.display = "block";
-        document.getElementById("actions-2").style.display = "block";
-        disableQuestion1();
+        var nextQuestionIndex = lastSelected.index + 1;
+        document.getElementById(
+          `question-${nextQuestionIndex + 1}`
+        ).style.display = "block";
+        document.getElementById(
+          `actions-${nextQuestionIndex + 1}`
+        ).style.display = "block";
+        disableQuestion(lastSelected.index);
       };
     } else {
       document.getElementById("continue-button").style.display = "none";
     }
-  } else if (selectedOption2) {
-    var value2 = selectedOption2.value;
-    var text2 = selectedOption2.value;
-
-    // Define o texto no popup para a questão 2
-    document.getElementById("popup-text").textContent = text2;
-
-    // Exibe o popup
-    document.getElementById("popup").style.display = "flex";
-
-    // Oculta o botão "Continuar" para a questão 2
-    document.getElementById("continue-button").style.display = "none";
   } else {
     alert("Por favor, selecione uma opção antes de aplicar a conduta.");
   }
 });
 
-function disableQuestion1() {
-  var options1 = document.querySelectorAll('input[name="action0"]');
-  options1.forEach(function (option) {
+function disableQuestion(index) {
+  var options = document.querySelectorAll(`input[name="action${index}"]`);
+  options.forEach(function (option) {
     option.disabled = true;
   });
 }
 
-// Fecha o popup ao clicar no botão "Continuar"
 document
   .getElementById("continue-button")
   .addEventListener("click", function () {
     document.getElementById("popup").style.display = "none";
   });
 
-// Fecha o popup ao clicar fora dele
 document.getElementById("popup").addEventListener("click", function (event) {
   if (event.target === document.getElementById("popup")) {
     document.getElementById("popup").style.display = "none";

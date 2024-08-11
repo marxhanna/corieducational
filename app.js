@@ -106,7 +106,13 @@ app.get(
   "/",
   measureResponseTime("/", "Serve the user login page"),
   (req, res) => {
-    res.render("userLogin");
+    if (req.user) {
+      // Redirect to the index page if the user is authenticated
+      res.render("index", { user: req.user });
+    } else {
+      // Render the login page if the user is not authenticated
+      res.render("userLogin");
+    }
   }
 );
 
@@ -169,6 +175,10 @@ app.post(
         console.error("Enrollment response error:", responseBody);
         return res.redirect("/novaTurmaErro");
       }
+
+      // Invalidar a cache após a inscrição em uma nova turma
+      const cacheKey = `turmas_${globalUser.uuid}`;
+      cache.del(cacheKey);
 
       res.redirect("/turmas");
     } catch (err) {
@@ -290,17 +300,17 @@ app.get(
       }
 
       const userData = await userResponse.json();
-
+      // console.log("User Data:", JSON.stringify(userData, null, 2));
       if (userData.class && Array.isArray(userData.class)) {
         const turmas = userData.class.map((c) => {
           const turma = c.class;
-
           const imageUrl = `https://back-end-cori-cases.opatj4.easypanel.host/uploads/${turma.image}`;
           return {
             id: turma.id,
             name: turma.name,
             imageUrl: imageUrl,
             description: turma.subject,
+            code: turma.code, // Adiciona o código da turma
           };
         });
 
@@ -593,6 +603,7 @@ app.get(
       const caseData = await caseResponse.json();
       const tags = caseData.tags.map((tagObj) => tagObj.tags.name);
 
+      console.log("Caso Data:", JSON.stringify(caseData, null, 2));
       res.render("casoResposta", {
         user: globalUser,
         caseData,
@@ -685,8 +696,7 @@ app.post("/api/submitResponses/:caseUuid", async (req, res) => {
 
     const responseData = await response.json();
 
-    // Log the response data received from the API
-
+    //console.log("User Data:", JSON.stringify(responseData, null, 2));
     res.render("respostaAluno", {
       user: globalUser,
       responseData: responseData,
@@ -698,79 +708,53 @@ app.post("/api/submitResponses/:caseUuid", async (req, res) => {
     res.redirect("/?error=An%20error%20occurred%20submitting%20responses");
   }
 });
-app.post(
-  "/classes/students/remove",
-  measureResponseTime(
-    "/classes/students/remove",
-    "Remove the user from the class"
-  ),
-  async (req, res) => {
-    const { classCode } = req.body;
-    const token = req.cookies.authToken;
 
-    if (!token) {
-      console.error("No token found");
-      return res.redirect("/?error=No%20token%20found");
-    }
+app.post("/classes/students/remove", async (req, res) => {
+  const { classCode } = req.body;
 
-    if (!classCode) {
-      console.error("No class code provided");
-      return res.redirect("/turmas?error=No%20class%20code%20provided");
-    }
-
-    console.log("Received classCode from front-end:", classCode);
-
-    const options = {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    };
-
-    console.log("Options for DELETE request:", options);
-
-    const fetchWithTimeout = async (url, options, timeout = 5000) => {
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), timeout);
-      options.signal = controller.signal;
-
-      try {
-        const response = await fetch(url, options);
-        clearTimeout(timeoutId);
-        return response;
-      } catch (error) {
-        clearTimeout(timeoutId);
-        throw error;
-      }
-    };
-
-    try {
-      const fetch = (await import("node-fetch")).default;
-      const response = await fetchWithTimeout(
-        `https://back-end-cori-cases.opatj4.easypanel.host/classes/students/${classCode}`,
-        options
-      );
-
-      const responseBody = await response.text();
-      console.log(response);
-      console.log("Received DELETE response with status:", response.status);
-      console.log("DELETE response body:", responseBody);
-
-      if (response.status !== 200) {
-        console.error("Delete class response error:", responseBody);
-        return res.redirect("/turmas?error=Failed%20to%20remove%20class");
-      }
-
-      res.redirect("/turmas");
-    } catch (err) {
-      console.error("Error removing user from class:", err);
-      res.redirect(
-        "/turmas?error=An%20error%20occurred%20removing%20the%20user%20from%20the%20class"
-      );
-    }
+  if (!classCode) {
+    console.error("No class code provided");
+    return res.status(400).send("No class code provided");
   }
-);
+
+  const token = req.cookies.authToken;
+
+  if (!token) {
+    console.error("No token found");
+    return res.redirect("/?error=No%20token%20found");
+  }
+
+  const deleteOptions = {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  try {
+    const fetch = (await import("node-fetch")).default;
+    const response = await fetch(
+      `https://back-end-cori-cases.opatj4.easypanel.host/classes/students/${classCode}`,
+      deleteOptions
+    );
+
+    if (response.status !== 200) {
+      const errorText = await response.text();
+      console.error("Delete response error:", errorText);
+      throw new Error(`API responded with status ${response.status}`);
+    }
+
+    // Invalidate the cache for the user's classes
+    const cacheKey = `turmas_${globalUser.uuid}`;
+    cache.del(cacheKey);
+
+    res.redirect("/turmas");
+  } catch (err) {
+    console.error("Error removing class:", err);
+    res.redirect("/?error=An%20error%20occurred%20removing%20the%20class");
+  }
+});
 
 // Iniciar o servidor
 app.listen(3000, () => {

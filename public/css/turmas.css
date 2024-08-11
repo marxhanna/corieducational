@@ -116,7 +116,7 @@ body {
   display: flex;
   align-items: center;
   cursor: pointer;
-  padding-left: 10px;
+
   margin-right: 15px; /* Espaço entre os itens */
 }
 
@@ -126,8 +126,8 @@ body {
 }
 
 .icon-wrapper {
-  width: 60px;
-  height: 60px;
+  width: 75px;
+  height: 75px;
   border-radius: 100%;
   border: none;
   display: flex;
@@ -309,17 +309,15 @@ body {
 
 .filter {
   display: flex;
-  justify-content: center; /* Alinha os itens no centro */
-  align-items: center;
+  padding-left: 20px;
   padding-top: 20px;
   padding-bottom: 30px;
   gap: 10px; /* Ajuste a distância entre os filtros */
 }
 .container {
   display: flex;
-  padding-left: 40px;
-  justify-content: left; /* Alinha os itens no centro */
-  align-items: center;
+  justify-content: center;
+
   padding-top: 30px;
   padding-bottom: 30px;
   gap: 10px; /* Ajuste a distância entre os filtros */
@@ -360,9 +358,7 @@ body {
     background-position: -200% 0;
   }
 }
-#data {
-  margin-left: -20px;
-}
+
 @media (min-width: 800px) {
   .grid-container {
     display: flex;

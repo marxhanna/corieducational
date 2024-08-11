@@ -10,8 +10,6 @@
   </head>
   <body>
     <%- include('header') %>
-    <!-- Assegure-se de que este EJS está sendo processado corretamente. -->
-
     <div class="main-container">
       <div class="grid-container">
         <div class="case-card">
@@ -25,57 +23,29 @@
             <div class="case-description-title">
               <p><strong><%= puzzle.title %></strong></p>
               <div class="tags">
-                <span class="tag professor"> Dr. Augusto Luzzi</span>
-                <span class="tag university">Cori</span>
+                <span class="tag professor"
+                  >Dr. <span id="professor-name"></span
+                ></span>
+                <span class="tag university"
+                  ><span id="university-name"></span
+                ></span>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="case-card question-card" id="question-1">
-          <div class="case-info">
-            <div class="case-description2">
-              <div class="dica">
-                <button>Questão 1</button>
-              </div>
-              <p><%= puzzle.questions[0].content %></p>
-              <br />
-              <img src="/assets/eletro.png" alt="" />
-            </div>
-          </div>
-        </div>
-
-        <div class="action-container question-card" id="actions-1">
-          <ul class="action-list">
-            <% puzzle.questions[0].alternatives.forEach(function(alternative,
-            altIndex) { %>
-            <li>
-              <input
-                type="radio"
-                id="option<%= alternative.uuid %>"
-                name="action0"
-                value="<%= alternative.consequence %>"
-                data-correct="<%= alternative.isCorrect %>"
-              />
-              <label for="option<%= alternative.uuid %>"
-                ><%= alternative.content %></label
-              >
-            </li>
-            <% }); %>
-          </ul>
-        </div>
-
+        <% for (var i = 0; i < 6; i++) { %> <% if (puzzle.questions[i]) { %>
         <div
           class="case-card question-card"
-          id="question-2"
-          style="display: none"
+          id="question-<%= i + 1 %>"
+          style="display: <%= i === 0 ? 'block' : 'none' %>;"
         >
           <div class="case-info">
             <div class="case-description2">
               <div class="dica">
-                <button>Questão 2</button>
+                <button>Questão <%= i + 1 %></button>
               </div>
-              <p><%= puzzle.questions[1].content %></p>
+              <p><%= puzzle.questions[i].content %></p>
               <br />
               <img src="/assets/eletro.png" alt="" />
             </div>
@@ -84,17 +54,17 @@
 
         <div
           class="action-container question-card"
-          id="actions-2"
-          style="display: none"
+          id="actions-<%= i + 1 %>"
+          style="display: <%= i === 0 ? 'block' : 'none' %>;"
         >
           <ul class="action-list">
-            <% puzzle.questions[1].alternatives.forEach(function(alternative,
+            <% puzzle.questions[i].alternatives.forEach(function (alternative,
             altIndex) { %>
             <li>
               <input
                 type="radio"
                 id="option<%= alternative.uuid %>"
-                name="action1"
+                name="action<%= i %>"
                 value="<%= alternative.consequence %>"
                 data-correct="<%= alternative.isCorrect %>"
               />
@@ -105,12 +75,12 @@
             <% }); %>
           </ul>
         </div>
+        <% } %> <% } %>
       </div>
     </div>
 
     <button id="apply-action" class="apply-action">Aplicar Conduta</button>
 
-    <!-- Popup que aparece após clicar em "Aplicar Conduta" -->
     <div id="popup" class="popup" style="display: none">
       <div class="popup-content">
         <div class="consequencia">
@@ -122,5 +92,15 @@
     </div>
 
     <script src="/scripts/puzzleResposta.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const urlParams = new URLSearchParams(window.location.search);
+        const professor = decodeURIComponent(urlParams.get("professor"));
+        const university = decodeURIComponent(urlParams.get("university"));
+
+        document.getElementById("professor-name").textContent = professor;
+        document.getElementById("university-name").textContent = university;
+      });
+    </script>
   </body>
 </html>

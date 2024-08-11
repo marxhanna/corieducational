@@ -24,9 +24,11 @@
               <p><%= caseData.title %></p>
               <div class="tags">
                 <span class="tag professor"
-                  >Dr. <%= caseData.class.professor %></span
+                  >Dr. <%= caseData.class.users.user.name %></span
                 >
-                <span class="tag university">PUCPR</span>
+                <span class="tag university"
+                  ><%= caseData.class.users.user.university.name %></span
+                >
               </div>
             </div>
           </div>
@@ -51,7 +53,8 @@
               <div class="dica">
                 <button><%= index + 1 %>° dica</button>
               </div>
-              <p><%= tip.content %></p>
+              <p><%- tip.content.replace(/\n/g, '<br />') %></p>
+
               <% if (tip.image) { %>
               <div class="tip-image-container" style="padding: 10px">
                 <img
@@ -72,12 +75,13 @@
         </button>
       </div>
     </div>
-
+    <%- include('loading') %>
     <div id="responseSection" style="display: none">
       <form
         id="responseForm"
         action="/api/submitResponses/<%= caseData.uuid %>"
         method="POST"
+        onsubmit="showLoading()"
       >
         <input
           type="hidden"

@@ -25,9 +25,11 @@
               <p id="caseTitle"><%= caseData.title %></p>
               <div class="tags">
                 <span class="tag professor"
-                  >Dr. <%= caseData.class.professor %></span
+                  >Dr. <%= caseData.class.users.user.name %></span
                 >
-                <span class="tag university">PUCPR</span>
+                <span class="tag university"
+                  ><%= caseData.class.users.user.university.name %></span
+                >
               </div>
             </div>
           </div>
@@ -81,120 +83,50 @@
       <p class="p-text">Resposta Correta:</p>
 
       <!-- Sections -->
+      <% const normalize = (str) =>
+      str.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase(); %> <%
+      ["diagnostico", "prescricao", "exame"].forEach((tag) => { %>
       <div
-        class="diagnostico-section main-container section-content"
-        id="section-diagnostico"
+        class="<%= tag %>-section main-container section-content"
+        id="section-<%= tag %>"
+        style="display: <%= tag === 'diagnostico' ? 'block' : 'none' %>;"
       >
         <div class="grid-container">
-          <div class="case-card" id="case-card-resposta-diagnostico">
+          <div class="case-card" id="case-card-resposta-<%= tag %>">
             <div class="case-info-correct">
               <div class="case-description">
-                <p class="respostaCerta" id="rightAlternativeDiagnostico">
-                  <%= responseData.rightAlternative.content %>
+                <p
+                  class="respostaCerta"
+                  id="rightAlternative<%= tag.charAt(0).toUpperCase() + tag.slice(1) %>"
+                >
+                  <% const correctAnswer =
+                  responseData.rightAlternative.find(alt =>
+                  normalize(alt.tag.name) === tag); if (correctAnswer) { %> <%=
+                  correctAnswer.content %> <% } else { %> Nenhuma resposta
+                  correta encontrada <% } %>
                 </p>
               </div>
             </div>
           </div>
         </div>
         <div class="grid-container">
-          <div class="case-card" id="case-card-alternativas-diagnostico">
+          <div class="case-card" id="case-card-alternativas-<%= tag %>">
             <div class="case-alternative">
-              <div id="btnDiagnosticoAlternatives" class="case-description">
+              <div
+                id="btn<%= tag.charAt(0).toUpperCase() + tag.slice(1) %>Alternatives"
+                class="case-description"
+              >
                 <p>Alternativas</p>
               </div>
             </div>
           </div>
         </div>
         <div class="main-container">
-          <div class="grid-container" id="suas-respostas-diagnostico">
+          <div class="grid-container" id="suas-respostas-<%= tag %>">
             <p class="p-text">Suas Respostas:</p>
-            <% if (responses.diagnostico) { %> <%
-            responses.diagnostico.forEach(function (answer, index) { %>
-            <div class="case-card" id="user-response-diagnostico-<%= index %>">
-              <div class="case-info">
-                <div class="case-description">
-                  <p><%= answer %></p>
-                </div>
-              </div>
-            </div>
-            <% }) %> <% } %>
-          </div>
-        </div>
-      </div>
-
-      <div
-        class="prescricao-section main-container section-content"
-        id="section-prescricao"
-        style="display: none"
-      >
-        <div class="grid-container">
-          <div class="case-card" id="case-card-resposta-prescricao">
-            <div class="case-info-correct">
-              <div class="case-description">
-                <p class="respostaCerta" id="rightAlternativePrescricao">
-                  <%= responseData.rightAlternative.content %>
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="grid-container">
-          <div class="case-card" id="case-card-alternativas-prescricao">
-            <div class="case-info">
-              <div id="btnPrescricaoAlternatives" class="case-description">
-                <p>Alternativas</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="main-container">
-          <div class="grid-container" id="suas-respostas-prescricao">
-            <p class="p-text">Suas Respostas:</p>
-            <% if (responses.prescricao) { %> <%
-            responses.prescricao.forEach(function (answer, index) { %>
-            <div class="case-card" id="user-response-prescricao-<%= index %>">
-              <div class="case-info">
-                <div class="case-description">
-                  <p><%= answer %></p>
-                </div>
-              </div>
-            </div>
-            <% }) %> <% } %>
-          </div>
-        </div>
-      </div>
-
-      <div
-        class="exame-section main-container section-content"
-        id="section-exame"
-        style="display: none"
-      >
-        <div class="grid-container">
-          <div class="case-card" id="case-card-resposta-exame">
-            <div class="case-info-correct">
-              <div class="case-description">
-                <p class="respostaCerta" id="rightAlternativeExame">
-                  <%= responseData.rightAlternative.content %>
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="grid-container">
-          <div class="case-card" id="case-card-alternativas-exame">
-            <div class="case-info">
-              <div id="btnExameAlternatives" class="case-description">
-                <p>Alternativas</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="main-container">
-          <div class="grid-container" id="suas-respostas-exame">
-            <p class="p-text">Suas Respostas:</p>
-            <% if (responses.exame) { %> <% responses.exame.forEach(function
+            <% if (responses[tag]) { %> <% responses[tag].forEach(function
             (answer, index) { %>
-            <div class="case-card" id="user-response-exame-<%= index %>">
+            <div class="case-card" id="user-response-<%= tag %>-<%= index %>">
               <div class="case-info">
                 <div class="case-description">
                   <p><%= answer %></p>
@@ -205,14 +137,15 @@
           </div>
         </div>
       </div>
+      <% }); %>
 
       <!-- Popup Sections -->
       <div id="popup-diagnostico" class="popup-overlay" style="display: none">
         <div class="popup-content">
           <span class="close-button">&times;</span>
           <h3>Alternativas para Diagnóstico</h3>
-          <% responseData.alternatives.filter(alt => alt.tag.name ===
-          'Diagnóstico').forEach(function (alternative) { %>
+          <% responseData.alternatives.filter(alt => normalize(alt.tag.name) ===
+          'diagnostico').forEach(function (alternative) { %>
           <button class="alternative-button"><%= alternative.content %></button>
           <% }) %>
         </div>
@@ -222,8 +155,8 @@
         <div class="popup-content">
           <span class="close-button">&times;</span>
           <h3>Alternativas para Prescrição</h3>
-          <% responseData.alternatives.filter(alt => alt.tag.name ===
-          'Prescrição Médica').forEach(function (alternative) { %>
+          <% responseData.alternatives.filter(alt => normalize(alt.tag.name) ===
+          'prescricao medica').forEach(function (alternative) { %>
           <button class="alternative-button"><%= alternative.content %></button>
           <% }) %>
         </div>
@@ -233,8 +166,8 @@
         <div class="popup-content">
           <span class="close-button">&times;</span>
           <h3>Alternativas para Exame</h3>
-          <% responseData.alternatives.filter(alt => alt.tag.name ===
-          'Exame').forEach(function (alternative) { %>
+          <% responseData.alternatives.filter(alt => normalize(alt.tag.name) ===
+          'exame').forEach(function (alternative) { %>
           <button class="alternative-button"><%= alternative.content %></button>
           <% }) %>
         </div>

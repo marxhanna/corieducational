@@ -158,6 +158,7 @@ body {
 
 .tags {
   display: flex;
+  flex-wrap: wrap; /* Permite que as tags quebrem para a próxima linha */
   gap: 10px;
   margin-top: 10px;
   margin-left: 18px; /* Alinha com o título */
@@ -169,14 +170,10 @@ body {
   padding: 2px 10px; /* Menor padding */
   font-size: 12px; /* Menor fonte */
   color: #333;
+  word-break: break-word; /* Quebra a palavra se for muito longa */
 }
 
-.tag.professor {
-  background-color: #ff0f68;
-  color: white;
-}
-
-.tag.university {
+.tag {
   background-color: #ff0f68;
   color: white;
 }
@@ -603,6 +600,8 @@ body {
 }
 
 /* Ajusta o tamanho dos botões em telas um pouco maiores */
+/* Ajusta o tamanho dos botões em telas um pouco maiores */
+/* Ajusta o tamanho dos botões em telas um pouco maiores */
 @media screen and (min-width: 600px) {
   .case-actions button {
     font-size: 14px;
@@ -642,44 +641,48 @@ body {
   }
 }
 
-@media screen and (orientation: landscape) and (min-width: 667px) and (max-width: 950px) {
-  #responsePopup {
-    display: flex; /* Garante que o popup seja exibido */
-    position: fixed; /* Posicionamento fixo para cobrir toda a tela */
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Overlay escuro */
-    justify-content: center; /* Centraliza o .popup-container horizontalmente */
-    align-items: center; /* Centraliza o .popup-container verticalmente */
-    z-index: 1999; /* Z-index alto para estar na frente da maioria dos elementos */
-    padding-top: 25px; /* Ajuste no padding superior, se necessário */
-  }
-
-  .popup-container {
-    margin-top: 25px; /* Ajuste na margem superior para posicionar o popup */
-    position: relative; /* Posicionamento relativo dentro do #responsePopup */
-    z-index: 2000; /* Garante que o popup fique acima do overlay */
-    width: 90%; /* Largura como porcentagem para responsividade */
-    max-width: 500px; /* Largura máxima para evitar que o popup seja muito largo */
-    border-radius: 15px; /* Bordas arredondadas para o design */
-    background-color: white; /* Cor de fundo do popup */
-    padding: 20px; /* Padding interno */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* Sombra para efeito de profundidade */
-  }
-
+/* Media query para modo paisagem em dispositivos móveis */
+@media screen and (orientation: landscape) and (max-width: 950px) {
+  .main-container,
+  .grid-container,
   .question-container {
-    height: 180px;
+    max-width: 414px;
+    margin: 0 auto; /* Centraliza o conteúdo na tela */
   }
-
-  .question-container p {
-    margin-top: -10px;
-    padding-top: 2px;
+  .action-buttons {
+    margin-top: 0px;
   }
-
   .case-actions button {
-    padding: 4px 10px;
-    margin-top: -10px;
+    font-size: 12px;
+    padding: 5px 10px;
+  }
+
+  .button-container .next-button {
+    width: 41%;
+    font-size: 14px;
+    padding: 15px;
+  }
+}
+
+/* Ajustes específicos para telas de tablets em modo retrato */
+@media screen and (min-width: 600px) {
+  .main-container,
+  .grid-container,
+  .question-container {
+    max-width: 414px;
+    margin: 0 auto; /* Centraliza o conteúdo na tela */
+  }
+  .action-buttons {
+    margin-top: 0px;
+  }
+  .case-actions button {
+    font-size: 12px;
+    padding: 5px 10px;
+  }
+
+  .button-container .next-button {
+    width: 41%;
+    font-size: 14px;
+    padding: 15px;
   }
 }

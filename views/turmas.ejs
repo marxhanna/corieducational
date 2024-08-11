@@ -31,13 +31,14 @@
         <option value="Teste">2° Período</option>
         <option value="Teste">3° Período</option>
         <option value="Teste">4° Período</option>
-      </select>
-      <img src="/assets/estetoscopios.png" alt="" />
-      <select name="filter" id="filter" class="option" onchange="filterCases()">
-        <option value="all">Ciclo Clínico</option>
-        <option value="Teste">Pré-Clínico</option>
-        <option value="Teste">Clínico</option>
-        <option value="Teste">Internato</option>
+        <option value="Teste">5° Período</option>
+        <option value="Teste">6° Período</option>
+        <option value="Teste">7° Período</option>
+        <option value="Teste">8° Período</option>
+        <option value="Teste">9° Período</option>
+        <option value="Teste">10° Período</option>
+        <option value="Teste">11° Período</option>
+        <option value="Teste">12° Período</option>
       </select>
     </div>
 
@@ -66,7 +67,7 @@
       <% turmas.forEach((turma, index) => { %>
       <div
         class="grid-item"
-        data-class-code="<%= turma.id %>"
+        data-class-code="<%= turma.code %>"
         onclick="location.href='/casos?className=<%= encodeURIComponent(turma.name) %>';"
       >
         <div class="corner-image">
@@ -74,7 +75,7 @@
         </div>
         <div
           class="circle-button"
-          onclick="event.stopPropagation(); showPopup('<%= turma.id %>', '<%= turma.name %>');"
+          onclick="event.stopPropagation(); showPopup('<%= turma.code %>', '<%= turma.name %>');"
         >
           <img src="/assets/sair.png" alt="Sair" />
         </div>
@@ -92,7 +93,7 @@
       <% turmas.forEach((turma, index) => { %>
       <div
         class="grid-item"
-        data-class-code="<%= turma.id %>"
+        data-class-code="<%= turma.code %>"
         onclick="location.href='/puzzles?className=<%= encodeURIComponent(turma.name) %>';"
       >
         <div class="corner-image">
@@ -100,7 +101,7 @@
         </div>
         <div
           class="circle-button"
-          onclick="event.stopPropagation(); showPopup('<%= turma.id %>', '<%= turma.name %>');"
+          onclick="event.stopPropagation(); showPopup('<%= turma.code %>', '<%= turma.name %>');"
         >
           <img src="/assets/sair.png" alt="Sair" />
         </div>

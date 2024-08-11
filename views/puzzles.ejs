@@ -32,7 +32,7 @@
       <div
         class="case-card"
         data-turma="<%= puzzle.classId %>"
-        onclick="location.href='/puzzleResposta/<%= puzzle.uuid %>';"
+        onclick="navigateToPuzzle('<%= puzzle.uuid %>', '<%= puzzle.class.users.user.name %>', '<%= puzzle.class.users.user.university.name %>')"
       >
         <div class="case-info">
           <div class="image-container">
@@ -44,8 +44,12 @@
           <div class="case-description">
             <p><%= puzzle.title %></p>
             <div class="tags">
-              <span class="tag professor">Dr. Augusto Luzzi</span>
-              <span class="tag university">PUCPR</span>
+              <span class="tag professor"
+                >Dr. <%= puzzle.class.users.user.name %></span
+              >
+              <span class="tag university"
+                ><%= puzzle.class.users.user.university.name %></span
+              >
             </div>
             <div class="case-actions">
               <% if (puzzle.actions && puzzle.actions.length > 0) { %> <%
@@ -87,6 +91,12 @@
             puzzle.style.display = "none";
           }
         });
+      }
+
+      function navigateToPuzzle(uuid, professor, university) {
+        const encodedProfessor = encodeURIComponent(professor);
+        const encodedUniversity = encodeURIComponent(university);
+        window.location.href = `/puzzleResposta/${uuid}?professor=${encodedProfessor}&university=${encodedUniversity}`;
       }
     </script>
   </body>

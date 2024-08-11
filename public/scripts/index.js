@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
         element.style.display = "none";
       });
     doctorImage.style.display = "block";
-    setTimeout(closeModal, 3500);
+    setTimeout(closeModal, 1000);
   });
 
   noButton.addEventListener("click", closeModal);
