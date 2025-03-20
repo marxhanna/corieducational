@@ -468,7 +468,7 @@ const Info = () => {
                       {item.case?.uuid || item.caseId}
                     </span>
                   </td>
-                  <td>A-{item.studentServiceId}</td>
+                  <td>{item.uuid}</td>
                   <td>
                     {item.initTreatment ? (
                       <span className="badge-realizado">Concluído</span>
