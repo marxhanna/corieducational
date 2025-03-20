@@ -1,0 +1,512 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
+/* Variáveis de Cores */
+:root {
+  --primary-color: #242873;
+  --secondary-color: #ff0f68;
+  --tertiary-color: #edeef8;
+  --card-background: #ffffff;
+  --card-shadow: rgba(0, 0, 0, 0.1);
+  --card-border-color: #e5e7eb;
+  --font-family: "Poppins", sans-serif;
+}
+
+* {
+  font-family: "Poppins", sans-serif;
+}
+.paciente-card-id {
+  margin-top: -60px;
+  display: flex;
+  justify-content: center; /* Alinha o conteúdo à esquerda */
+  align-items: center;
+  padding: 15px 0; /* Ajuste de espaçamento */
+}
+.badge {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px;
+  background-color: #ff0f68 !important;
+  color: white !important;
+  font-size: 1rem !important; /* Tamanho maior para o texto do ID */
+  font-weight: 600 !important;
+  padding: 12px 24px !important; /* Aumenta o espaço interno para um badge maior */
+  border-radius: 30px !important; /* Mantém o formato arredondado */
+  text-align: center !important;
+  max-width: fit-content !important;
+}
+
+/* Ícone dentro do badge com tamanho maior */
+.badge-icon {
+  color: white !important;
+  font-size: 1.8rem !important; /* Tamanho maior para o ícone */
+}
+.toggle-button {
+  display: flex;
+  align-items: center; /* Garante que o texto e o ícone fiquem alinhados */
+  justify-content: center;
+  gap: 8px; /* Espaçamento entre o ícone e o texto */
+}
+
+/* Reset básico */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: #f3f4f6;
+  color: #111827;
+  margin: 0;
+  padding: 0;
+  transition:
+    background-color 0.3s,
+    color 0.3s;
+}
+
+/* Modal inspirado no ShadCN */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.modal-container {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 30px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  animation: modalFadeIn 0.3s ease-in-out;
+  margin: 0 30px; /* Adicione esta linha para espaçamento lateral no mobile */
+}
+
+@keyframes modalFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modal-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #242873;
+}
+
+.modal-input {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s ease;
+  margin-bottom: 15px;
+}
+
+.modal-input:focus {
+  border-color: #242873;
+}
+
+.input-error {
+  border-color: #ff0f68;
+}
+
+.error-message {
+  color: #ff0f68;
+  font-size: 0.875rem;
+  margin-bottom: 10px;
+}
+
+.modal-button {
+  background-color: #242873;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.modal-button:hover {
+  background-color: #1e1e60;
+}
+
+/* Botões de alternância */
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px; /* Mantém o espaçamento entre os botões */
+  margin-bottom: 20px;
+}
+
+.toggle-button {
+  background-color: white;
+  color: black;
+  border: 2px solid black;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition:
+    background-color 0.3s,
+    color 0.3s,
+    border 0.3s;
+  margin-right: 10px; /* Certifica-se de que botões não fiquem colados */
+}
+
+.toggle-button.active {
+  background-color: #ff0f68;
+  color: white;
+  border: none;
+}
+
+/* Modo Escuro */
+body.dark-mode .toggle-button {
+  background-color: transparent;
+  color: white;
+  border: 2px solid #d3d3d3;
+}
+
+body.dark-mode .toggle-button.active {
+  background-color: #ff0f68;
+  color: white;
+  border: none;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+button:focus {
+  outline: none;
+}
+
+body.dark-mode h1 {
+  color: #ffffff;
+}
+
+/* Container Principal */
+.container {
+  max-width: 1200px;
+  margin: 100px auto 20px auto;
+  padding: 20px;
+}
+
+/* Título Principal */
+h1 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: var(--primary-color);
+}
+
+/* Card */
+.card {
+  background-color: var(--card-background);
+  border-radius: 12px;
+  border: 1px solid var(--card-border-color);
+  box-shadow: 0 4px 6px var(--card-shadow);
+  overflow: hidden;
+  font-family: var(--font-family);
+  width: 100%;
+  max-width: 600px;
+  margin: 20px auto;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    background-color 0.3s;
+  position: relative;
+}
+
+body.dark-mode .card {
+  box-shadow: none;
+}
+
+/* Card Header */
+.card-header {
+  background-color: var(--primary-color);
+  color: #ffffff;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+body.dark-mode .card-header {
+  background-color: #2a2a2a;
+  color: #ffffff;
+}
+
+/* Título do Card */
+.card-title {
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: inherit;
+  white-space: normal;
+  overflow: visible;
+  text-overflow: unset;
+  width: 100%;
+  text-align: left;
+  line-height: 1.2;
+  margin-top: 5px;
+}
+
+body.dark-mode .card-title {
+  color: #ffffff;
+}
+
+/* Card Body */
+.card-body {
+  padding: 20px;
+}
+
+/* Seção de Informação */
+.info-section {
+  margin-bottom: 15px;
+}
+
+/* Número do Subtítulo */
+.subtitle-number {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--primary-color);
+  color: #ffffff;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  margin-right: 10px;
+  flex-shrink: 0;
+}
+
+body.dark-mode .subtitle-number {
+  background-color: #2a2a2a;
+  color: #ffffff;
+}
+
+/* Título da Informação */
+.info-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--secondary-color);
+}
+
+body.dark-mode .info-title {
+  color: var(--secondary-color);
+}
+
+/* Conteúdo da Informação */
+.info-content {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: inherit;
+}
+
+/* Botão de Alternância de Tema Flutuante */
+.theme-toggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: var(--primary-color);
+  color: #ffffff;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition:
+    background-color 0.3s,
+    transform 0.3s;
+  z-index: 1000;
+}
+
+.theme-toggle:hover {
+  transform: scale(1.1);
+}
+
+body.dark-mode .theme-toggle {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+/* Seções Colapsáveis */
+.collapsible {
+  background-color: transparent;
+  color: inherit;
+  cursor: pointer;
+  padding: 0;
+  border: none;
+  outline: none;
+  font-size: 1.125rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.collapsible .subtitle-number {
+  width: 40px;
+  height: 40px;
+  font-size: 0.9rem;
+  margin-right: 10px;
+}
+
+.collapsible:hover {
+  text-decoration: underline;
+}
+
+.content {
+  display: none;
+  overflow: hidden;
+  padding-left: 20px;
+}
+
+/* Lista para o Resumo do Professor */
+.professor-summary .info-content {
+  list-style-type: disc;
+  padding-left: 20px;
+}
+
+/* Responsividade */
+@media (max-width: 1024px) {
+  .container {
+    max-width: 90%;
+    padding: 40px 20px;
+  }
+
+  .card {
+    max-width: 700px;
+  }
+
+  .logo-container img {
+    width: 130px;
+  }
+}
+
+@media (max-width: 767px) {
+  .logo-container img {
+    width: 120px;
+    margin-bottom: 10px;
+  }
+
+  /* Container Principal */
+  .container {
+    padding: 20px 16px;
+  }
+
+  .card {
+    padding: 0;
+    max-width: 100%;
+    margin: 20px 0;
+    border-radius: 12px;
+  }
+
+  .card-header {
+    padding: 15px 16px;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: var(--primary-color);
+    position: relative;
+  }
+
+  body.dark-mode .card-header {
+    background-color: #2a2a2a;
+    color: #ffffff;
+  }
+
+  .card-title {
+    font-size: 1.2rem;
+    white-space: normal;
+    overflow: visible;
+    text-overflow: unset;
+    width: 100%;
+    text-align: left;
+    line-height: 1.2;
+    margin-top: 5px;
+  }
+
+  .info-header {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .info-title {
+    font-size: 1.125rem;
+  }
+
+  .subtitle-number {
+    width: 40px;
+    height: 40px;
+    font-size: 0.9rem;
+    margin-right: 10px;
+    flex-shrink: 0;
+  }
+
+  body.dark-mode .subtitle-number {
+    background-color: #2a2a2a;
+    color: #ffffff;
+  }
+
+  .info-content {
+    word-wrap: break-word;
+  }
+
+  .theme-toggle {
+    z-index: 1001;
+  }
+
+  .modal-button {
+    padding: 10px;
+  }
+
+  .modal-title {
+    font-size: 1.25rem;
+  }
+
+  .modal-input {
+    padding: 10px;
+  }
+}
+/* Responsividade para botões de 2 em 2 no mobile */
+@media (max-width: 767px) {
+  .button-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}

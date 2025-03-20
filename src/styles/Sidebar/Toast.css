@@ -1,0 +1,56 @@
+/* src/components/Toast/Toast.css */
+
+/* Container do Toast */
+.toast {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  min-width: 250px;
+  padding: 16px 24px;
+  border-radius: 8px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+  animation: slideIn 0.5s ease forwards;
+  z-index: 1000; /* Garantir que fique acima de outros elementos */
+}
+
+/* Tipos de Toast */
+.toast.success {
+  background-color: #16a34a; /* Verde */
+}
+
+.toast.error {
+  background-color: #ef4444; /* Vermelho */
+}
+
+/* Mensagem dentro do Toast */
+.toast-message {
+  flex: 1;
+  margin-right: 16px;
+  font-size: 14px;
+}
+
+/* Botão de fechar */
+.toast-close-button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  line-height: 1;
+}
+
+/* Animação de entrada */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

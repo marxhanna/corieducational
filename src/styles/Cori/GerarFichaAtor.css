@@ -1,0 +1,499 @@
+/* src/styles/Cori/GerarFichaAtor.css */
+
+********************/ .filter-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px; /* Espaço entre filtro e tabela */
+}
+
+.filter-label {
+  font-weight: 600;
+  color: #242873;
+}
+
+.filter-select {
+  padding: 6px 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background-color: #fff;
+  color: #242873;
+  font-size: 14px;
+}
+
+/********************
+ * Tabela Responsiva
+ ********************/
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.case-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #ffffff;
+  font-size: 14px;
+  text-align: center;
+}
+
+.case-table th,
+.case-table td {
+  padding: 10px 12px;
+}
+
+.case-table thead th {
+  font-weight: 600;
+  background-color: #f3f4f6;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.case-table tbody tr {
+  border-bottom: 1px solid #e5e7eb;
+  transition: background-color 0.3s;
+}
+
+.case-table tbody tr:hover {
+  background-color: #f9fafb;
+}
+
+/********************
+ * Botão Menor
+ ********************/
+.btn-sm {
+  padding: 6px 10px;
+  font-size: 12px;
+  border-radius: 6px;
+  /* Ajuste conforme desejar */
+}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.case-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #ffffff;
+  font-size: 14px;
+  text-align: center;
+}
+
+.case-table th,
+.case-table td {
+  padding: 10px 12px;
+}
+
+.case-table thead th {
+  font-weight: 600;
+  background-color: #f3f4f6;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.case-table tbody tr {
+  border-bottom: 1px solid #e5e7eb;
+  transition: background-color 0.3s;
+}
+
+.case-table tbody tr:hover {
+  background-color: #f9fafb;
+}
+
+/* Botão menor */
+.btn-sm {
+  padding: 6px 10px;
+  font-size: 12px;
+  border-radius: 6px;
+  /* Ajuste conforme o layout desejado */
+}
+
+.gerar-ficha-container {
+  margin-top: 30px !important;
+  font-family: var(--font-family);
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 24px;
+  background-color: var(--card-background);
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1); /* Sombra mais leve e difusa */
+  transition: box-shadow 0.3s ease;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.75rem;
+  color: var(--primary-color);
+  margin-bottom: 24px;
+}
+
+.title svg {
+  margin-right: 8px;
+}
+
+/* Formulário para o ID do Caso */
+.form-group {
+  margin-bottom: 24px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: var(--primary-color); /* Azul escuro */
+  font-size: 1rem;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--card-border-color);
+  border-radius: 8px; /* Bordas mais arredondadas */
+  background-color: #f9fafb; /* Cor de fundo suave */
+  font-family: var(--font-family);
+  font-size: 1rem;
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.form-group input:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(36, 40, 115, 0.1); /* Efeito de foco mais suave */
+  outline: none;
+}
+
+/* Seção Melhorada: Caso Clínico */
+.clinical-case {
+  margin-top: 32px;
+}
+
+.clinical-case h2 {
+  text-align: center;
+  margin-bottom: 24px;
+  font-size: 1.75rem;
+  color: var(--primary-color);
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.clinical-case h2::after {
+  content: "";
+  width: 60px;
+  height: 4px;
+  background-color: var(--secondary-color);
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 2px;
+}
+
+.clinical-case-card {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* Sombra suave */
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.clinical-case-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+}
+
+.clinical-case-card h3 {
+  font-size: 1.25rem;
+  color: var(--primary-color);
+  margin-bottom: 12px;
+  border-bottom: 2px solid var(--secondary-color);
+  padding-bottom: 6px;
+}
+
+.clinical-case-card p {
+  font-size: 1rem;
+  color: #333333;
+  line-height: 1.6;
+}
+
+.clinical-case-card ul {
+  list-style-type: disc;
+  padding-left: 20px;
+}
+
+.clinical-case-card ul li {
+  margin-bottom: 8px;
+  font-size: 1rem;
+  color: #555555;
+}
+
+.clinical-case-card ul li strong {
+  color: var(--primary-color);
+}
+
+/* Reutilização das classes existentes */
+.section-container {
+  margin-bottom: 32px;
+  padding: 16px;
+  background-color: var(--card-background);
+  border-radius: 8px;
+  border: 1px solid var(--card-border-color);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* Sombra suave */
+  transition: box-shadow 0.3s ease;
+}
+
+.section-container:hover {
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1); /* Sombra ao passar o mouse */
+}
+
+.section-container h2 {
+  margin-bottom: 16px;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--primary-color); /* Azul escuro */
+}
+
+/* Inputs e Textareas */
+.section-container li {
+  display: flex;
+  flex-direction: column; /* Inputs agora estão em colunas */
+  gap: 16px;
+  margin-bottom: 24px; /* Maior espaçamento entre os itens */
+}
+
+.section-container input,
+.section-container textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--card-border-color);
+  border-radius: 8px;
+  font-family: var(--font-family);
+  font-size: 1rem;
+  background-color: #f9fafb;
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.section-container textarea {
+  height: 100px;
+  resize: vertical; /* Permite que o usuário aumente o textarea */
+}
+
+.section-container input:focus,
+.section-container textarea:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(36, 40, 115, 0.1);
+  outline: none;
+}
+
+/* Ícone de remover (círculo magenta com "X" branco) */
+.remove-button {
+  background-color: var(--secondary-color); /* Magenta */
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-left: auto; /* Alinha o botão à direita */
+  border: none;
+}
+
+.remove-button svg {
+  color: white; /* Ícone branco */
+  width: 24px;
+  height: 24px;
+}
+
+.remove-button:hover {
+  background-color: #e6005c; /* Magenta mais escuro ao passar o mouse */
+}
+
+/* Botões de adicionar */
+.section-container .add-button {
+  padding: 10px 16px;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: var(--font-family);
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Espaçamento entre ícone e texto */
+  transition:
+    background-color 0.3s ease,
+    transform 0.2s ease;
+}
+
+.section-container .add-button svg {
+  width: 20px;
+  height: 20px;
+}
+
+.section-container .add-button:hover {
+  background-color: #1e1e60;
+  transform: translateY(
+    -1px
+  ); /* Pequeno efeito de elevação ao passar o mouse */
+}
+
+.section-container .add-button:focus {
+  box-shadow: 0 0 0 3px rgba(36, 40, 115, 0.1);
+  outline: none;
+}
+
+.section-container button:active {
+  transform: scale(0.98); /* Pequeno efeito de clique */
+}
+
+/* Navegação por sessões (botões de etapas) */
+.navigation-container {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+  gap: 10px; /* Espaçamento entre os botões */
+}
+
+.navigation-button {
+  background-color: #f0f0f0;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.navigation-button.active {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.navigation-button:hover {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+/* Botão de enviar ficha */
+.submit-button {
+  display: block;
+  margin: 20px auto 0 auto; /* Centraliza o botão horizontalmente */
+  padding: 12px 20px;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: center; /* Centraliza o texto */
+  font-size: 1rem;
+  font-family: var(--font-family);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  transition:
+    background-color 0.3s ease,
+    transform 0.2s ease;
+}
+
+.submit-button:hover {
+  background-color: #1e1e60 !important;
+}
+
+.submit-button svg {
+  width: 20px;
+  height: 20px;
+}
+
+.submit-button:focus {
+  box-shadow: 0 0 0 3px rgba(36, 40, 115, 0.1);
+  outline: none;
+}
+
+.submit-button:active {
+  transform: scale(0.98); /* Pequeno efeito de clique */
+}
+
+/* --- Estilos do Toast --- */
+
+/* Container do Toast */
+.toast {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  min-width: 250px;
+  padding: 16px 24px;
+  border-radius: 8px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+  animation:
+    slideIn 0.5s ease forwards,
+    fadeOut 0.5s ease forwards 2.5s;
+  z-index: 1000; /* Garantir que fique acima de outros elementos */
+  pointer-events: none; /* Evita que interaja com elementos atrás */
+  /* opacity: 0; Removido para garantir visibilidade após a animação */
+}
+
+.toast.success {
+  background-color: #16a34a; /* Verde */
+}
+
+.toast.error {
+  background-color: #ef4444; /* Vermelho */
+}
+
+.toast-message {
+  flex: 1;
+  margin-right: 16px;
+  font-size: 14px;
+}
+
+.toast-close-button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  line-height: 1;
+  pointer-events: auto; /* Permite interação com o botão */
+}
+
+.toast-close-button:hover {
+  color: #dddddd;
+}
+
+/* Animação de entrada */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Animação de saída */
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}

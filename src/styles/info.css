@@ -1,0 +1,313 @@
+@import "./alunoReview.css";
+
+* {
+  font-family: "Poppins", sans-serif;
+}
+
+.info-container {
+  margin-top: 30px !important;
+  min-height: 600px;
+  padding: 24px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+  max-width: 1200px;
+  margin: 80px auto 0 auto;
+  font-family: "Inter", sans-serif;
+}
+
+h1 {
+  padding-bottom: 25px;
+}
+
+/* Container para busca e filtros */
+.search-filter-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+  position: relative;
+}
+
+/* Input de busca */
+.search-input-container {
+  position: relative;
+  max-width: 250px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.search-input {
+  width: 100%;
+  padding: 10px 12px;
+  padding-right: 40px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #242873;
+  background-color: #f9fafb;
+  outline: none;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.search-input:focus {
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.3);
+}
+
+.search-icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #242873;
+}
+
+/* Estilos dos comboboxes */
+.combobox-container {
+  position: relative;
+  width: 200px;
+}
+
+.combobox-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  font-size: 14px;
+  color: #242873;
+  background-color: #e8eaf6;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  cursor: pointer;
+  transition:
+    background-color 0.3s,
+    border-color 0.3s,
+    box-shadow 0.3s;
+  width: 100%;
+  font-weight: normal;
+}
+
+.combobox-button.active {
+  font-weight: bold;
+  color: #242873;
+}
+
+.combobox-button:hover {
+  background-color: #e0e7ff;
+}
+
+.combobox-button:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.combobox-icon {
+  margin-right: 8px;
+  color: #242873;
+}
+
+.chevron-icon {
+  margin-left: 8px;
+  color: #242873;
+  transition: transform 0.3s;
+}
+
+.combobox-dropdown {
+  position: absolute;
+  top: 110%;
+  left: 0;
+  background-color: #ffffff;
+  padding: 12px 0;
+  border-radius: 8px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  z-index: 20;
+  width: 100%;
+  animation: fadeIn 0.3s ease;
+}
+
+.dropdown-item {
+  padding: 10px 16px;
+  font-size: 14px;
+  color: #242873;
+  cursor: pointer;
+  transition:
+    font-weight 0.2s,
+    background-color 0.2s;
+}
+
+.dropdown-item:hover,
+.dropdown-item.active {
+  font-weight: bold;
+  background-color: #f3f4f6;
+}
+
+/* Botão de Limpar Filtros */
+.clear-filters-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  font-size: 14px;
+  color: #242873;
+  background-color: #f3f4f6;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  cursor: pointer;
+  transition:
+    background-color 0.3s,
+    border-color 0.3s,
+    box-shadow 0.3s;
+  font-weight: normal;
+}
+
+.clear-filters-button svg {
+  margin-right: 0;
+}
+
+.clear-filters-button:hover {
+  background-color: #e0e7ff;
+  font-weight: bold;
+}
+
+.clear-filters-button:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.clear-filters-button.active {
+  font-weight: bold;
+  color: #242873;
+  border: none;
+}
+
+/* Animação de fade in para dropdowns */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Contêiner responsivo para a tabela */
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+}
+
+/* Estilos da tabela */
+.case-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #ffffff;
+  font-size: 14px;
+  text-align: center;
+}
+
+.case-table th,
+.case-table td {
+  padding: 10px 12px;
+  white-space: nowrap; /* Evita que o texto quebre linha */
+}
+
+/* Cabeçalho da tabela */
+.case-table thead th {
+  font-weight: 600;
+  font-size: 13px;
+  color: #374151;
+  background-color: #f3f4f6;
+  border-right: 1px solid #e5e7eb;
+  border-bottom: 2px solid #e5e7eb;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.case-table thead th:hover {
+  background-color: #e5e7eb;
+}
+
+.case-table thead th:last-child {
+  border-right: none;
+}
+
+/* Corpo da tabela */
+.case-table tbody tr {
+  border-bottom: 1px solid #e5e7eb;
+  transition: background-color 0.3s ease;
+}
+
+.case-table tbody tr:hover {
+  background-color: #f9fafb;
+}
+
+/* Células da tabela */
+.case-table td {
+  color: #374151;
+  vertical-align: middle;
+  border-right: 1px solid #e5e7eb;
+}
+
+.case-table tbody tr td:last-child {
+  border-right: none;
+}
+
+/* Estilos dos badges */
+.badge-attendance-id,
+.badge-case-id,
+.badge-realizado,
+.badge-nao-realizado,
+.badge-nao-marcado,
+.badge-discipline,
+.badge-solicitado {
+  display: inline-block;
+  padding: 4px 8px;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 8px;
+  text-align: center;
+}
+
+/* Especificações de cor para cada tipo de badge */
+.badge-attendance-id {
+  color: #2563eb;
+  background-color: #dbeafe;
+}
+
+.badge-case-id {
+  color: #6b21a8; /* Cor do texto roxo */
+  background-color: #e9d5ff; /* Fundo roxo claro */
+}
+
+.badge-realizado {
+  color: #16a34a;
+  background-color: #dcfce7;
+}
+
+.badge-nao-realizado {
+  color: #ef4444;
+  background-color: #fee2e2;
+}
+
+.badge-nao-marcado,
+.badge-discipline,
+.badge-solicitado {
+  color: #d97706;
+  background-color: #fde68a;
+}
+
+/* Estilos para dispositivos móveis */
+@media (max-width: 767px) {
+  .case-table th,
+  .case-table td {
+    padding: 8px;
+    font-size: 12px;
+  }
+}

@@ -1,0 +1,101 @@
+@import "./alunoReview.css";
+
+* {
+  font-family: "Poppins", sans-serif;
+}
+.card-professor-container {
+  margin-top: 80px;
+}
+
+/* Card Professor Card */
+.card-professor-card {
+  background-color: white;
+  border-radius: 12px;
+  padding: 30px;
+  max-width: 800px;
+  margin: 0 auto;
+  box-shadow: 0 4px 6px var(--card-shadow);
+}
+
+/* Card Professor Header */
+.card-professor-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.card-professor-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-professor-title .icon {
+  margin-right: 10px;
+  color: var(--secondary-color);
+  font-size: 2rem;
+  width: 1.5em;
+  height: 1.5em;
+}
+
+/* Card Professor Body */
+.card-professor-body {
+  text-align: left;
+}
+
+.info-section {
+  margin-bottom: 30px;
+}
+
+/* Já existe essa regra */
+.titulo {
+  color: var(--primary-color); /* Garante que use a cor primária */
+}
+
+.info-title .icon {
+  margin-right: 10px;
+  color: var(--secondary-color);
+  font-size: 1.5rem;
+  width: 1.5em;
+  height: 1.5em;
+}
+
+/* Info List */
+.info-list {
+  list-style-type: disc;
+  padding-left: 20px;
+  color: var(--text-color);
+}
+
+.info-list li {
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+
+/* Info Content */
+.info-content {
+  font-size: 1rem;
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .card-professor-card {
+    padding: 20px;
+  }
+
+  .card-professor-title {
+    font-size: 1.5rem;
+  }
+
+  .info-title {
+    font-size: 1.25rem;
+  }
+
+  .card-professor-title .icon {
+    font-size: 1.5rem;
+  }
+}

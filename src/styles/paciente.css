@@ -1,0 +1,369 @@
+/* src/styles/paciente.css */
+
+/* Importando as variáveis de cor do CSS base */
+@import "./alunoReview.css";
+
+* {
+  font-family: "Poppins", sans-serif;
+}
+
+/* Prefixo das classes: paciente- */
+.paciente-container {
+  margin-top: 80px;
+}
+
+/* Estilo do card que contém o input */
+.floating-card {
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  padding: 20px;
+  max-width: 400px;
+  margin: 50px auto;
+  text-align: center;
+}
+
+/* Título dentro do card */
+.card-title {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: var(--primary-color);
+}
+
+/* Estilo do input para o ID */
+.id-input {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid var(--card-border-color);
+  border-radius: 8px;
+  font-size: 16px;
+  margin-bottom: 15px;
+  transition: border-color 0.3s ease;
+}
+
+/* Estilo do botão de verificar ID */
+.submit-button {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+/* Hover no botão */
+.submit-button:hover {
+  background-color: #1e1e60;
+}
+
+/* Header */
+.paciente-header {
+  text-align: center;
+  padding: 40px 0;
+  margin-bottom: 40px;
+}
+
+.paciente-header h1 {
+  font-size: 2.5rem;
+  color: var(--primary-color);
+  position: relative;
+  display: inline-block;
+}
+
+.paciente-header h1::after {
+  content: "";
+  width: 50px;
+  height: 4px;
+  background-color: var(--secondary-color);
+  display: block;
+  margin: 10px auto 0;
+  border-radius: 2px;
+}
+
+/* Cards */
+.paciente-card {
+  background-color: var(--card-background);
+  border: 1px solid var(--card-border-color);
+  border-radius: 12px;
+  box-shadow: 0 4px 6px var(--card-shadow);
+  padding: 30px;
+  margin-bottom: 30px;
+  transition:
+    transform 0.3s,
+    box-shadow 0.3s,
+    background-color 0.3s;
+}
+
+.paciente-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px var(--card-shadow);
+}
+
+.paciente-card-title {
+  font-size: 1.75rem; /* Mantém o tamanho da fonte original */
+  font-weight: 700;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  color: var(--primary-color);
+}
+
+.paciente-card-title .icon {
+  font-size: 1.5rem;
+  margin-right: 10px;
+  color: var(--secondary-color);
+}
+
+.paciente-card-title .badge {
+  background-color: var(--secondary-color);
+  color: #ffffff;
+  font-size: 0.875rem; /* Mantém o tamanho da fonte original da tag */
+  font-weight: 500;
+  padding: 5px 12px;
+  border-radius: 20px;
+  margin-left: auto;
+  display: inline-flex; /* Alinha os itens dentro da badge */
+  align-items: center;
+}
+
+/* Ajuste dos badges no modo escuro para terem a mesma cor do ID */
+body.dark-mode .paciente-card-title .badge,
+body.dark-mode .paciente-tag,
+body.dark-mode .paciente-tag-normal,
+body.dark-mode .paciente-tag-attention,
+body.dark-mode .paciente-tag-warning {
+  background-color: #2a2a2a; /* Cor especificada */
+  color: #ffffff;
+}
+
+/* Grids */
+.paciente-info-grid,
+.paciente-exam-grid {
+  display: grid;
+  gap: 20px;
+}
+
+.paciente-info-grid {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.paciente-exam-grid {
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+/* Info Items */
+.paciente-info-item {
+  background-color: #f9fafb;
+  border: 1px solid var(--card-border-color);
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  transition:
+    background-color 0.3s,
+    transform 0.3s;
+}
+
+.paciente-info-item:hover {
+  background-color: #f3f4f6;
+  transform: translateY(-3px);
+}
+
+.paciente-info-label {
+  font-size: 0.95rem;
+  color: #6b7280;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.paciente-info-value {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+/* No modo escuro, os títulos como "Pressão Arterial" em magenta */
+body.dark-mode .paciente-info-label {
+  color: var(--secondary-color);
+}
+
+.paciente-info-label:hover,
+body.dark-mode .paciente-info-label:hover {
+  color: var(--secondary-color);
+}
+
+/* Tags */
+.paciente-tag {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  margin-top: 8px;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+.paciente-tag-normal {
+  background-color: var(--tertiary-color);
+}
+
+.paciente-tag-attention,
+.paciente-tag-warning {
+  background-color: var(--secondary-color); /* Magenta */
+}
+
+/* Exame Items */
+.paciente-exam-item {
+  background-color: #f9fafb;
+  border: 1px solid var(--card-border-color);
+  border-radius: 8px;
+  padding: 20px;
+  position: relative;
+  transition:
+    background-color 0.3s,
+    transform 0.3s;
+}
+
+.paciente-exam-item:hover {
+  background-color: #f3f4f6;
+  transform: translateY(-3px);
+}
+
+.paciente-exam-area {
+  font-size: 1rem;
+  color: #6b7280;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+/* No modo escuro, títulos dos exames em magenta */
+body.dark-mode .paciente-exam-area {
+  color: var(--secondary-color);
+}
+
+.paciente-exam-area:hover,
+body.dark-mode .paciente-exam-area:hover {
+  color: var(--secondary-color);
+}
+
+.paciente-exam-finding {
+  font-size: 0.95rem;
+  color: #111827;
+  line-height: 1.6;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .paciente-card-title {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .paciente-card-title .badge {
+    margin-left: 0;
+    margin-top: 10px;
+  }
+
+  /* Responsividade para o Input Editável */
+  .id-input-editable {
+    max-width: 80px;
+  }
+}
+
+/* Modo Escuro */
+body.dark-mode .paciente-container {
+  background-color: #000000; /* Fundo preto */
+  color: #ffffff; /* Texto branco */
+}
+
+body.dark-mode .paciente-card {
+  background-color: #000000; /* Fundo preto */
+  border-color: #ffffff; /* Borda branca */
+  box-shadow: none; /* Remove a sombra do card */
+}
+
+body.dark-mode .paciente-card-title {
+  color: #ffffff; /* Títulos em branco */
+}
+
+/* Ícones mantêm a cor magenta */
+body.dark-mode .paciente-card-title .icon {
+  color: var(--secondary-color);
+}
+
+body.dark-mode .paciente-info-item {
+  background-color: #000000; /* Fundo preto */
+  border-color: #ffffff; /* Borda branca */
+}
+
+body.dark-mode .paciente-info-value {
+  color: #ffffff; /* Texto branco */
+}
+
+body.dark-mode .paciente-exam-item {
+  background-color: #000000; /* Fundo preto */
+  border-color: #ffffff; /* Borda branca */
+}
+
+body.dark-mode .paciente-exam-finding {
+  color: #ffffff; /* Texto branco */
+}
+
+body.dark-mode .paciente-header h1 {
+  color: var(--secondary-color); /* Título principal em magenta */
+}
+
+body.dark-mode .paciente-header h1::after {
+  background-color: var(
+    --secondary-color
+  ); /* Linha abaixo do título em magenta */
+}
+
+/* --- Adições para tornar o input igual à tag --- */
+
+.id-display {
+  transition: none;
+}
+
+.id-display:hover,
+.id-display:focus {
+  background-color: var(--secondary-color); /* Mantém a cor sem alterações */
+  cursor: pointer;
+}
+
+.id-input-editable {
+  padding: 5px 12px; /* Coincide com o padding da badge */
+  border: none;
+  border-radius: 20px;
+  background-color: var(--secondary-color);
+  color: #ffffff;
+  font-size: 0.875rem;
+  font-weight: 500;
+  width: auto; /* Não permite expansão */
+  max-width: 100px; /* Define um limite para largura, igual ao .id-display */
+  box-sizing: border-box;
+  outline: none;
+  box-shadow: none;
+  cursor: text;
+  display: inline-flex;
+  align-items: center;
+}
+/* Placeholder Styling */
+.id-input-editable::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Cursor de texto ao editar */
+.id-input-editable {
+  cursor: text;
+}
+
+/* Responsividade para o Input Editável */
+@media (max-width: 768px) {
+  .id-input-editable {
+    min-width: 80px;
+  }
+}
+
+/* --- Fim das adições --- */

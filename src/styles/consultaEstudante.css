@@ -1,0 +1,386 @@
+@import "./alunoReview.css";
+
+* {
+  font-family: "Poppins", sans-serif;
+}
+
+/* Variáveis de cores para facilitar a manutenção */
+:root {
+  --primary-color: #242873;
+  --secondary-color: #ff0f68;
+  --card-background: #ffffff;
+  --card-border-color: #e0e0e0;
+  --text-color: #333333;
+  --icon-color: #242873; /* Cor dos ícones */
+  --success-color: #4caf50; /* Adicionado para Toast */
+  --error-color: #f44336; /* Adicionado para Toast */
+  --info-color: #2196f3; /* Adicionado para Toast */
+  --confirmation-color: #ff9800; /* Adicionado para Toast */
+}
+
+/* Fundo da página */
+.consulta-retorno-page-2 {
+  background-color: #f4f4f9;
+
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Alinha no topo para evitar excesso de espaço */
+  padding: 40px 20px;
+}
+
+/* Container principal */
+.consulta-retorno-container {
+  background-color: var(--card-background);
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  width: 100%;
+  margin: 20px;
+}
+
+/* Título do formulário */
+.consulta-retorno-form-title {
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+  color: var(--primary-color);
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px; /* Espaçamento entre o ícone e o texto */
+}
+
+.consulta-retorno-form-title-icon {
+  color: #ff0f68; /* Define a cor do ícone */
+  font-weight: bold; /* Aplica negrito ao ícone */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Estilo do formulário */
+.consulta-retorno-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Seção do Accordion */
+.consulta-retorno-accordion-item {
+  border-bottom: 1px solid var(--card-border-color);
+}
+
+/* Cabeçalho do Accordion */
+.consulta-retorno-accordion-header {
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 15px 20px;
+  text-align: left;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.consulta-retorno-accordion-header:hover {
+  background-color: #f0f0f0;
+}
+
+/* Container para o ícone dentro do Accordion */
+.consulta-retorno-accordion-icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #e8eaf6; /* Fundo do ícone no accordion */
+  border-radius: 8px;
+  padding: 8px;
+  margin-right: 10px; /* Espaçamento entre o ícone e o texto */
+  color: var(--icon-color); /* Cor do ícone */
+}
+
+.consulta-retorno-accordion-header span {
+  flex-grow: 1;
+  text-align: left; /* Alinha o texto dos títulos à esquerda */
+}
+
+/* Conteúdo do Accordion */
+.consulta-retorno-accordion-content {
+  padding: 20px;
+  animation: fadeInAccordion 0.3s ease-in-out;
+}
+
+/* Animação para o conteúdo do Accordion */
+@keyframes fadeInAccordion {
+  from {
+    opacity: 0;
+    transform: scaleY(0);
+  }
+  to {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+
+/* Estilo dos inputs e textareas */
+.consulta-retorno-form-group input,
+.consulta-retorno-form-group textarea,
+.consulta-retorno-auto-resize-textarea {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid var(--card-border-color);
+  border-radius: 8px;
+  background-color: #f9fafb;
+  font-size: 1rem;
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+  white-space: pre-wrap; /* Permite quebra de linha */
+  overflow-wrap: break-word; /* Força quebra de linha em palavras longas */
+  resize: none; /* Desabilita o redimensionamento manual */
+  min-height: 40px; /* Altura mínima para uma linha */
+  max-height: 200px; /* Altura máxima para evitar exageros */
+  overflow: hidden; /* Esconde a rolagem */
+}
+
+.consulta-retorno-form-group textarea:focus,
+.consulta-retorno-auto-resize-textarea:focus,
+.consulta-retorno-form-group input:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(36, 40, 115, 0.1);
+  outline: none;
+}
+
+/* Placeholder do input e textarea */
+.consulta-retorno-form-group input::placeholder,
+.consulta-retorno-form-group textarea::placeholder,
+.consulta-retorno-auto-resize-textarea::placeholder {
+  color: #a0aec0;
+}
+
+/* Botões */
+.consulta-retorno-button-container {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.consulta-retorno-solicitar-button,
+.consulta-retorno-continuar-button,
+.consulta-retorno-finalizar-button {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 14px 24px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition:
+    background-color 0.3s ease,
+    transform 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.consulta-retorno-solicitar-button:hover,
+.consulta-retorno-continuar-button:hover,
+.consulta-retorno-finalizar-button:hover {
+  background-color: #1e1e60;
+  transform: translateY(-2px);
+}
+
+/* Estilos do Toast */
+.consulta-retorno-toast {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  min-width: 300px;
+  padding: 16px 24px;
+  border-radius: 8px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  pointer-events: auto; /* Permitindo interação com o botão de fechar */
+  animation: slideIn 0.5s forwards;
+}
+
+.consulta-retorno-toast.success {
+  background-color: var(--success-color);
+}
+
+.consulta-retorno-toast.error {
+  background-color: var(--error-color);
+}
+
+.consulta-retorno-toast.info {
+  background-color: var(--info-color);
+}
+
+.consulta-retorno-toast.confirmation {
+  background-color: var(--confirmation-color);
+}
+
+.consulta-retorno-toast-message {
+  flex: 1;
+  margin-right: 16px;
+  font-size: 14px;
+}
+
+.consulta-retorno-toast-close-button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+/* Modal de Confirmação */
+.consulta-retorno-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.consulta-retorno-modal-container {
+  background-color: var(--card-background);
+  color: var(--primary-color);
+  padding: 32px 24px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 420px;
+  text-align: center;
+  box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+.consulta-retorno-modal-icon {
+  color: var(--primary-color);
+  margin-bottom: 16px;
+}
+
+.consulta-retorno-modal-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 12px;
+}
+
+.consulta-retorno-modal-message {
+  font-size: 1.1rem;
+  margin-bottom: 24px;
+  color: var(--text-color);
+}
+
+.consulta-retorno-modal-actions {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.consulta-retorno-modal-action-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition:
+    background-color 0.3s,
+    transform 0.2s;
+}
+
+.consulta-retorno-modal-action-button.confirm {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.consulta-retorno-modal-action-button.confirm:hover {
+  background-color: #1e1e60;
+  transform: scale(1.05);
+}
+
+.consulta-retorno-modal-action-button.cancel {
+  background-color: #ff0f68;
+  color: white;
+}
+
+.consulta-retorno-modal-action-button.cancel:hover {
+  background-color: #ff0f68;
+  transform: scale(1.05);
+}
+
+/* Animações */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}
+
+/* Auto-resize Textarea específico */
+.consulta-retorno-auto-resize-textarea {
+  font-family: inherit; /* Mantém a fonte consistente */
+  line-height: 1.5;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .consulta-retorno-container {
+    padding: 20px;
+  }
+
+  .consulta-retorno-form-title {
+    font-size: 1.5rem;
+  }
+
+  .consulta-retorno-form-group input {
+    padding: 10px 14px;
+  }
+
+  .consulta-retorno-button-container {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .consulta-retorno-solicitar-button,
+  .consulta-retorno-continuar-button,
+  .consulta-retorno-finalizar-button {
+    width: 100%;
+    text-align: center;
+  }
+}

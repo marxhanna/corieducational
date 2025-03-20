@@ -1,0 +1,32 @@
+.login {
+    display: flex;
+    align-items: center;
+    width: 100vw;
+  }
+  
+  input[type="text"], input[type="password"] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 15px;
+    font-size: 16px;
+  }
+  
+  .loginForm button {
+    width: 100%;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 15px;
+    background-color: #7F7BFF;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .loginForm button:hover {
+    cursor: pointer;
+    background-color: #8985ff;
+  }

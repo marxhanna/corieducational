@@ -1,0 +1,457 @@
+/* src/styles/Professor/GerarTarefa.css */
+
+/* Estilos para o componente GerarTarefa */
+
+.gt-info-container {
+  margin-top: 30px !important;
+  min-height: 600px;
+  padding: 24px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+  max-width: 1200px;
+  margin: 80px auto 0 auto;
+  font-family: "Inter", sans-serif;
+}
+
+.gt-historico-alunos-title {
+  padding-bottom: 25px;
+  font-size: 1.75rem; /* Ajustado para fonte consistente */
+  color: #242873;
+}
+
+/* Formulário para adicionar nova tarefa */
+.gt-new-task-form {
+  background-color: #f9fafb;
+  padding: 24px;
+  border-radius: 8px;
+  margin-bottom: 24px;
+  position: relative;
+}
+
+.gt-form-title {
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+  color: #242873;
+  margin-bottom: 16px;
+}
+
+.gt-close-form-button {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: none;
+  border: none;
+  color: #6b7280;
+  cursor: pointer;
+}
+
+.gt-form-group {
+  margin-bottom: 16px;
+}
+
+.gt-form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  font-size: 1rem; /* Fonte consistente */
+}
+
+.gt-form-group input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 1rem; /* Fonte consistente */
+}
+
+.gt-read-only-input {
+  background-color: #e5e7eb;
+}
+
+/* Botão Salvar Ajustado */
+.gt-submit-button {
+  background-color: #1e1e60; /* Azul escuro padrão */
+  color: white;
+  border: none;
+  padding: 10px 16px; /* Aumentado para botão maior */
+  border-radius: 8px; /* Border radius ajustado para 8px */
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1rem; /* Aumentado para 16px */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Alinhado à esquerda */
+  margin-top: 16px;
+}
+
+.gt-submit-button:hover {
+  background-color: #141442;
+}
+
+/* Accordion Styles */
+.gt-accordion-item {
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.gt-accordion-header {
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 15px 20px;
+  text-align: left;
+  font-size: 1rem; /* Fonte consistente */
+  font-weight: 600;
+  color: #242873;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.gt-accordion-header:hover {
+  background-color: #f0f0f0;
+}
+
+.gt-accordion-icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #e8eaf6;
+  border-radius: 8px;
+  padding: 8px;
+  margin-right: 10px;
+  color: #242873;
+}
+
+.gt-accordion-header span {
+  flex-grow: 1;
+  text-align: left;
+}
+
+.gt-accordion-content {
+  padding: 20px;
+  animation: fadeInAccordion 0.3s ease-in-out;
+}
+
+@keyframes fadeInAccordion {
+  from {
+    opacity: 0;
+    transform: scaleY(0);
+  }
+  to {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+
+/* Filtros */
+.gt-search-filter-container {
+  display: flex;
+  align-items: center; /* Alinha os comboboxes verticalmente no meio */
+  gap: 8px;
+  margin-bottom: 24px;
+  position: relative;
+  flex-wrap: wrap;
+}
+
+.gt-combobox-container {
+  position: relative;
+  width: 200px;
+}
+
+.gt-combobox-button {
+  display: flex;
+  align-items: center; /* Alinha os ícones e textos verticalmente no meio */
+  justify-content: space-between;
+  padding: 10px 16px;
+  font-size: 1rem; /* Fonte consistente */
+  color: #242873;
+  background-color: #e8eaf6;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.gt-combobox-button.active {
+  font-weight: bold;
+}
+
+.gt-combobox-button:hover {
+  background-color: #e0e7ff;
+}
+
+.gt-combobox-dropdown {
+  position: absolute;
+  top: 110%;
+  left: 0;
+  background-color: #ffffff;
+  padding: 12px 0;
+  border-radius: 8px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  z-index: 20;
+  width: 100%;
+}
+
+.gt-dropdown-item {
+  padding: 10px 16px;
+  font-size: 1rem; /* Fonte consistente */
+  color: #242873;
+  cursor: pointer;
+}
+
+.gt-dropdown-item:hover,
+.gt-dropdown-item.active {
+  font-weight: bold;
+  background-color: #f3f4f6;
+}
+
+/* Botão de Limpar Filtros */
+.gt-clear-filters-button {
+  background-color: #f3f4f6;
+  color: #242873; /* Cor consistente para o ícone */
+  border: none;
+  width: 40px; /* Definido tamanho fixo */
+  height: 40px;
+  border-radius: 8px; /* Border radius de 8px */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative; /* Para posicionar o texto via ::after */
+}
+
+.gt-clear-filters-button::after {
+  content: "Refresh";
+  position: absolute;
+  bottom: -24px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  font-size: 0.875rem;
+  white-space: nowrap;
+  opacity: 0;
+  transition:
+    opacity 0.3s ease,
+    bottom 0.3s ease;
+}
+
+.gt-clear-filters-button:hover {
+  background-color: #e0e7ff;
+}
+
+.gt-clear-filters-button:hover::after {
+  opacity: 1;
+  bottom: -20px;
+}
+
+/* Botão de Adicionar Tarefa Ajustado */
+.gt-add-task-button {
+  background-color: #ff0f68; /* Cor do ícone */
+  color: white; /* Texto branco */
+  border: none;
+  width: 40px; /* Definido tamanho fixo */
+  height: 40px;
+  border-radius: 8px; /* Border radius de 8px */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Centraliza o ícone */
+  position: relative; /* Para posicionar o texto via ::after */
+}
+
+.gt-add-task-button::after {
+  content: "Nova Tarefa";
+  position: absolute;
+  bottom: -24px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  font-size: 0.875rem;
+  white-space: nowrap;
+  opacity: 0;
+  transition:
+    opacity 0.3s ease,
+    bottom 0.3s ease;
+}
+
+.gt-add-task-button:hover {
+  background-color: #e00e5e; /* Leve escurecimento no hover */
+}
+
+.gt-add-task-button:hover::after {
+  opacity: 1;
+  bottom: -20px;
+}
+
+.gt-add-task-button svg {
+  color: white; /* Ícone branco */
+}
+
+/* Tabela */
+.gt-table-responsive {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.gt-case-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #ffffff;
+  font-size: 14px; /* Fonte padrão para as demais colunas */
+  text-align: center;
+}
+
+.gt-case-table th,
+.gt-case-table td {
+  padding: 10px 12px;
+}
+
+.gt-case-table thead th {
+  font-weight: 600;
+  font-size: 14px; /* Fonte consistente para cabeçalhos */
+  color: #374151;
+  background-color: #f3f4f6;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.gt-case-table tbody tr {
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.gt-case-table tbody tr:hover {
+  background-color: #f9fafb;
+}
+
+.gt-case-table td:nth-child(1),
+.gt-case-table td:nth-child(2) {
+  font-size: 12px; /* Fonte menor para as duas primeiras colunas */
+}
+
+.gt-badge-discipline {
+  color: #b45309;
+  background-color: #fef3c7;
+  padding: 4px 8px;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+.gt-badge-task-id {
+  color: #2563eb;
+  background-color: #dbeafe;
+  padding: 4px 8px;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+.gt-descricao-caso {
+  text-align: left;
+}
+
+/* --- Estilos do Toast --- */
+
+/* Container do Toast */
+.gt-toast {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  min-width: 250px;
+  padding: 16px 24px;
+  border-radius: 8px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+  animation:
+    slideIn 0.5s ease forwards,
+    fadeOut 0.5s ease forwards 2.5s;
+  z-index: 1000; /* Garantir que fique acima de outros elementos */
+}
+
+.gt-toast.success {
+  background-color: #28a745; /* Verde */
+}
+
+.gt-toast.error {
+  background-color: #dc3545; /* Vermelho */
+}
+
+.gt-toast-message {
+  flex: 1;
+  margin-right: 16px;
+  font-size: 14px;
+  word-break: break-word; /* Quebra de linha para mensagens longas */
+}
+
+.gt-toast-close-button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0;
+}
+
+/* Animação de entrada */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Animação de saída */
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}
+
+/* Responsividade do Toast */
+@media (max-width: 768px) {
+  .gt-toast {
+    top: 15px;
+    right: 15px;
+    min-width: 200px;
+    padding: 14px 20px;
+  }
+
+  .gt-toast-message {
+    font-size: 13px;
+    margin-right: 12px;
+  }
+
+  .gt-toast-close-button {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .gt-toast {
+    top: 10px;
+    right: 10px;
+    min-width: 180px;
+    padding: 12px 16px;
+  }
+
+  .gt-toast-message {
+    font-size: 12px;
+    margin-right: 10px;
+  }
+
+  .gt-toast-close-button {
+    font-size: 16px;
+  }
+}

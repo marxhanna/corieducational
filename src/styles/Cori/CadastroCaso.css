@@ -1,0 +1,233 @@
+/* src/styles/Cori/CadastroCaso.css */
+
+/* Estilos gerais */
+.card-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f0f4f8;
+}
+
+.card {
+  background-color: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Estilo do título com ícone */
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: #242873;
+  margin-bottom: 16px;
+}
+
+.title svg {
+  margin-right: 8px;
+}
+
+/* Estilo do campo de entrada de disciplina com autocomplete */
+.autocomplete {
+  position: relative;
+  width: 100%;
+}
+
+.input-disciplina {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-family: "Inter", sans-serif;
+  margin-bottom: 8px;
+  transition: border-color 0.3s ease;
+}
+
+.input-disciplina:focus {
+  border-color: #242873;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(36, 40, 115, 0.1);
+}
+
+/* Estilo do dropdown de sugestões */
+.suggestions {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  border: 1px solid #d1d5db;
+  border-top: none;
+  background-color: white;
+  border-radius: 0 0 4px 4px;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 1000;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.suggestions li {
+  padding: 12px;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.suggestions li:hover {
+  background-color: #f0f4f8;
+}
+
+/* Nova área de texto para Resumo do Caso sem label */
+.resumo-caso {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  /* Removido text-align: left; já que não há label */
+}
+
+.textarea-resumo {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-family: "Inter", sans-serif;
+  resize: vertical;
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+  margin-top: 4px;
+  height: 80px; /* Definido altura fixa menor */
+}
+
+.textarea-resumo:focus {
+  border-color: #242873;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(36, 40, 115, 0.1);
+}
+
+/* Estilo do textarea do Markdown Editor */
+.markdown-editor .react-md-editor .wmd-input {
+  height: 300px;
+}
+
+/* Estilo geral do textarea (para outros textareas, se houver) */
+textarea {
+  width: 100%;
+  height: 400px;
+  padding: 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-family: "Inter", sans-serif;
+  resize: vertical;
+  transition: border-color 0.3s ease;
+  margin-top: 16px;
+}
+
+textarea:focus {
+  border-color: #242873;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(36, 40, 115, 0.1);
+}
+
+/* Estilo do botão enviar */
+.send-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #242873;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 40px;
+  transition: background-color 0.3s ease;
+  width: 100%;
+}
+
+.send-button:hover {
+  background-color: #1d215c;
+}
+
+.send-button svg {
+  margin-right: 8px;
+}
+
+/* --- Estilos do Toast --- */
+
+/* Container do Toast */
+.toast {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  min-width: 250px;
+  padding: 16px 24px;
+  border-radius: 8px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+  animation:
+    slideIn 0.5s ease forwards,
+    fadeOut 0.5s ease forwards 2.5s;
+  z-index: 1000; /* Garantir que fique acima de outros elementos */
+  opacity: 0; /* Inicialmente invisível */
+  pointer-events: none; /* Evita que interaja com elementos atrás */
+}
+
+.toast.success {
+  background-color: #16a34a; /* Verde */
+}
+
+.toast.error {
+  background-color: #ef4444; /* Vermelho */
+}
+
+.toast-message {
+  flex: 1;
+  margin-right: 16px;
+  font-size: 14px;
+}
+
+.toast-close-button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  line-height: 1;
+  pointer-events: auto; /* Permite interação com o botão */
+}
+
+/* Animação de entrada */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Animação de saída */
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}

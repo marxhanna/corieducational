@@ -1,0 +1,7 @@
+@import "../GerarExames.css"; /* Importa estilos comuns se necessário */
+
+.exam-container {
+  /* Mesmo estilo que o HemogramaCompleto */
+}
+
+/* Não é necessário repetir o CSS se já estiver importando estilos comuns */

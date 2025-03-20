@@ -1,0 +1,143 @@
+/* src/styles/Ator/FichaAtor.css */
+
+.gerar-ficha-container {
+  margin-top: 30px;
+  font-family: var(--font-family);
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 24px;
+  background-color: var(--card-background);
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+.gerar-ficha-container h1 {
+  text-align: center;
+  font-size: 1.75rem;
+  color: var(--primary-color);
+  margin-bottom: 24px;
+}
+
+/* Accordion para ID do Caso/Tarefa */
+.accordion-item {
+  border-bottom: 1px solid var(--card-border-color);
+  margin-bottom: 24px;
+}
+
+.accordion-header {
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 15px 20px;
+  text-align: left;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.accordion-header:hover {
+  background-color: #f0f0f0;
+}
+
+.accordion-icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #e8eaf6;
+  border-radius: 8px;
+  padding: 8px;
+  margin-right: 10px;
+  color: var(--icon-color);
+}
+
+.accordion-header span {
+  flex-grow: 1;
+}
+
+.accordion-content {
+  padding: 20px;
+  animation: fadeInAccordion 0.3s ease-in-out;
+}
+
+/* Estilo do input no Accordion */
+.accordion-content .input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--card-border-color);
+  border-radius: 8px;
+  background-color: #f9fafb;
+  font-family: var(--font-family);
+  font-size: 1rem;
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.accordion-content .input:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(36, 40, 115, 0.1);
+  outline: none;
+}
+
+/* Animação para o conteúdo do Accordion */
+@keyframes fadeInAccordion {
+  from {
+    opacity: 0;
+    transform: scaleY(0);
+  }
+  to {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+
+/* Caso Clínico */
+.clinical-case {
+  margin-top: 32px;
+}
+
+.clinical-case h2 {
+  text-align: center;
+  font-size: 1.75rem;
+  color: var(--primary-color);
+  margin-bottom: 24px;
+}
+
+/* Título e ícone do card */
+.card-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.card-icon {
+  color: var(--primary-color);
+}
+
+/* Estilo dos cards */
+.clinical-case-card {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.clinical-case-card h3 {
+  font-size: 1.25rem;
+  color: var(--primary-color);
+}
+
+.clinical-case-card p,
+.clinical-case-card ul li {
+  font-size: 1rem;
+  color: #333333;
+  line-height: 1.6;
+}

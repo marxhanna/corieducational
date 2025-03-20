@@ -1,0 +1,513 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
+
+* {
+  font-family: "Poppins", sans-serif;
+}
+
+.info-container.professor-feedback-container {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+  max-width: 1200px;
+  margin: 80px auto 0 auto;
+  font-family: "Inter", sans-serif;
+  overflow-x: auto;
+  padding: 24px;
+  box-sizing: border-box;
+  min-height: 400px;
+}
+
+/* Título do Feedback Docente */
+.professor-feedback-title {
+  font-size: 1.75rem;
+  margin-bottom: 24px;
+  color: #242873; /* Azul escuro */
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Container para busca e filtros */
+.search-filter-container {
+  display: flex;
+  justify-content: center; /* Alinha no centro */
+  align-items: center; /* Alinha verticalmente */
+  gap: 16px; /* Espaçamento entre os elementos */
+  margin-bottom: 24px; /* Espaçamento inferior */
+  position: relative;
+  flex-wrap: wrap; /* Permite que os elementos quebrem para a próxima linha em telas menores */
+}
+
+/* Comboboxes */
+.combobox-container {
+  position: relative;
+  width: 200px;
+}
+
+.combobox-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Espaço entre texto e ícone */
+  padding: 10px 16px;
+  font-size: 14px;
+  color: #242873; /* Cor do texto */
+  background-color: #e8eaf6; /* Cor de fundo */
+  border: 1px solid #d1d5db;
+  border-radius: 8px; /* Border-radius ajustado para 8px */
+  cursor: pointer;
+  transition:
+    background-color 0.3s,
+    border-color 0.3s,
+    box-shadow 0.3s;
+  width: 100%;
+  font-weight: normal; /* Texto normal por padrão */
+}
+
+.combobox-button.active {
+  font-weight: bold; /* Texto em negrito quando ativo */
+  color: #242873; /* Cor do texto quando ativo */
+}
+
+.combobox-button:hover {
+  background-color: #e0e7ff; /* Fundo sutil no hover */
+}
+
+.combobox-button:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.combobox-icon {
+  display: flex;
+  align-items: center;
+}
+
+.chevron-icon {
+  margin-left: 8px;
+  color: #242873; /* Cor do ícone */
+  transition: transform 0.3s;
+}
+
+.combobox-dropdown {
+  position: absolute;
+  top: 110%;
+  left: 0;
+  background-color: #ffffff;
+  padding: 12px 0;
+  border-radius: 8px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  z-index: 20;
+  width: 100%;
+  animation: fadeIn 0.3s ease;
+}
+
+.dropdown-item {
+  padding: 10px 16px;
+  font-size: 14px;
+  color: #242873; /* Cor do texto */
+  cursor: pointer;
+  transition:
+    font-weight 0.2s,
+    background-color 0.2s;
+  display: flex;
+  align-items: center;
+}
+
+.dropdown-item:hover,
+.dropdown-item.active {
+  font-weight: bold; /* Texto em negrito no hover e ativo */
+  background-color: #f3f4f6; /* Fundo sutil no hover e ativo */
+}
+
+/* Botão de Limpar Filtros */
+.clear-filters-button {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Centraliza o ícone no botão */
+  padding: 10px; /* Ajuste o padding para centralizar melhor */
+  font-size: 14px;
+  color: #242873; /* Cor do texto */
+  background-color: #f3f4f6; /* Cor de fundo similar aos comboboxes */
+  border: 1px solid #d1d5db;
+  border-radius: 8px; /* Border-radius ajustado para 8px */
+  cursor: pointer;
+  transition:
+    background-color 0.3s,
+    border-color 0.3s,
+    box-shadow 0.3s;
+  font-weight: normal; /* Texto normal por padrão */
+}
+
+.clear-filters-button svg {
+  /* Remove o margin-right se não houver texto */
+  margin-right: 0;
+}
+
+.clear-filters-button:hover {
+  background-color: #e0e7ff; /* Fundo similar aos itens do dropdown */
+  font-weight: bold; /* Texto em negrito no hover */
+}
+
+.clear-filters-button:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.clear-filters-button.active {
+  font-weight: bold; /* Texto em negrito quando ativo */
+  color: #242873; /* Cor do texto quando ativo */
+  border: none; /* Remover borda quando ativo */
+}
+
+/* Animação de fade in para dropdowns */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Botões de troca de vídeo */
+.video-switch-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.video-switch-button {
+  padding: 8px 12px;
+  background-color: #e8eaf6;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  cursor: pointer;
+  transition:
+    background-color 0.3s,
+    border-color 0.3s,
+    color 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.video-switch-button:disabled {
+  background-color: #f3f4f6;
+  color: #d1d5db;
+  cursor: not-allowed;
+}
+
+.video-switch-button:hover:not(:disabled) {
+  background-color: #d0d4f3;
+}
+
+/* Seção de Feedback */
+.professor-feedback-secao {
+  margin-top: 30px;
+  background-color: #f9fafb;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.professor-feedback-secao-title {
+  font-size: 1.25rem;
+  margin-bottom: 16px;
+  color: #242873;
+  text-align: center;
+}
+
+/* Wrapper do vídeo */
+.professor-feedback-video-wrapper {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%; /* 16:9 */
+  background-color: #000;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.video-placeholder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.play-icon {
+  margin-bottom: 10px;
+}
+
+/* Área de texto para o feedback docente */
+.professor-feedback-input-group {
+  margin-bottom: 20px;
+}
+
+.professor-feedback-label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #242873; /* Azul escuro */
+  font-size: 1rem;
+}
+
+.professor-feedback-textarea {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #e5e7eb; /* Borda cinza claro */
+  border-radius: 8px;
+  background-color: #f8fafc; /* Fundo muito claro */
+  color: #111827; /* Texto escuro */
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+  resize: vertical;
+  min-height: 120px;
+}
+
+.professor-feedback-textarea:focus {
+  border-color: #242873; /* Azul escuro no foco */
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(36, 40, 115, 0.2); /* Leve sombra azul no foco */
+}
+
+/* Preview de Markdown */
+.professor-feedback-preview {
+  margin-bottom: 20px;
+  padding: 12px;
+  background-color: #fff;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+}
+
+.professor-feedback-preview h4 {
+  margin-bottom: 8px;
+  color: #242873;
+}
+
+.professor-feedback-preview p,
+.professor-feedback-preview ul,
+.professor-feedback-preview ol,
+.professor-feedback-preview blockquote,
+.professor-feedback-preview code {
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+
+/* Botão de envio de feedback */
+.professor-feedback-submit-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 12px;
+  background-color: #242873 !important; /* Azul escuro */
+  color: white !important; /* Texto branco */
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.professor-feedback-submit-button svg {
+  margin-right: 8px;
+}
+
+/* --- Estilos do Toast --- */
+
+/* Container do Toast */
+.toast {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  min-width: 250px;
+  padding: 16px 24px;
+  border-radius: 8px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+  animation:
+    slideIn 0.5s ease forwards,
+    fadeOut 0.5s ease forwards 2.5s;
+  z-index: 1000; /* Garantir que fique acima de outros elementos */
+  pointer-events: none; /* Evita que interaja com elementos atrás */
+}
+
+.toast.success {
+  background-color: var(--success-color); /* Verde */
+}
+
+.toast.error {
+  background-color: var(--error-color); /* Vermelho */
+}
+
+.toast-message {
+  flex: 1;
+  margin-right: 16px;
+  font-size: 14px;
+  word-break: break-word; /* Quebra de linha para mensagens longas */
+}
+
+.toast-close-button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  line-height: 1;
+  pointer-events: auto; /* Permite interação com o botão */
+}
+
+/* Animação de entrada */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Animação de saída */
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .search-filter-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .combobox-container {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .clear-filters-button {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .video-switch-buttons {
+    margin-top: 10px;
+  }
+
+  /* Ajustes para o Toast em tablets */
+  .toast {
+    top: 15px;
+    right: 15px;
+    min-width: 200px;
+    padding: 14px 20px;
+  }
+
+  .toast-message {
+    font-size: 13px;
+    margin-right: 12px;
+  }
+
+  .toast-close-button {
+    font-size: 18px;
+  }
+
+  /* Ajustes para o Preview de Markdown */
+  .professor-feedback-preview {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .info-container.professor-feedback-container {
+    margin: 40px 10px 0 10px;
+    padding: 20px;
+  }
+
+  .professor-feedback-title {
+    font-size: 1.5rem;
+  }
+
+  .combobox-button {
+    font-size: 13px;
+    padding: 8px 12px;
+  }
+
+  .combobox-dropdown {
+    padding: 10px 0;
+  }
+
+  .dropdown-item {
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+
+  .video-switch-button {
+    padding: 6px 10px;
+  }
+
+  .professor-feedback-secao-title {
+    font-size: 1.1rem;
+  }
+
+  .professor-feedback-textarea {
+    padding: 10px;
+    font-size: 0.95rem;
+    min-height: 100px;
+  }
+
+  .professor-feedback-submit-button {
+    font-size: 0.95rem;
+    padding: 10px;
+  }
+
+  /* Ajustes para o Toast em dispositivos móveis */
+  .toast {
+    top: 10px;
+    right: 10px;
+    min-width: 180px;
+    padding: 12px 16px;
+  }
+
+  .toast-message {
+    font-size: 12px;
+    margin-right: 10px;
+  }
+
+  .toast-close-button {
+    font-size: 16px;
+  }
+
+  /* Ajustes para o Preview de Markdown */
+  .professor-feedback-preview h4 {
+    font-size: 1rem;
+  }
+
+  .professor-feedback-preview p,
+  .professor-feedback-preview ul,
+  .professor-feedback-preview ol,
+  .professor-feedback-preview blockquote,
+  .professor-feedback-preview code {
+    font-size: 0.9rem;
+  }
+}

@@ -1,0 +1,383 @@
+@import "../styles/alunoReview.css";
+
+* {
+  font-family: "Poppins", sans-serif;
+}
+
+/* Estilos Gerais */
+.sidebar-layout {
+  display: flex; /* Define um flex container para o layout principal */
+}
+
+/* Sidebar */
+.sidebar {
+  position: fixed; /* Fixa a sidebar na tela */
+  top: 0; /* Posiciona no topo */
+  left: 0; /* Alinha à esquerda */
+  width: 260px; /* Largura fixa da sidebar */
+  height: 100vh; /* Altura total da viewport */
+  background-color: #ffffff; /* Fundo branco */
+  border-right: 1px solid #ddd; /* Borda direita */
+  display: flex; /* Flex container para os itens internos */
+  flex-direction: column; /* Alinha os itens verticalmente */
+  z-index: 1100; /* Nível acima da navbar */
+  overflow-y: auto; /* Adiciona scroll vertical se necessário */
+  transform: translateX(-100%); /* Esconde a sidebar fora da tela no mobile */
+  transition: transform 0.3s ease; /* Transição suave ao abrir/fechar */
+}
+
+.sidebar.open {
+  transform: translateX(0); /* Exibe a sidebar quando aberta */
+}
+
+@media (min-width: 769px) {
+  .sidebar {
+    transform: translateX(0); /* Sidebar sempre visível no desktop */
+  }
+}
+
+/* Overlay para mobile */
+.overlay {
+  display: none; /* Esconde o overlay por padrão */
+}
+
+.overlay.visible {
+  display: block; /* Exibe o overlay quando a sidebar está aberta */
+  position: fixed; /* Fixa o overlay na tela */
+  top: 0; /* Posiciona no topo */
+  left: 0; /* Alinha à esquerda */
+  width: 100%; /* Ocupa toda a largura */
+  height: 100%; /* Ocupa toda a altura */
+  background-color: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente */
+  z-index: 1000; /* Deve ser menor que o z-index da sidebar */
+}
+
+/* Botão de fechar na sidebar (apenas no mobile) */
+.close-button {
+  display: none; /* Esconde por padrão */
+}
+
+@media (max-width: 768px) {
+  .close-button {
+    display: flex; /* Exibe no mobile */
+    align-items: center; /* Centraliza verticalmente */
+    justify-content: center; /* Centraliza horizontalmente */
+    width: 44px; /* Largura do botão */
+    height: 44px; /* Altura do botão */
+    background-color: #e8eaf6; /* Fundo semelhante aos botões ativos da navbar */
+    border: none; /* Remove bordas */
+    border-radius: 50%; /* Forma circular */
+    cursor: pointer; /* Muda o cursor ao passar o mouse */
+    position: absolute; /* Posicionamento absoluto */
+    top: 16px; /* Distância do topo */
+    right: -22px; /* Metade do botão fica fora da sidebar */
+    z-index: 1101; /* Um nível acima da sidebar */
+    transition: background-color 0.3s ease; /* Transição suave no hover */
+  }
+
+  .close-button .lucide {
+    color: #242873; /* Cor do ícone */
+  }
+
+  .close-button:hover {
+    background-color: #d1d4f1; /* Fundo no hover */
+  }
+}
+
+/* Conteúdo Principal */
+.content-container {
+  margin-left: 260px; /* Espaço para a sidebar no desktop */
+  padding: 24px; /* Espaçamento interno */
+  background-color: #f3f4f6; /* Fundo do conteúdo */
+  flex-grow: 1; /* Permite que o conteúdo cresça para preencher o espaço */
+  padding-top: 78px; /* Espaço para a navbar */
+}
+
+@media (max-width: 768px) {
+  .content-container {
+    margin-left: 0; /* Remove a margem no mobile */
+    padding-top: 78px; /* Espaço para a navbar no mobile */
+  }
+}
+
+/* Menu */
+.menu {
+  margin-top: 20px; /* Espaçamento superior */
+  padding: 0 20px; /* Espaçamento interno lateral */
+}
+
+/* Itens de Menu */
+.menu-item {
+  width: 100%; /* Ocupa toda a largura */
+  padding: 12px 16px; /* Espaçamento interno */
+  margin-bottom: 10px; /* Espaçamento inferior entre itens */
+  display: flex; /* Flex container para alinhar ícone e texto */
+  align-items: center; /* Alinha verticalmente */
+  background-color: transparent; /* Fundo transparente por padrão */
+  border: none; /* Remove bordas */
+  color: #242872; /* Cor do texto */
+  font-size: 16px; /* Tamanho da fonte */
+  border-radius: 8px; /* Arredonda os cantos */
+  cursor: pointer; /* Muda o cursor ao passar o mouse */
+  transition:
+    background-color 0.3s,
+    color 0.3s; /* Transição suave */
+}
+
+.menu-item .icon {
+  margin-right: 8px; /* Espaçamento entre o ícone e o texto */
+  color: inherit; /* Herda a cor do texto */
+  stroke-width: 1.5; /* Espessura do ícone */
+}
+
+.menu-item:hover {
+  background-color: #e8eaf6; /* Fundo no hover */
+}
+
+.menu-item.active {
+  background-color: #e8eaf6; /* Fundo quando ativo */
+}
+
+.menu-item.active .icon {
+  stroke-width: 2.5; /* Ícone mais espesso quando ativo */
+}
+
+/* Ícone de seta nos menus */
+.arrow-icon {
+  margin-left: auto; /* Empurra a seta para o extremo direito */
+  transition: transform 0.3s ease; /* Transição suave de rotação */
+  transform: rotate(0deg); /* Seta aponta para baixo quando fechado */
+}
+
+.arrow-icon.open {
+  transform: rotate(-180deg); /* Seta aponta para cima quando aberto */
+}
+
+/* Dropdown */
+.dropdown {
+  overflow: hidden; /* Oculta conteúdo excedente */
+  animation: dropdownAnimation 0.3s ease-in-out; /* Animação ao abrir */
+}
+
+@keyframes dropdownAnimation {
+  0% {
+    opacity: 0; /* Invisível no início */
+    transform: translateY(-10%); /* Levemente acima */
+  }
+  100% {
+    opacity: 1; /* Totalmente visível */
+    transform: translateY(0); /* Posição normal */
+  }
+}
+
+/* Submenu */
+.submenu {
+  position: relative; /* Para posicionamento absoluto interno */
+  padding-left: 20px; /* Espaçamento à esquerda */
+  margin-left: 10px; /* Margem à esquerda */
+}
+
+.submenu::before {
+  content: ""; /* Linha vertical à esquerda */
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background-color: #e0e0e0; /* Cor da linha */
+}
+
+.submenu .menu-item {
+  padding: 10px 16px; /* Espaçamento interno */
+  margin-bottom: 8px; /* Espaçamento entre itens */
+  font-size: 14px; /* Tamanho da fonte menor */
+  background-color: transparent; /* Fundo transparente */
+  border: none; /* Remove bordas */
+  color: #242872; /* Cor do texto */
+  display: flex; /* Flex container */
+  align-items: center; /* Alinha verticalmente */
+  border-radius: 6px; /* Arredonda os cantos */
+  cursor: pointer; /* Muda o cursor */
+  position: relative; /* Para posicionamento relativo */
+  transition:
+    color 0.3s,
+    font-weight 0.3s; /* Transição suave */
+}
+
+.submenu .menu-item::before {
+  content: ""; /* Linha horizontal conectando à linha vertical */
+  position: absolute;
+  left: -20px;
+  width: 20px;
+  height: 1px;
+  background-color: #e0e0e0; /* Cor da linha */
+  top: 50%;
+}
+
+.submenu .menu-item .icon {
+  display: none; /* Esconde ícones nos submenus */
+}
+
+/* Remover hover dos itens ativos do submenu */
+.submenu .menu-item.active {
+  font-weight: bold; /* Texto em negrito quando ativo */
+}
+
+.submenu .menu-item.active:hover {
+  font-weight: bold; /* Mantém o negrito no hover */
+}
+
+.submenu .menu-item:not(.active):hover {
+  font-weight: bold; /* Aplica negrito no hover se não estiver ativo */
+}
+
+/* Dropdown de roles abaixo do avatar */
+.dropdown-role {
+  position: absolute; /* Posicionamento absoluto */
+  background-color: white; /* Fundo branco */
+  border: 1px solid #e0e0e0; /* Borda */
+  border-radius: 8px; /* Arredonda os cantos */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
+  padding: 5px; /* Espaçamento interno */
+  margin-top: 75px; /* Espaçamento superior */
+  width: 260px; /* Largura fixa */
+  z-index: 1102; /* Sobrepõe outros elementos */
+}
+
+.role-option {
+  display: flex; /* Flex container */
+  align-items: center; /* Alinha verticalmente */
+  padding: 8px; /* Espaçamento interno */
+  cursor: pointer; /* Muda o cursor */
+  transition: background-color 0.3s ease; /* Transição suave */
+  border-radius: 4px; /* Arredonda os cantos */
+}
+
+.role-option:hover {
+  background-color: #f3f4f6; /* Fundo no hover */
+}
+
+.role-option span {
+  margin-left: 8px; /* Espaçamento entre o avatar e o texto */
+  font-size: 14px; /* Tamanho da fonte */
+}
+
+.role-option:not(.selected) {
+  display: flex; /* Mantém o display flex */
+}
+
+.check-icon {
+  margin-left: auto; /* Empurra o ícone para a direita */
+  color: #4caf50; /* Cor do ícone */
+}
+
+/* Logo e Avatar */
+.logo-container {
+  display: flex; /* Flex container */
+  align-items: center; /* Alinha verticalmente */
+  padding: 16px; /* Espaçamento interno */
+  border-bottom: 1px solid #e0e0e0; /* Linha inferior */
+  cursor: pointer; /* Muda o cursor */
+  transition: background-color 0.3s ease; /* Transição suave */
+  position: relative; /* Necessário para o dropdown de roles */
+}
+
+.logo-container:hover {
+  background-color: #f0f0f0; /* Fundo no hover */
+}
+
+.logo-content {
+  display: flex; /* Flex container */
+  align-items: center; /* Alinha verticalmente */
+  justify-content: space-between; /* Espaça os itens */
+  width: 100%; /* Ocupa toda a largura */
+}
+
+.AvatarRoot {
+  display: inline-flex; /* Flex container inline */
+  align-items: center; /* Alinha verticalmente */
+  justify-content: center; /* Centraliza horizontalmente */
+  vertical-align: middle; /* Alinha verticalmente em relação ao texto */
+  overflow: hidden; /* Oculta conteúdo excedente */
+  user-select: none; /* Impede seleção de texto */
+  width: 45px; /* Largura do avatar */
+  height: 45px; /* Altura do avatar */
+  border-radius: 8px;
+  background-color: var(--black-a3); /* Cor de fundo */
+}
+
+.AvatarImage {
+  width: 100%; /* Ocupa toda a largura */
+  height: 100%; /* Ocupa toda a altura */
+  object-fit: cover; /* Ajusta a imagem para cobrir */
+  border-radius: inherit; /* Herda o border-radius do container */
+}
+
+.AvatarFallback {
+  width: 100%; /* Ocupa toda a largura */
+  height: 100%; /* Ocupa toda a altura */
+  display: flex; /* Flex container */
+  align-items: center; /* Alinha verticalmente */
+  justify-content: center; /* Centraliza horizontalmente */
+  background-color: white; /* Fundo branco */
+  color: var(--violet-11); /* Cor do texto */
+  font-size: 15px; /* Tamanho da fonte */
+  line-height: 1; /* Altura da linha */
+  font-weight: 500; /* Peso da fonte */
+}
+
+.roleAvatar {
+  margin-left: 12px; /* Espaçamento à esquerda do avatar */
+  font-size: 16px; /* Tamanho da fonte */
+  color: #333; /* Cor do texto */
+  flex-grow: 1; /* Expande para ocupar o espaço disponível */
+}
+
+.usuario {
+  color: #c0b8b8; /* Cor do texto secundário */
+}
+
+.chevron {
+  margin-left: auto; /* Empurra o ícone para a direita */
+  color: #888; /* Cor do ícone */
+  display: flex; /* Flex container */
+  align-items: center; /* Alinha verticalmente */
+  justify-content: center; /* Centraliza horizontalmente */
+  transition: transform 0.3s ease; /* Transição suave de rotação */
+}
+
+.chevron.open {
+  transform: rotate(180deg); /* Rotaciona quando aberto */
+}
+
+/* Input minimalista */
+.id-input-container {
+  padding: 16px 20px; /* Espaçamento interno */
+}
+
+.minimal-id-input {
+  outline: none;
+  padding: 8px 12px; /* Espaçamento interno */
+  border: 1px solid #ddd; /* Borda */
+  border-radius: 8px; /* Arredonda os cantos */
+  font-size: 14px; /* Tamanho da fonte */
+  width: 100%; /* Ocupa toda a largura */
+  margin-bottom: 10px; /* Espaçamento inferior */
+  background-color: #f9f9f9; /* Fundo */
+  color: #333; /* Cor do texto */
+}
+
+.minimal-submit-button {
+  padding: 8px 12px; /* Espaçamento interno */
+  background-color: #242873; /* Fundo */
+  color: white; /* Cor do texto */
+  border: none; /* Remove bordas */
+  border-radius: 8px; /* Arredonda os cantos */
+  font-size: 14px; /* Tamanho da fonte */
+  cursor: pointer; /* Muda o cursor */
+  width: 100%; /* Ocupa toda a largura */
+}
+
+.minimal-submit-button:hover {
+  background-color: #1e2161; /* Fundo no hover */
+}

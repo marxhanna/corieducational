@@ -1,0 +1,121 @@
+.exam-container {
+  margin-bottom: 30px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.exam-container h3 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: #1a202c; /* Cor mais escura para o título */
+}
+
+.exam-container h4 {
+  font-size: 1.2rem;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  color: #2d3748; /* Cor um pouco mais clara para subtítulos */
+}
+
+.exam-container table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.exam-container th,
+.exam-container td {
+  padding: 12px 16px;
+  text-align: left;
+  font-size: 0.95rem;
+}
+
+.exam-container th {
+  color: #4a5568;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.exam-container td {
+  color: #2d3748;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.exam-container tr:last-child td {
+  border-bottom: none;
+}
+
+.exam-container input[type="text"] {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #cbd5e0;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  color: #2d3748;
+  background-color: #f7fafc;
+  transition: border-color 0.2s ease-in-out;
+}
+
+.exam-container input[type="text"]::placeholder {
+  color: #a0aec0;
+}
+
+.exam-container input[type="text"]:focus {
+  outline: none;
+  border-color: #3182ce; /* Azul suave no foco */
+  background-color: #fff;
+}
+
+.exam-container table tr:hover td {
+  background-color: #f1f5f9; /* Fundo levemente mais escuro ao passar o mouse */
+}
+/* Estilos para o form-group (já existente) */
+.form-group {
+  margin-bottom: 20px;
+}
+
+/* Estilização do label (já existente) */
+.form-group label {
+  display: block;
+  font-size: 1rem;
+  margin-bottom: 8px;
+  color: #2d3748; /* Cor do texto */
+}
+
+/* Estilização do seletor dropdown */
+.form-group select {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #cbd5e0;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  color: #2d3748;
+  background-color: #f7fafc;
+  appearance: none; /* Remove o estilo padrão do navegador */
+  background-image: url('data:image/svg+xml;charset=US-ASCII,<svg%20xmlns="http://www.w3.org/2000/svg"%20viewBox="0%200%204%205"><path%20fill="%23648aac"%20d="M2%205L0%200h4z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 10px 10px;
+  cursor: pointer;
+  transition: border-color 0.2s ease-in-out;
+}
+
+/* Estilo ao focar no seletor */
+.form-group select:focus {
+  outline: none;
+  border-color: #3182ce; /* Azul suave no foco */
+  background-color: #fff;
+}
+
+/* Placeholder do seletor */
+.form-group select option[disabled] {
+  color: #a0aec0;
+}
+
+/* Estilo para o ícone do seletor */
+.form-group select::-ms-expand {
+  display: none; /* Remove o ícone padrão no IE e Edge */
+}

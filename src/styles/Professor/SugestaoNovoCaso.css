@@ -1,0 +1,224 @@
+/* src/styles/Professor/SugestaoNovoCaso.css */
+@import "../alunoReview.css"; /* Importa o CSS base */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
+
+* {
+  font-family: "Poppins", sans-serif;
+}
+/* Prefixo das classes: sugestao-caso- */
+
+/* Container principal para Sugestão de Novo Caso */
+.sugestao-caso-container {
+  margin-top: 80px !important;
+  background-color: var(--card-background);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  padding: 24px;
+  max-width: 600px;
+  margin: 50px auto;
+}
+
+/* Título da Sugestão de Novo Caso */
+.sugestao-caso-title {
+  font-size: 1.75rem;
+  margin-bottom: 24px;
+  color: var(--primary-color); /* Azul escuro */
+  text-align: center;
+}
+
+/* Grupo de inputs */
+.sugestao-caso-input-group {
+  margin-bottom: 20px;
+  position: relative; /* Para posicionar as sugestões */
+}
+
+/* Estilo do input de pesquisa */
+.sugestao-caso-input {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid var(--card-border-color);
+  border-radius: 8px;
+  background-color: #f8fafc;
+  font-size: 1rem;
+  color: #111827;
+  transition: border-color 0.3s ease;
+}
+
+.sugestao-caso-input:focus {
+  border-color: var(--primary-color);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(36, 40, 115, 0.2);
+}
+
+/* Lista de matérias e períodos filtradas */
+.sugestao-caso-subject-list {
+  position: absolute;
+  width: 100%;
+  background-color: white;
+  border: 1px solid var(--card-border-color);
+  border-radius: 8px;
+  max-height: 150px;
+  overflow-y: auto;
+  z-index: 10;
+  margin-top: 5px;
+  padding: 0;
+  list-style: none;
+}
+
+.sugestao-caso-subject-item {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.sugestao-caso-subject-item:hover {
+  background-color: var(--primary-color-hover);
+  color: white;
+}
+
+/* Estilo da textarea via MdEditor */
+/* O MdEditor já possui seus próprios estilos, mas podemos adicionar alguns ajustes */
+
+.react-md-editor {
+  border: 2px solid var(--card-border-color);
+  border-radius: 8px;
+}
+
+.react-md-editor__textarea {
+  padding: 12px;
+  font-size: 1rem;
+}
+
+.react-md-editor__toolbar {
+  border-bottom: 1px solid var(--card-border-color);
+}
+
+/* Estilo da seção de upload de imagens */
+.sugestao-caso-upload-group {
+  margin-bottom: 20px;
+}
+
+/* Estilo do input de arquivo */
+.sugestao-caso-file-input {
+  display: block;
+  width: 100%;
+  padding: 8px;
+  border: 2px dashed var(--card-border-color);
+  border-radius: 8px;
+  background-color: #f8fafc;
+  color: #111827;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+
+.sugestao-caso-file-input:focus {
+  border-color: var(--primary-color);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(36, 40, 115, 0.2);
+}
+
+/* Estilo da pré-visualização das imagens */
+.sugestao-caso-preview {
+  margin-top: 20px;
+}
+
+/* Grid para exibir as imagens */
+.sugestao-caso-preview-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+/* Estilo individual para cada item de pré-visualização */
+.sugestao-caso-preview-item {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  background-color: #f8f8f8;
+}
+
+/* Estilo das imagens de preview */
+.sugestao-caso-preview-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* Botão para deletar uma imagem */
+.sugestao-caso-delete-button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #ff4d4f;
+}
+
+/* Estilo do botão de envio */
+.sugestao-caso-submit-button {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.sugestao-caso-submit-button:disabled {
+  background-color: #242873;
+  color: white;
+  cursor: not-allowed;
+}
+
+.sugestao-caso-submit-button:hover:not(:disabled) {
+  background-color: var(--primary-color-hover);
+  box-shadow: 0 4px 12px rgba(36, 40, 115, 0.2);
+}
+
+/* Estilos do Toast */
+.toast {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #333;
+  color: white;
+  padding: 16px 24px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  z-index: 1000;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.toast.success {
+  background-color: #4caf50; /* Verde para sucesso */
+}
+
+.toast.error {
+  background-color: #f44336; /* Vermelho para erro */
+}
+
+.toast-message {
+  flex: 1;
+}
+
+.toast-close-button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.2rem;
+  cursor: pointer;
+}

@@ -1,0 +1,251 @@
+/* Importando o estilo base */
+@import "../alunoReview.css";
+
+* {
+  font-family: "Poppins", sans-serif;
+}
+/* Variáveis de cores */
+:root {
+  --primary-color: #007bff; /* Azul padrão */
+  --secondary-color: #0056b3; /* Azul mais escuro */
+  --background-color: #f9f9f9;
+  --text-color: #333;
+  --error-color: #dc3545; /* Vermelho para erros */
+  --success-color: #28a745; /* Verde para sucesso */
+}
+
+/* Container principal do componente */
+.feedback-form-container {
+  margin-top: 30px !important;
+  background-color: var(--background-color);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  margin: 0 auto;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Estilo para a seção de respostas fictícias do aluno */
+.student-responses {
+  background-color: #ffffff;
+  padding: 20px;
+  margin-bottom: 30px;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.student-responses h2 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: var(--primary-color);
+  text-align: center;
+}
+
+.student-responses p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text-color);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.student-responses p strong {
+  width: 150px;
+  min-width: 150px;
+  display: inline-block;
+}
+
+.student-responses p::before {
+  content: "";
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-size: contain;
+  margin-right: 10px;
+  /* Adicione ícones personalizados aqui, por exemplo:
+     background-image: url('icone.png'); */
+}
+
+/* Estilo do formulário de feedback */
+.feedback-form {
+  background-color: #ffffff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.feedback-form h2 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: var(--primary-color);
+  text-align: center;
+}
+
+/* Estilos dos campos do formulário */
+.form-group {
+  margin-bottom: 25px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 1rem;
+  margin-bottom: 8px;
+  color: var(--text-color);
+}
+
+.form-group input[type="text"],
+.form-group textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  background-color: #fff;
+  color: var(--text-color);
+  resize: vertical;
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.form-group input[type="text"]::placeholder,
+.form-group textarea::placeholder {
+  color: #999;
+}
+
+.form-group input[type="text"]:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+}
+
+/* Indicadores de campo obrigatório */
+.form-group label::after {
+  content: " *";
+  color: var(--error-color);
+}
+
+/* Mensagens de erro */
+.form-group .error-message {
+  color: var(--error-color);
+  font-size: 0.9rem;
+  margin-top: 5px;
+}
+
+/* Estilo do botão de envio */
+.submit-button {
+  width: 100%;
+  padding: 14px;
+  background-color: var(--primary-color);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+  background-color: var(--secondary-color);
+}
+
+/* Efeito ao clicar no botão */
+.submit-button:active {
+  transform: scale(0.98);
+}
+
+/* Mensagens de sucesso e erro após o envio */
+.feedback-message {
+  text-align: center;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.feedback-message.success {
+  background-color: var(--success-color);
+  color: #fff;
+}
+
+.feedback-message.error {
+  background-color: var(--error-color);
+  color: #fff;
+}
+
+/* Acessibilidade */
+.feedback-form-container,
+.student-responses {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.feedback-form-container * {
+  box-sizing: border-box;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .feedback-form-container {
+    padding: 15px;
+  }
+
+  .student-responses,
+  .feedback-form {
+    padding: 15px;
+  }
+
+  .student-responses h2,
+  .feedback-form h2 {
+    font-size: 1.5rem;
+  }
+
+  .form-group label,
+  .form-group input[type="text"],
+  .form-group textarea,
+  .submit-button {
+    font-size: 1rem;
+  }
+}
+
+/* Transições suaves */
+input,
+textarea,
+button {
+  transition: all 0.3s ease;
+}
+
+/* Modo escuro (opcional) */
+body.dark-mode {
+  --background-color: #1e1e1e;
+  --text-color: #ccc;
+  --primary-color: #0d6efd;
+  --secondary-color: #0b5ed7;
+}
+
+body.dark-mode .feedback-form-container,
+body.dark-mode .student-responses {
+  background-color: #2c2c2c;
+}
+
+body.dark-mode .student-responses p,
+body.dark-mode .form-group label {
+  color: var(--text-color);
+}
+
+body.dark-mode .form-group input[type="text"],
+body.dark-mode .form-group textarea {
+  background-color: #3a3a3a;
+  color: #fff;
+  border: 1px solid #555;
+}
+
+body.dark-mode .submit-button {
+  background-color: var(--primary-color);
+}
+
+body.dark-mode .submit-button:hover {
+  background-color: var(--secondary-color);
+}
